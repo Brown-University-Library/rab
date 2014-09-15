@@ -1,7 +1,7 @@
 vitro-template
 ===========
 
-This repo is a tempate for building [Vitro](https://github.com/vivo-project/Vitro/) projects.  Vitro is useful as an adminstrative interface to a triple store. 
+This repo is a template for building [Vitro](https://github.com/vivo-project/Vitro/) projects.  Vitro is useful as an adminstrative interface to a triple store. 
 
 Some things I hope to do with this.  
 
