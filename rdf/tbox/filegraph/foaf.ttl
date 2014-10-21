@@ -1,0 +1,24 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix vitro:   <http://vitro.mannlib.cornell.edu/ns/vitro/0.7#> .
+@prefix foaf:    <http://xmlns.com/foaf/0.1/> .
+
+<http://xmlns.com/foaf/0.1/>
+    a owl:Ontology ;
+    rdfs:label "FOAF"@en-US ;
+    vitro:ontologyPrefixAnnot
+              "foaf"^^xsd:string ;
+.
+
+foaf:Agent
+      a       owl:Class ;
+      rdfs:label "Agent"@en-US ;
+.
+
+foaf:Person
+      a       owl:Class ;
+      rdfs:label "Person"@en-US ;
+      rdfs:subClassOf foaf:Agent
+.
