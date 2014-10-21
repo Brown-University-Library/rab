@@ -6,6 +6,8 @@ This is a repo for upgrading Researchers@Brown to the VIVO/Vitro 1.7 platform.  
 
 ###Building
 
+ * setup a database for use with Vitro
+  ** `create database vitro charset "utf8"
  * git clone this repository
  * `git clone --depth 5 --branch maint-rel-1.7 https://github.com/vivo-project/Vitro.git`
  * make a vitro data directory
