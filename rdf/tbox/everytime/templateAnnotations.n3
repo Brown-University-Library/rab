@@ -1,0 +1,8 @@
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix vitro:   <http://vitro.mannlib.cornell.edu/ns/vitro/0.7#> .
+@prefix foaf:    <http://xmlns.com/foaf/0.1/> .
+foaf:Person
+      vitro:customDisplayViewAnnot
+              "individual--foaf-person.ftl"^^xsd:string ;
+.
+
