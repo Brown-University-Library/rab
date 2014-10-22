@@ -1,7 +1,7 @@
 <#-- $This file is distributed under the terms of the license in /doc/license.txt$ -->
 
 <#-- Default individual profile page template -->
-
+<#assign core = "http://vivoweb.org/ontology/core#">
 <#include "individual-setup.ftl">
 
 <#-- $This file is distributed under the terms of the license in /doc/license.txt$ -->
@@ -48,12 +48,19 @@
                 <h1 class="fn">
                     <#-- Label -->
                     <@p.label individual editable labelCount localesCount languageCount/>
-
-                    <#--  Most-specific types -->
-                    <@p.mostSpecificTypes individual />
+                <#-- title -->
+                <#assign title = propertyGroups.pullProperty("${core}preferredTitle")!>
+                <#if title?has_content>
+		    <@p.addLinkWithLabel title editable />
+                    <#list title.statements as statement>
+                        <span class="display-title">${statement.value}</span>
+                    </#list>
+                </#if>
                 </h1>
             </#if>
         </header>
+    
+    <#include "individual-overview.ftl">
                 
     <#if individualProductExtension??>
         ${individualProductExtension}
