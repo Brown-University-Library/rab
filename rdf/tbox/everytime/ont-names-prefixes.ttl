@@ -24,7 +24,7 @@
       rdfs:label "Dublin Core elements"@en-US ;
       vitro:ontologyPrefixAnnot
               "dcelem"^^xsd:string .
-
+#DC terms
 <http://purl.org/dc/terms/>
       a       owl:Ontology ;
       rdfs:label "Dublin Core terms"@en-US ;
