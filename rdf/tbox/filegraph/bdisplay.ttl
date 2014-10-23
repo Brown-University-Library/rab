@@ -1,0 +1,128 @@
+@prefix afn:     <http://jena.hpl.hp.com/ARQ/function#> .
+@prefix scires:  <http://vivoweb.org/ontology/scientific-research#> .
+@prefix scirr:   <http://vivoweb.org/ontology/scientific-research-resource#> .
+@prefix bcite:   <http://vivo.brown.edu/ontology/citation#> .
+@prefix vann:    <http://purl.org/vocab/vann/> .
+@prefix owl2:    <http://www.w3.org/2006/12/owl2-xml#> .
+@prefix dcterms:  <http://purl.org/dc/terms/> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix vitro:   <http://vitro.mannlib.cornell.edu/ns/vitro/0.7#> .
+@prefix event:   <http://purl.org/NET/c4dm/event.owl#> .
+@prefix swvs:    <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
+@prefix c4o:     <http://purl.org/spar/c4o/> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix vivo:    <http://vivoweb.org/ontology/core#> .
+@prefix dcelem:  <http://purl.org/dc/elements/1.1/> .
+@prefix dc:      <http://purl.org/dc/elements/1.1/> .
+@prefix pvs:     <http://vivoweb.org/ontology/provenance-support#> .
+@prefix geo:     <http://aims.fao.org/aos/geopolitical.owl#> .
+@prefix foaf:    <http://xmlns.com/foaf/0.1/> .
+@prefix fabio:   <http://purl.org/spar/fabio/> .
+@prefix skco:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix bibo:    <http://purl.org/ontology/bibo/> .
+@prefix bdisplay:  <http://vivo.brown.edu/ontology/display#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix vitro-public:  <http://vitro.mannlib.cornell.edu/ns/vitro/public#> .
+@prefix blocal:  <http://vivo.brown.edu/ontology/vivo-brown/> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix ero:     <http://purl.obolibrary.org/obo/> .
+
+bdisplay:AlpertSchoolOfMedicine
+      a       owl:Class ;
+      rdfs:label "Alpert School of Medicine"@en-US ;
+      rdfs:subClassOf bdisplay:OU ;
+      vitro:hiddenFromDisplayBelowRoleLevelAnnot
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#dbAdmin> ;
+      vitro:inClassGroup <http://vivo.brown.edu/individual/vitroClassGroupBrownOUs> ;
+      vitro:prohibitedFromUpdateBelowRoleLevelAnnot
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
+
+bdisplay:SchoolOfPublicHealth
+      a       owl:Class ;
+      rdfs:label "School of Public Health"@en-US ;
+      rdfs:subClassOf bdisplay:OU ;
+      vitro:hiddenFromDisplayBelowRoleLevelAnnot
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
+      vitro:inClassGroup <http://vivo.brown.edu/individual/vitroClassGroupBrownOUs> ;
+      vitro:prohibitedFromUpdateBelowRoleLevelAnnot
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
+
+bdisplay:OU
+      a       owl:Class ;
+      rdfs:label "Organizational Unit"@en-US ;
+      vitro:descriptionAnnot
+              "Org unit at Brown."^^xsd:string ;
+      vitro:displayLimitAnnot
+              "-1"^^xsd:int ;
+      vitro:displayRankAnnot
+              "-1"^^xsd:int ;
+      vitro:hiddenFromDisplayBelowRoleLevelAnnot
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
+      vitro:inClassGroup <http://vivoweb.org/ontology#vitroClassGroupBrownOUs> ;
+      vitro:prohibitedFromUpdateBelowRoleLevelAnnot
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
+
+bdisplay:Schools
+      a       owl:Class ;
+      rdfs:label "Schools"@en-US ;
+      rdfs:subClassOf bdisplay:OU ;
+      vitro:displayRankAnnot
+              "4"^^xsd:int ;
+      vitro:hiddenFromDisplayBelowRoleLevelAnnot
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
+      vitro:inClassGroup <http://vivo.brown.edu/individual/vitroClassGroupBrownOUs> ;
+      vitro:prohibitedFromUpdateBelowRoleLevelAnnot
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
+
+bdisplay:CentersProgramsAndInstitutes
+      a       owl:Class ;
+      rdfs:label "Centers, Programs, and Institutes"@en-US ;
+      rdfs:subClassOf bdisplay:OU ;
+      vitro:displayRankAnnot
+              "2"^^xsd:int ;
+      vitro:hiddenFromDisplayBelowRoleLevelAnnot
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
+      vitro:inClassGroup <http://vivo.brown.edu/individual/vitroClassGroupBrownOUs> ;
+      vitro:prohibitedFromUpdateBelowRoleLevelAnnot
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
+
+bdisplay:Departments
+      a       owl:Class ;
+      rdfs:label "Academic Departments"@en-US ;
+      rdfs:subClassOf bdisplay:OU ;
+      vitro:displayRankAnnot
+              "1"^^xsd:int ;
+      vitro:hiddenFromDisplayBelowRoleLevelAnnot
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
+      vitro:inClassGroup <http://vivo.brown.edu/individual/vitroClassGroupBrownOUs> ;
+      vitro:prohibitedFromUpdateBelowRoleLevelAnnot
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
+
+bdisplay:SchoolOfEngineering
+      a       owl:Class ;
+      rdfs:label "School of Engineering"@en-US ;
+      rdfs:subClassOf bdisplay:OU ;
+      vitro:hiddenFromDisplayBelowRoleLevelAnnot
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
+      vitro:inClassGroup <http://vivo.brown.edu/individual/vitroClassGroupBrownOUs> ;
+      vitro:prohibitedFromUpdateBelowRoleLevelAnnot
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
+
+<http://vivo.brown.edu/ontology/display>
+      a       owl:Ontology ;
+      rdfs:label "Brown Display"@en-US ;
+      vitro:ontologyPrefixAnnot
+              "bdisplay"^^xsd:string .
+
+bdisplay:BiologyAndMedicine
+      a       owl:Class ;
+      rdfs:label "Biology and Medicine"@en-US ;
+      rdfs:subClassOf bdisplay:OU ;
+      vitro:displayRankAnnot
+              "3"^^xsd:int ;
+      vitro:hiddenFromDisplayBelowRoleLevelAnnot
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#dbAdmin> ;
+      vitro:inClassGroup <http://vivo.brown.edu/individual/vitroClassGroupBrownOUs> ;
+      vitro:prohibitedFromUpdateBelowRoleLevelAnnot
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#dbAdmin> .
