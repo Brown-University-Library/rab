@@ -1,0 +1,144 @@
+@prefix afn:     <http://jena.hpl.hp.com/ARQ/function#> .
+@prefix scires:  <http://vivoweb.org/ontology/scientific-research#> .
+@prefix scirr:   <http://vivoweb.org/ontology/scientific-research-resource#> .
+@prefix bcite:   <http://vivo.brown.edu/ontology/citation#> .
+@prefix vann:    <http://purl.org/vocab/vann/> .
+@prefix owl2:    <http://www.w3.org/2006/12/owl2-xml#> .
+@prefix dcterms:  <http://purl.org/dc/terms/> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix vitro:   <http://vitro.mannlib.cornell.edu/ns/vitro/0.7#> .
+@prefix event:   <http://purl.org/NET/c4dm/event.owl#> .
+@prefix swvs:    <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
+@prefix c4o:     <http://purl.org/spar/c4o/> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix vivo:    <http://vivoweb.org/ontology/core#> .
+@prefix dcelem:  <http://purl.org/dc/elements/1.1/> .
+@prefix dc:      <http://purl.org/dc/elements/1.1/> .
+@prefix pvs:     <http://vivoweb.org/ontology/provenance-support#> .
+@prefix geo:     <http://aims.fao.org/aos/geopolitical.owl#> .
+@prefix foaf:    <http://xmlns.com/foaf/0.1/> .
+@prefix fabio:   <http://purl.org/spar/fabio/> .
+@prefix skco:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix bibo:    <http://purl.org/ontology/bibo/> .
+@prefix bdisplay:  <http://vivo.brown.edu/ontology/display#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix vitro-public:  <http://vitro.mannlib.cornell.edu/ns/vitro/public#> .
+@prefix blocal:  <http://vivo.brown.edu/ontology/vivo-brown/> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix ero:     <http://purl.obolibrary.org/obo/> .
+@prefix brown:   <http://vivo.brown.edu/individual/> .
+
+###############################################
+###############################################
+##########          FOAF!            ##########
+###############################################
+###############################################
+
+foaf:
+      a       owl:Ontology ;
+      rdfs:label "FOAF"@en-US ;
+      vitro:ontologyPrefixAnnot
+              "foaf"^^xsd:string .
+
+###############################################
+##########        CLASSES!           ##########
+###############################################
+
+foaf:Agent
+      a       owl:Class ;
+      rdfs:label "Agent"@en-US ;
+      vitro:descriptionAnnot
+              "see: http://xmlns.com/foaf/spec/#term_Agent"^^xsd:string ;
+      vitro:displayLimitAnnot
+              "-1"^^xsd:int ;
+      vitro:displayRankAnnot
+              "-1"^^xsd:int ;
+      vitro:hiddenFromDisplayBelowRoleLevelAnnot
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
+      vitro:prohibitedFromUpdateBelowRoleLevelAnnot
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
+      vitro:shortDef "Agents are things that do stuff"^^xsd:string ;
+      <http://www.w3.org/2008/05/skos#scopeNote>
+              "Used to describe any \"agent\" related to bibliographic items. Such agents can be persons, organizations or groups of any kind."@en .
+
+foaf:Person
+      a       owl:Class ;
+      rdfs:label "Person"@en-US ;
+      rdfs:subClassOf foaf:Agent ;
+      vitro:customDisplayViewAnnot
+              "individual--foaf-person.ftl"^^xsd:string ;
+      vitro:displayLimitAnnot
+              "-1"^^xsd:int ;
+      vitro:displayRankAnnot
+              "-1"^^xsd:int ;
+      vitro:hiddenFromDisplayBelowRoleLevelAnnot
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
+      vitro:inClassGroup brown:vitroClassGrouppeople ;
+      vitro:prohibitedFromUpdateBelowRoleLevelAnnot
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
+      vitro:shortDef "The most general classification of a person"^^xsd:string .
+
+foaf:Organization
+      a       owl:Class ;
+      rdfs:label "Organization"@en-US ;
+      rdfs:subClassOf foaf:Agent ;
+      vitro:customDisplayViewAnnot
+              "individual--foaf-organization.ftl"^^xsd:string ;
+      vitro:descriptionAnnot
+              "This class will display all the instances in the subclasses below it, as well as any organizations that were added as part of this generic class because there wasn't a specific class available."^^xsd:string ;
+      vitro:displayLimitAnnot
+              "-1"^^xsd:int ;
+      vitro:displayRankAnnot
+              "-1"^^xsd:int ;
+      vitro:exampleAnnot "Only use if no specific subclasses of foaf:organization desribe the organization."^^xsd:string ;
+      vitro:hiddenFromDisplayBelowRoleLevelAnnot
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
+      vitro:inClassGroup brown:vitroClassGrouporganizations ;
+      vitro:prohibitedFromUpdateBelowRoleLevelAnnot
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
+      vitro:shortDef "A generic class encompassing several types of organizations."^^xsd:string ;
+      <http://www.w3.org/2008/05/skos#scopeNote>
+              "Ued to describe an organization related to bibliographic items such as a publishing company, etc."@en .
+
+###############################################
+##########        PROPERTIES!        ##########
+###############################################
+
+foaf:firstName
+      a       owl:FunctionalProperty , owl:DatatypeProperty ;
+      rdfs:domain foaf:Person ;
+      rdfs:label "first name"@en-US ;
+      vitro:descriptionAnnot
+              "http://xmlns.com/foaf/spec/#term_firstName.  Note from foaf: \"The lastName  property is provided (alongside firstName) as a mechanism to support legacy data that cannot be easily interpreted in terms of the (otherwise preferred) familyName  and givenName  properties. The concepts of 'first' and 'last' names do not work well across cultural and linguistic boundaries; however they are widely used in addressbooks and databases.\""^^xsd:string ;
+      vitro:displayLimitAnnot
+              "1"^^xsd:int ;
+      vitro:displayRankAnnot
+              "10"^^xsd:int ;
+      vitro:hiddenFromDisplayBelowRoleLevelAnnot
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
+      vitro:inPropertyGroupAnnot
+              brown:vitroPropertyGroupaddress ;
+      vitro:prohibitedFromUpdateBelowRoleLevelAnnot
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#editor> ;
+      vitro:publicDescriptionAnnot
+              "The legal first name of a person as indicated in data loaded most likely from their institution.  Only 1 first name can be displayed for each individual."^^xsd:string .
+
+foaf:lastName
+      a       owl:FunctionalProperty , owl:DatatypeProperty ;
+      rdfs:domain foaf:Person ;
+      rdfs:label "last name"@en-US ;
+      vitro:descriptionAnnot
+              "http://xmlns.com/foaf/spec/#term_lastName. Note from foaf: \"The lastName  property is provided (alongside firstName) as a mechanism to support legacy data that cannot be easily interpreted in terms of the (otherwise preferred) familyName  and givenName  properties. The concepts of 'first' and 'last' names do not work well across cultural and linguistic boundaries; however they are widely used in addressbooks and databases.\""^^xsd:string ;
+      vitro:displayLimitAnnot
+              "1"^^xsd:int ;
+      vitro:displayRankAnnot
+              "30"^^xsd:int ;
+      vitro:hiddenFromDisplayBelowRoleLevelAnnot
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
+      vitro:inPropertyGroupAnnot
+              brown:vitroPropertyGroupaddress ;
+      vitro:prohibitedFromUpdateBelowRoleLevelAnnot
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#editor> ;
+      vitro:publicDescriptionAnnot
+              "The legal last name of a person as indicated in data loaded most likely from their institution. Only 1 last name can be displayed for each individual."^^xsd:string .
