@@ -4,46 +4,6 @@
 @prefix owl:     <http://www.w3.org/2002/07/owl#> .
 
 
-#Bibo
-<http://purl.org/ontology/bibo/>
-  a owl:Ontology ;
-  rdfs:label "Bibontology"@en-US ;
-  vitro:ontologyPrefixAnnot
-    "bibo"^^xsd:string .
-
-#C4o
-<http://purl.org/spar/c4o/>
-  a       owl:Ontology ;
-  rdfs:label "Citation Counting and Context Characterization Ontology"@en-US ;
-  vitro:ontologyPrefixAnnot
-    "c4o"^^xsd:string .
-
-#DC elements
-<http://purl.org/dc/elements/1.1/>
-  a       owl:Ontology ;
-      rdfs:label "Dublin Core elements"@en-US ;
-      vitro:ontologyPrefixAnnot
-              "dcelem"^^xsd:string .
-#DC terms
-<http://purl.org/dc/terms/>
-      a       owl:Ontology ;
-      rdfs:label "Dublin Core terms"@en-US ;
-      vitro:ontologyPrefixAnnot
-              "dcterms"^^xsd:string .
-
-#Event
-<http://purl.org/NET/c4dm/event.owl>
-      a       owl:Ontology ;
-      rdfs:label "Event Ontology"@en-US ;
-      vitro:ontologyPrefixAnnot
-              "event"^^xsd:string .
-
-#Fabio
-<http://purl.org/spar/fabio/>
-  a       owl:Ontology ;
-  rdfs:label "FRBR-aligned Bibliographic Ontology"@en-US ;
-  vitro:ontologyPrefixAnnot
-    "fabio"^^xsd:string .
 
 #Foaf
 <http://xmlns.com/foaf/0.1/>
@@ -52,14 +12,7 @@
   vitro:ontologyPrefixAnnot
     "foaf"^^xsd:string .
 
-#Scires
-<http://vivoweb.org/ontology/scientific-research>
-      a       owl:Ontology ;
-      rdfs:label "Scientific Research"@en-US ;
-      vitro:ontologyPrefixAnnot
-              "scires"^^xsd:string .
-
-#Skos
+#SKOS
 <http://www.w3.org/2004/02/skos/core>
       a       owl:Ontology ;
       rdfs:label "SKOS (Simple Knowledge Organization System)"@en-US ;
@@ -72,13 +25,6 @@
       rdfs:label "VIVO core"@en-US ;
       vitro:ontologyPrefixAnnot
               "vivo"^^xsd:string .
-
-#VIVO prov
-<http://vivoweb.org/ontology/provenance-support>
-      a       owl:Ontology ;
-      rdfs:label "provenance support"@en-US ;
-      vitro:ontologyPrefixAnnot
-              "pvs"^^xsd:string .
 
 #Brown citation
 <http://vivo.brown.edu/ontology/citation#>
@@ -100,9 +46,4 @@
       rdfs:label "Brown Local"@en-US ;
       vitro:ontologyPrefixAnnot
               "blocal"^^xsd:string .
-
-
-
-
-
 
