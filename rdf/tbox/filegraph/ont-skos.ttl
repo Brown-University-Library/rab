@@ -76,5 +76,4 @@ skos:exactMatch
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#dbAdmin> ;
       vitro:selectFromExistingAnnot
-              "true"^^xsd:boolean ;
-      skos:definition "skos:exactMatch is used to link two concepts, indicating a high degree of confidence that the concepts can be used interchangeably across a wide range of information retrieval applications. skos:exactMatch is a transitive property, and is a sub-property of skos:closeMatch."@en .
+              "true"^^xsd:boolean .
