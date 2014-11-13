@@ -124,6 +124,20 @@ blocal:Place
       rdfs:subClassOf skos:Concept ;
       vitro:inClassGroup brown:vitroClassGrouplocations .
 
+blocal:BrownThing
+      a       owl:Class ;
+      rdfs:label "Organization or Person at Brown"@en-US ;
+      vitro:descriptionAnnot
+              "Used for restricting people, organizations, etc to Brown.  "^^xsd:string ;
+      vitro:exampleAnnot "Any Thing related to Brown"^^xsd:string ;
+      vitro:hiddenFromDisplayBelowRoleLevelAnnot
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#curator> ;
+      vitro:isMenuPageIntersectionClass
+              "true" ;
+      vitro:prohibitedFromUpdateBelowRoleLevelAnnot
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#curator> ;
+      vitro:shortDef "Generic Brown Thing"^^xsd:string .
+
 ###############################################
 ##########        PROPERTIES!        ##########
 ###############################################
@@ -402,3 +416,43 @@ blocal:hasTeacher
       vitro:displayLimitAnnot
               "5"^^xsd:int ;
       owl:inverseOf blocal:teacherFor .
+
+blocal:drrbWebPage
+      a       owl:ObjectProperty ;
+      rdfs:label "on the Web"@en-US ;
+      rdfs:range vivo:URLLink ;
+      vitro:displayLimitAnnot
+              "5"^^xsd:int ;
+      vitro:displayRankAnnot
+              "11"^^xsd:int ;
+      vitro:hiddenFromDisplayBelowRoleLevelAnnot
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
+      vitro:inPropertyGroupAnnot
+              <http://vivoweb.org/ontology#vitroPropertyGroupbiography> ;
+      vitro:prohibitedFromUpdateBelowRoleLevelAnnot
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
+      vitro:selectFromExistingAnnot
+              "true"^^xsd:boolean ;
+      owl:inverseOf blocal:drrbWebPageOf .
+
+blocal:drrbWebPageOf
+      a       owl:ObjectProperty ;
+      rdfs:domain vivo:URLLink ;
+      rdfs:label "features"@en-US ;
+      vitro:displayLimitAnnot
+              "5"^^xsd:int ;
+      vitro:displayRankAnnot
+              "11"^^xsd:int ;
+      owl:inverseOf blocal:drrbWebPage .
+
+blocal:previousImage
+      a       owl:ObjectProperty ;
+      rdfs:label "previous image"@en-US ;
+      vitro:displayLimitAnnot
+              "5"^^xsd:int ;
+      vitro:hiddenFromDisplayBelowRoleLevelAnnot
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#dbAdmin> ;
+      vitro:prohibitedFromUpdateBelowRoleLevelAnnot
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#dbAdmin> ;
+      vitro:selectFromExistingAnnot
+              "true"^^xsd:boolean .
