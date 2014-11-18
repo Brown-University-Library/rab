@@ -27,7 +27,7 @@ body {
     margin: 0 auto;
 }
 body {
-   background: #fff url(../images/header-background.gif) center 0 repeat-x; 
+   background: #fff url(../images/header-background.jpg) center 0 repeat-x; 
 }
 a:hover {
     text-decoration: none;
@@ -448,7 +448,7 @@ h1.vitro-logo {
     height: 59px;
     top: 28px;
     left: 0;
-    background: url(../images/VITRO-logo.png) 0 0 no-repeat;
+    background: url(../images/VIVO-logo.png) 0 0 no-repeat;
 }
 h1.vitro-logo a {
     display: block;
