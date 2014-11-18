@@ -2,7 +2,6 @@
 
 <#-- Individual profile page template for foaf:Person individuals -->
 <#include "individual-setup.ftl">
-<#import "individual-qrCodeGenerator.ftl" as qr>
 <#import "lib-vivo-properties.ftl" as vp>
 <#if !labelCount??>
     <#assign labelCount = 0 >
@@ -29,8 +28,6 @@
 
             <ul id ="individual-tools-people" role="list">
                 <li role="listitem"><img id="uriIcon" title="${individual.uri}" class="middle" src="${urls.images}/individual/uriIcon.gif" alt="uri icon"/></li>
-
-                <@qr.renderCode />
             </ul>
         </nav>
 
@@ -50,7 +47,6 @@
     </section>
 
     <section id="individual-info" ${infoClass!} role="region">
-        <#include "individual-visualizationFoafPerson.ftl">
         <#-- Disable for now until controller sends data -->
         <#--
         <section id="co-authors" role="region">
