@@ -1,17 +1,19 @@
 <#-- $This file is distributed under the terms of the license in /doc/license.txt$ -->
 
 <#-- Individual profile page template for foaf:Person individuals -->
+
+<#-- setup file commented out in VIVO person.ftl, but needed here -->
 <#include "individual-setup.ftl">
-
-<#include "individual-vitro.ftl">
-
 <#import "lib-vivo-properties.ftl" as vp>
+
+<#if !labelCount??>
+    <#assign labelCount = 0 >
+</#if>
 
 <#assign core = "http://vivoweb.org/ontology/core#">
 <#assign blocal = "http://vivo.brown.edu/ontology/vivo-brown/">
 
 <section id="individual-intro" class="vcard person" role="region">
-
     <section id="share-contact" role="region"> 
         <#-- Image -->           
         <#assign individualImage>
@@ -26,7 +28,7 @@
             <#assign infoClass = 'class="withThumb"'/>
         </#if>
 
-        <div id="photo-wrapper">${individualImage}</div>
+        <div id="photo-wrapper" >${individualImage}</div>
 
         <#include "individual-contactInfo.ftl">  
                 
