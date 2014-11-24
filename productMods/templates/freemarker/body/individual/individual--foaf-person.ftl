@@ -80,5 +80,21 @@
             </#if>
          
         </header>
+
+        <#-- Overview -->
+        <#include "individual-overview.ftl">
+
+
+        <#-- Affiliations -->
+        <#assign affiliation = propertyGroups.pullProperty("${blocal}hasAffiliation")!>
+        <#if affiliation?has_content>
+            <h2>Brown Affiliations</h2>
+            <ul id="affiliations">
+                <#list affiliation.statements as af>
+                    <li><a href="${profileUrl(af.org)}">${af.orgName}</a></li>
+                </#list>
+            </ul>
+        </#if>
     </section>
 </section>
+
