@@ -6,8 +6,9 @@
 <@emailLinks "${core}primaryEmail" />
 
 <#-- Additional Emails --> 
-<#--<@emailLinks "${core}email" />-->   
-  
+<@emailLinks "${core}email" />   
+
+<#--  
 <#-- Phone --> 
 <#assign phone = propertyGroups.pullProperty("${core}phoneNumber")!>
 <#if phone?has_content> <#-- true when the property is in the list, even if not populated (when editing) -->
@@ -17,12 +18,13 @@
             <#list phone.statements as statement>
                 <li role="listitem">                           
                    <img class ="icon-phone  middle" src="${urls.images}/individual/phoneIcon.gif" alt="phone icon" />${statement.value}
-                    <@p.editingLinks "${phone.localName}" statement editable />
+                    <@p.editingLinks "${phone.localName}" "${phone.name}" statement editable phone.rangeUri />
                 </li>
             </#list>
         </ul>
     </#if>
 </#if>
+-->
 
 <#macro emailLinks property>
     <#assign email = propertyGroups.pullProperty(property)!>    
@@ -41,7 +43,7 @@
                     <li role="listitem">
                         <img class ="icon-email middle" src="${urls.images}/individual/emailIcon.gif" alt="email icon" />
                         <a class="email" href="mailto:${statement.value}" title="email">${statement.value}</a>
-                        <@p.editingLinks "${email.localName}" statement editable />
+                        <@p.editingLinks "${email.localName}" "${email.name}" statement editable email.rangeUri/>
                     </li>
                 </#list>
             </ul>
