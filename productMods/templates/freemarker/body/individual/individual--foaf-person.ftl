@@ -95,6 +95,13 @@
                 </#list>
             </ul>
         </#if>
+
+        <#-- Research Areas -->
+        <#assign researchAreas = propertyGroups.pullProperty("${core}hasResearchArea")!>
+        <#if researchAreas?has_content> <#-- true when the property is in the list, even if not populated (when editing) -->
+            <@p.objectPropertyListing researchAreas editable />
+        </#if>
+        
     </section>
 </section>
 
