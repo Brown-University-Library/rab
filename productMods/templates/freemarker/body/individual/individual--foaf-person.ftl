@@ -101,7 +101,20 @@
         <#if researchAreas?has_content> <#-- true when the property is in the list, even if not populated (when editing) -->
             <@p.objectPropertyListing researchAreas editable />
         </#if>
-        
     </section>
 </section>
+
+<#assign nameForOtherGroup = "${i18n().other}"> 
+
+<!-- Property group menu or tabs -->
+<#-- 
+    With release 1.6 there are now two types of property group displays: the original property group
+     menu and the horizontal tab display, which is the default. If you prefer to use the property
+     group menu, simply substitute the include statement below with the one that appears after this
+     comment section.
+     
+     <#include "individual-property-group-menus.ftl">
+-->
+
+<#include "individual-property-group-tabs.ftl">
 
