@@ -105,6 +105,11 @@
 </section>
 
 <#assign nameForOtherGroup = "${i18n().other}"> 
+<#if !editable>
+    <#-- We don't want to see the first name and last name unless we might edit them. -->
+    <#assign skipThis = propertyGroups.pullProperty("http://xmlns.com/foaf/0.1/firstName")!> 
+    <#assign skipThis = propertyGroups.pullProperty("http://xmlns.com/foaf/0.1/lastName")!> 
+</#if>
 
 <!-- Property group menu or tabs -->
 <#-- 
@@ -118,3 +123,30 @@
 
 <#include "individual-property-group-tabs.ftl">
 
+<#assign rdfUrl = individual.rdfUrl>
+
+<#if rdfUrl??>
+    <script>
+        var individualRdfUrl = '${rdfUrl}';
+    </script>
+</#if>
+
+<script>
+    var i18nStringsUriRdf = {
+        shareProfileUri: '${i18n().share_profile_uri}',
+        viewRDFProfile: '${i18n().view_profile_in_rdf}',
+        closeString: '${i18n().close}'
+    };
+</script>
+
+${stylesheets.add('<link rel="stylesheet" href="${urls.base}/css/individual/individual.css" />')}
+
+${headScripts.add('<script type="text/javascript" src="${urls.base}/js/jquery_plugins/qtip/jquery.qtip-1.0.0-rc3.min.js"></script>',
+                  '<script type="text/javascript" src="${urls.base}/js/tiny_mce/tiny_mce.js"></script>')}
+
+${scripts.add('<script type="text/javascript" src="${urls.base}/js/imageUpload/imageUploadUtils.js"></script>',
+              '<script type="text/javascript" src="${urls.base}/js/individual/individualUriRdf.js"></script>')}
+
+<script type="text/javascript">
+    i18n_confirmDelete = "${i18n().confirm_delete}"
+</script>
