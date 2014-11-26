@@ -28,7 +28,12 @@
             <#local label = "${i18n().websites}">  
             <@p.addLinkWithLabel webpage editable label />           
             <#if webpage.statements?has_content> <#-- if there are any statements -->
-                <#include "individual-webpage.ftl" >
+                <#-- Overwriting new 1.7 call to individual.webpage.ftl
+                Copying in contents of 1.5 lib-vivo-property-webpage.ftl -->
+                <ul class="${linkListClass}" id="webpages" role="list">
+                    <@p.objectPropertyList webpage editable />
+                </ul>
+                <#-- End contents of lib-vivo-property-webpage.ftl -->
             </#if>
         </nav>
     </#if>
