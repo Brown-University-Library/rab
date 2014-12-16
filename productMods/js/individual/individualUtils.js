@@ -3,7 +3,14 @@
 $(document).ready(function(){
     
     // "more"/"less" HTML truncator for showing more or less content in data property core:overview
-    shortProps = ['.overview-value', '#scholarlyWorkSection', '#fundedResearchList', '#teachingOverviewList', '#researchOverviewList', '#researchStatementList'];
+    shortProps = ['.overview-value', '#scholarlyWork-noRangeClass-List',
+                '#fundedResearch-noRangeClass-List',
+                '#teachingOverview-noRangeClass-List',
+                '#researchOverview-noRangeClass-List',
+                '#researchStatement-noRangeClass-List',
+                '#awardsAndHonors-noRangeClass-List',
+                '#affiliations-noRangeClass-List'
+                ];
     $(shortProps).each(function( index, selector ) {
 	$(selector).truncate({max_length: 500});
     });
