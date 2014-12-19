@@ -15,6 +15,7 @@
     </section> <!-- #individual-intro -->
     <!--postindiviudal overiew tfl-->
 </#assign>
+<#assign core = "http://vivoweb.org/ontology/core#">
 
 <#include "individual-vitro.ftl">
 
