@@ -38,6 +38,13 @@
 	<property file="${build.properties.file}" />
 	<fail unless="vitro.core.dir" message="${build.properties.file} must contain a value for vitro.core.dir" />
 
+        <!-- ================================= 
+		Copy Solr modifications to Vitro solr/
+	================================= -->
+	<copy todir="${vitro.core.dir}/solr" overwrite="true">
+        	<fileset dir="solr"/>
+  	</copy
+
 	<!--
 		Base it all on the core build file. 
 	-->
