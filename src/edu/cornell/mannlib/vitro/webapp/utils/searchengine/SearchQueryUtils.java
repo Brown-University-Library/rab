@@ -165,7 +165,7 @@ public class SearchQueryUtils {
             
         	 // Add alpha filter if applicable
             if ( alpha != null && !"".equals(alpha) && alpha.length() == 1) {      
-                queryText += VitroSearchTermNames.NAME_LOWERCASE + ":" + alpha.toLowerCase() + "*";
+                queryText += VitroSearchTermNames.NAME_BROWSE_SORT + ":" + alpha.toLowerCase() + "*";
             }     
             
             SearchQuery query = searchEngine.createQuery(queryText);
