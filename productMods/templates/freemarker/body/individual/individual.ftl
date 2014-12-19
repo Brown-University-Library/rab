@@ -5,6 +5,7 @@
 <#include "individual-setup.ftl">
 <#import "lib-vivo-properties.ftl" as vp>
 
+<#assign core = "http://vivoweb.org/ontology/core#">
 <#assign individualProductExtension>
     <#-- Include for any class specific template additions -->
     ${classSpecificExtension!}
@@ -15,7 +16,6 @@
     </section> <!-- #individual-intro -->
     <!--postindiviudal overiew tfl-->
 </#assign>
-<#assign core = "http://vivoweb.org/ontology/core#">
 
 <#include "individual-vitro.ftl">
 
