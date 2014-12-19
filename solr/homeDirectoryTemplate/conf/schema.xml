@@ -177,6 +177,10 @@
   <!-- field for hash signature, used for comparing to versions from external caches -->
   <field name="etag" type="string" stored="true" indexed="false" multiValued="false" />
 
+  <!-- ****************************  Brown additional fields *************************** -->
+  <field name="nameBrowseSort" type="sort_term" indexed="true" stored="false" multiValued="false" omitNorms="true" />
+  <copyField source="nameLowercaseSingleValued" dest="nameBrowseSort" />
+
   
      
   <!-- ****************************  End Vitro Fields *************************** -->
@@ -844,8 +848,8 @@
     <fieldType name="sort_term" class="solr.TextField">
       <analyzer>
         <tokenizer class="solr.KeywordTokenizerFactory"/>
-        <charFilter class="solr.PatternReplaceCharFilterFactory" pattern="(Center|Department|Initiative|Institute|Program|School|((^|\s)for\s|in\s|of\s|the\s))" replacement="" replace="all"/>
-        <charFilter class="solr.PatternReplaceCharFilterFactory" pattern="(Study|((^|\s)for\s|in\s|of\s|the\s))" replacement="" replace="all"/>
+        <charFilter class="solr.PatternReplaceCharFilterFactory" pattern="(Center|Department|Initiative|Institute|Program|School|((^|\s)for\s|in\s|of\s|the\s))" replacement=""/>
+        <charFilter class="solr.PatternReplaceCharFilterFactory" pattern="(Study|((^|\s)for\s|in\s|of\s|the\s))" replacement=""/>
         <filter class="solr.ASCIIFoldingFilterFactory"/>
         <filter class="solr.TrimFilterFactory" />
         <!-- lowercase for consistent alpha filtering -->
