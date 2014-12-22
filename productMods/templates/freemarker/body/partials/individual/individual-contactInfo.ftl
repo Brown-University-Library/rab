@@ -7,8 +7,7 @@
 
 <#-- Additional Emails --> 
 <@emailLinks "${core}email" />   
-
-<#--  
+ 
 <#-- Phone --> 
 <#assign phone = propertyGroups.pullProperty("${core}phoneNumber")!>
 <#if phone?has_content> <#-- true when the property is in the list, even if not populated (when editing) -->
@@ -24,7 +23,6 @@
         </ul>
     </#if>
 </#if>
--->
 
 <#macro emailLinks property>
     <#assign email = propertyGroups.pullProperty(property)!>    
