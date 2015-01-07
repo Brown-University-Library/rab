@@ -13,7 +13,7 @@
             </#if>
              | <a class="terms" href="${urls.termsOfUse}" title="${i18n().terms_of_use}">${i18n().terms_of_use}</a></small> | 
         </#if>
-        ${i18n().powered_by} <a class="powered-by-vitro" href="http://vitro.sourceforge.net"><strong>Vitro</strong></a>
+        Powered by <a class="powered-by-vivo" href="http://vivoweb.org" target="_blank" title="powered by VIVO"><strong>VIVO</strong></a></a>
         <#if user.hasRevisionInfoAccess>
              | ${i18n().version} <a href="${version.moreInfoUrl}" title="${i18n().version}">${version.label}</a>
         </#if>
@@ -21,11 +21,10 @@
     
     <nav role="navigation">
         <ul id="footer-nav" role="list">
-            <li role="listitem"><a href="${urls.about}" title="${i18n().about}">${i18n().about}</a></li>
+            <li role="listitem"><a href="${urls.about}" title="about">About</a></li>
             <#if urls.contact??>
-                <li role="listitem"><a href="${urls.contact}" title="${i18n().contact_us}">${i18n().contact_us}</a></li>
+                <li role="listitem"><a href="https://docs.google.com/a/brown.edu/forms/d/1H_LzEHRzpxv3OY266RjSwpAMwVuTEUFyNEgMPcZ4NiA/viewform" title="contact us">Contact Us</a></li>
             </#if> 
-            <li role="listitem"><a href="http://www.vivoweb.org/support" target="blank" title="${i18n().support}">${i18n().support}</a></li>
         </ul>
     </nav>
 </footer>

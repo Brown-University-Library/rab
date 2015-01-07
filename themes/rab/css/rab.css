@@ -925,11 +925,11 @@ ul#footer-nav li:last-child {
     color: #4e5051
 }
 #footer-nav a:hover {
-    color: #09C;
+    color: #a33646;
     text-decoration: none;
 }
 a.terms {
-    color: #09C;
+    color: #a33646;
     text-decoration: none;
 }
 a.terms:hover {
@@ -937,7 +937,7 @@ a.terms:hover {
     text-decoration: none;
 }
 a.powered-by-vitro {
-    color: #09C;
+    color: #a33646;
     text-decoration: none;
 }
 a.powered-by-vitro:hover {
