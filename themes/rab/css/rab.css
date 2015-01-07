@@ -27,7 +27,7 @@ body {
     margin: 0 auto;
 }
 body {
-   background: #fff url(../images/header-background.jpg) center 0 repeat-x; 
+   background: #f3f3f0 url(../images/header-background.jpg) center 0 repeat-x;
 }
 a:hover {
     text-decoration: none;
