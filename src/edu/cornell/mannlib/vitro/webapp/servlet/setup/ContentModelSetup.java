@@ -86,6 +86,8 @@ public class ContentModelSetup extends JenaDataSourceSetupBase
         }
     	RDFFilesLoader.loadEveryTimeFiles(ctx, "abox", baseABoxModel);
     	RDFFilesLoader.loadEveryTimeFiles(ctx, "tbox", baseTBoxModel);
+        //Load class groups each time.
+        RDFFilesLoader.loadEveryTimeFiles(ctx, "applicationMetadata", applicationMetadataModel);
         
         log.info("Setting up full models");
         OntModel baseFullModel = VitroModelFactory.createUnion(baseABoxModel, baseTBoxModel);
