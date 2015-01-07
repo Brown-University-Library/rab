@@ -582,9 +582,6 @@ ul#main-nav {
     padding-bottom: 40px;
 }
 #intro li{
-    background: url(../images/intro.gif) left 10px no-repeat;
-    padding-left: 13px;
-    margin-left: 40px;
 }
 body.loggedIn #intro {
     width: 98%;
