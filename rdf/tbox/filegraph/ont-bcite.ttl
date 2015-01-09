@@ -1,574 +1,365 @@
-@prefix afn:     <http://jena.hpl.hp.com/ARQ/function#> .
-@prefix scires:  <http://vivoweb.org/ontology/scientific-research#> .
-@prefix scirr:   <http://vivoweb.org/ontology/scientific-research-resource#> .
-@prefix bcite:   <http://vivo.brown.edu/ontology/citation#> .
-@prefix vann:    <http://purl.org/vocab/vann/> .
-@prefix owl2:    <http://www.w3.org/2006/12/owl2-xml#> .
-@prefix dcterms:  <http://purl.org/dc/terms/> .
-@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix vitro:   <http://vitro.mannlib.cornell.edu/ns/vitro/0.7#> .
-@prefix event:   <http://purl.org/NET/c4dm/event.owl#> .
-@prefix swvs:    <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
-@prefix c4o:     <http://purl.org/spar/c4o/> .
-@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix vivo:    <http://vivoweb.org/ontology/core#> .
-@prefix dcelem:  <http://purl.org/dc/elements/1.1/> .
-@prefix dc:      <http://purl.org/dc/elements/1.1/> .
-@prefix pvs:     <http://vivoweb.org/ontology/provenance-support#> .
-@prefix geo:     <http://aims.fao.org/aos/geopolitical.owl#> .
-@prefix foaf:    <http://xmlns.com/foaf/0.1/> .
-@prefix fabio:   <http://purl.org/spar/fabio/> .
-@prefix skco:    <http://www.w3.org/2004/02/skos/core#> .
-@prefix bibo:    <http://purl.org/ontology/bibo/> .
-@prefix bdisplay:  <http://vivo.brown.edu/ontology/display#> .
-@prefix owl:     <http://www.w3.org/2002/07/owl#> .
-@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
-@prefix vitro-public:  <http://vitro.mannlib.cornell.edu/ns/vitro/public#> .
-@prefix blocal:  <http://vivo.brown.edu/ontology/vivo-brown/> .
-@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
-@prefix ero:     <http://purl.obolibrary.org/obo/> .
-@prefix brown:   <http://vivo.brown.edu/individual/> .
+@prefix bcite: <http://vivo.brown.edu/ontology/citation#> .
+@prefix d: <http://vivo.brown.edu/individual/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix vitro: <http://vitro.mannlib.cornell.edu/ns/vitro/0.7#> .
+@prefix vitrorole: <http://vitro.mannlib.cornell.edu/ns/vitro/role#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-###############################################
-###############################################
-##########        BCITE!             ##########
-###############################################
-###############################################
+bcite: a owl:Ontology ;
+    rdfs:label "Brown Citations"@en-US ;
+    vitro:ontologyPrefixAnnot "bcite"^^xsd:string .
 
-bcite:
-      a       owl:Ontology ;
-      rdfs:label "Brown Citations"@en-US ;
-      vitro:ontologyPrefixAnnot
-              "bcite"^^xsd:string .
+bcite:Abstract a owl:Class ;
+    rdfs:label "Abstract"@en-US ;
+    vitro:hiddenFromDisplayBelowRoleLevelAnnot vitrorole:public ;
+    vitro:inClassGroup d:vitroClassGroupcitations ;
+    vitro:prohibitedFromUpdateBelowRoleLevelAnnot vitrorole:public ;
+    rdfs:subClassOf bcite:Citation .
 
-###############################################
-##########        CLASSES!           ##########
-###############################################
+bcite:Article a owl:Class ;
+    rdfs:label "Article"@en-US ;
+    vitro:hiddenFromDisplayBelowRoleLevelAnnot vitrorole:public ;
+    vitro:inClassGroup d:vitroClassGroupcitations ;
+    vitro:prohibitedFromUpdateBelowRoleLevelAnnot vitrorole:public ;
+    rdfs:subClassOf bcite:Citation .
 
-bcite:Chapter
-      a       owl:Class ;
-      rdfs:label "Chapter"@en-US ;
-      rdfs:subClassOf bcite:Citation ;
-      vitro:hiddenFromDisplayBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:inClassGroup brown:vitroClassGroupcitations ;
-      vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
+bcite:Book a owl:Class ;
+    rdfs:label "Book"@en-US ;
+    vitro:hiddenFromDisplayBelowRoleLevelAnnot vitrorole:public ;
+    vitro:inClassGroup d:vitroClassGroupcitations ;
+    vitro:prohibitedFromUpdateBelowRoleLevelAnnot vitrorole:public ;
+    rdfs:subClassOf bcite:Citation .
 
-bcite:Contributor
-      a       owl:Class ;
-      rdfs:label "Contributor"^^xsd:string ;
-      vitro:descriptionAnnot
-              "Any others listed on a paper"^^xsd:string .
+bcite:BookSection a owl:Class ;
+    rdfs:label "Book Section"@en-US ;
+    vitro:hiddenFromDisplayBelowRoleLevelAnnot vitrorole:public ;
+    vitro:inClassGroup d:vitroClassGroupcitations ;
+    vitro:prohibitedFromUpdateBelowRoleLevelAnnot vitrorole:public ;
+    rdfs:subClassOf bcite:Citation .
 
-bcite:BookSection
-      a       owl:Class ;
-      rdfs:label "Book Section"@en-US ;
-      rdfs:subClassOf bcite:Citation ;
-      vitro:hiddenFromDisplayBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:inClassGroup brown:vitroClassGroupcitations ;
-      vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
+bcite:Chapter a owl:Class ;
+    rdfs:label "Chapter"@en-US ;
+    vitro:hiddenFromDisplayBelowRoleLevelAnnot vitrorole:public ;
+    vitro:inClassGroup d:vitroClassGroupcitations ;
+    vitro:prohibitedFromUpdateBelowRoleLevelAnnot vitrorole:public ;
+    rdfs:subClassOf bcite:Citation .
 
-bcite:Citation
-      a       owl:Class ;
-      rdfs:label "Citation"@en-US ;
-      vitro:hiddenFromDisplayBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:inClassGroup brown:vitroClassGrouppublications ;
-      vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
+bcite:Patent a owl:Class ;
+    rdfs:label "Patent"@en-US ;
+    vitro:hiddenFromDisplayBelowRoleLevelAnnot vitrorole:public ;
+    vitro:inClassGroup d:vitroClassGroupcitations ;
+    vitro:prohibitedFromUpdateBelowRoleLevelAnnot vitrorole:public ;
+    rdfs:subClassOf bcite:Citation .
 
-bcite:WorkingPaper
-      a       owl:Class ;
-      rdfs:label "Working Paper"@en-US ;
-      rdfs:subClassOf bcite:Citation ;
-      vitro:displayLimitAnnot
-              "-1"^^xsd:int ;
-      vitro:displayRankAnnot
-              "-1"^^xsd:int ;
-      vitro:hiddenFromDisplayBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:inClassGroup brown:vitroClassGroupcitations ;
-      vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
+bcite:Review a owl:Class ;
+    rdfs:label "Review"@en-US ;
+    vitro:hiddenFromDisplayBelowRoleLevelAnnot vitrorole:public ;
+    vitro:inClassGroup d:vitroClassGroupcitations ;
+    vitro:prohibitedFromUpdateBelowRoleLevelAnnot vitrorole:public ;
+    rdfs:subClassOf bcite:Citation .
 
-bcite:Location
-      a       owl:Class ;
-      rdfs:label "Location"@en-US .
+bcite:WorkingPaper a owl:Class ;
+    rdfs:label "Working Paper"@en-US ;
+    vitro:displayLimitAnnot "-1"^^xsd:int ;
+    vitro:displayRankAnnot "-1"^^xsd:int ;
+    vitro:hiddenFromDisplayBelowRoleLevelAnnot vitrorole:public ;
+    vitro:inClassGroup d:vitroClassGroupcitations ;
+    vitro:prohibitedFromUpdateBelowRoleLevelAnnot vitrorole:public ;
+    rdfs:subClassOf bcite:Citation .
 
-bcite:Patent
-      a       owl:Class ;
-      rdfs:label "Patent"@en-US ;
-      rdfs:subClassOf bcite:Citation ;
-      vitro:hiddenFromDisplayBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:inClassGroup brown:vitroClassGroupcitations ;
-      vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
+bcite:authorList a owl:DatatypeProperty ;
+    rdfs:label "author list"@en-US ;
+    vitro:displayRankAnnot "0"^^xsd:int ;
+    vitro:hiddenFromDisplayBelowRoleLevelAnnot vitrorole:public ;
+    vitro:inPropertyGroupAnnot d:vitroPropertyGroupCitationInformation ;
+    vitro:prohibitedFromUpdateBelowRoleLevelAnnot vitrorole:public ;
+    rdfs:domain bcite:Citation ;
+    rdfs:range xsd:string .
 
-bcite:Venue
-      a       owl:Class ;
-      rdfs:label "Venue"^^xsd:string .
+bcite:cvId a owl:DatatypeProperty ;
+    rdfs:label "CV ID"^^xsd:string ;
+    rdfs:range xsd:string .
 
-bcite:Book
-      a       owl:Class ;
-      rdfs:label "Book"@en-US ;
-      rdfs:subClassOf bcite:Citation ;
-      vitro:hiddenFromDisplayBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:inClassGroup brown:vitroClassGroupcitations ;
-      vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
+bcite:date a owl:DatatypeProperty ;
+    rdfs:label "date"@en-US ;
+    vitro:displayRankAnnot "2"^^xsd:int ;
+    vitro:hiddenFromDisplayBelowRoleLevelAnnot vitrorole:public ;
+    vitro:inPropertyGroupAnnot d:vitroPropertyGroupCitationInformation ;
+    vitro:prohibitedFromUpdateBelowRoleLevelAnnot vitrorole:public ;
+    rdfs:domain bcite:Citation ;
+    rdfs:range xsd:dateTime .
 
-bcite:Article
-      a       owl:Class ;
-      rdfs:label "Article"@en-US ;
-      rdfs:subClassOf bcite:Citation ;
-      vitro:hiddenFromDisplayBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:inClassGroup brown:vitroClassGroupcitations ;
-      vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
+bcite:doi a owl:DatatypeProperty ;
+    rdfs:label "doi"@en-US ;
+    vitro:displayRankAnnot "40"^^xsd:int ;
+    vitro:hiddenFromDisplayBelowRoleLevelAnnot vitrorole:public ;
+    vitro:inPropertyGroupAnnot d:vitroPropertyGroupCitationInformation ;
+    vitro:prohibitedFromUpdateBelowRoleLevelAnnot vitrorole:public ;
+    rdfs:domain bcite:Citation ;
+    rdfs:range xsd:string .
 
-bcite:Review
-      a       owl:Class ;
-      rdfs:label "Review"@en-US ;
-      rdfs:subClassOf bcite:Citation ;
-      vitro:hiddenFromDisplayBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:inClassGroup brown:vitroClassGroupcitations ;
-      vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
+bcite:firstName a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "first name"@en-US ;
+    vitro:hiddenFromDisplayBelowRoleLevelAnnot vitrorole:public ;
+    vitro:inPropertyGroupAnnot d:vitroPropertyGroupCitationInformation ;
+    vitro:prohibitedFromUpdateBelowRoleLevelAnnot vitrorole:public ;
+    rdfs:domain bcite:Contributor .
 
-bcite:Publisher
-      a       owl:Class ;
-      rdfs:label "Publisher"^^xsd:string .
+bcite:isbn a owl:DatatypeProperty ;
+    rdfs:label "isbn"@en-US ;
+    vitro:displayRankAnnot "40"^^xsd:int ;
+    vitro:hiddenFromDisplayBelowRoleLevelAnnot vitrorole:public ;
+    vitro:inPropertyGroupAnnot d:vitroPropertyGroupCitationInformation ;
+    vitro:prohibitedFromUpdateBelowRoleLevelAnnot vitrorole:public ;
+    rdfs:domain bcite:Citation ;
+    rdfs:range xsd:string .
 
-bcite:Abstract
-      a       owl:Class ;
-      rdfs:label "Abstract"@en-US ;
-      rdfs:subClassOf bcite:Citation ;
-      vitro:hiddenFromDisplayBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:inClassGroup brown:vitroClassGroupcitations ;
-      vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
+bcite:issn a owl:DatatypeProperty ;
+    rdfs:label "issn"@en-US ;
+    vitro:displayRankAnnot "40"^^xsd:int ;
+    vitro:hiddenFromDisplayBelowRoleLevelAnnot vitrorole:public ;
+    vitro:inPropertyGroupAnnot d:vitroPropertyGroupCitationInformation ;
+    vitro:prohibitedFromUpdateBelowRoleLevelAnnot vitrorole:public ;
+    rdfs:domain bcite:Citation ;
+    rdfs:range xsd:string .
 
-###############################################
-##########        PROPERTIES!        ##########
-###############################################
+bcite:issue a owl:DatatypeProperty ;
+    rdfs:label "issue"@en-US ;
+    vitro:displayRankAnnot "20"^^xsd:int ;
+    vitro:hiddenFromDisplayBelowRoleLevelAnnot vitrorole:public ;
+    vitro:inPropertyGroupAnnot d:vitroPropertyGroupCitationInformation ;
+    vitro:prohibitedFromUpdateBelowRoleLevelAnnot vitrorole:public ;
+    rdfs:domain bcite:Citation ;
+    rdfs:range xsd:string .
 
-bcite:volume
-      a       owl:DatatypeProperty ;
-      rdfs:domain bcite:Citation ;
-      rdfs:label "volume"@en-US ;
-      rdfs:range xsd:string ;
-      vitro:displayRankAnnot
-              "20"^^xsd:int ;
-      vitro:hiddenFromDisplayBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:inPropertyGroupAnnot
-              brown:vitroPropertyGroupCitationInformation ;
-      vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
+bcite:lastName a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "last name"@en-US ;
+    vitro:hiddenFromDisplayBelowRoleLevelAnnot vitrorole:public ;
+    vitro:inPropertyGroupAnnot d:vitroPropertyGroupCitationInformation ;
+    vitro:prohibitedFromUpdateBelowRoleLevelAnnot vitrorole:public ;
+    rdfs:domain bcite:Contributor .
 
-bcite:title
-      a       owl:DatatypeProperty ;
-      rdfs:domain bcite:Citation ;
-      rdfs:label "title"@en-US ;
-      rdfs:range xsd:string ;
-      vitro:displayRankAnnot
-              "1"^^xsd:int ;
-      vitro:hiddenFromDisplayBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:inPropertyGroupAnnot
-              brown:vitroPropertyGroupCitationInformation ;
-      vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
+bcite:middleName a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "middle name"@en-US ;
+    vitro:hiddenFromDisplayBelowRoleLevelAnnot vitrorole:public ;
+    vitro:inPropertyGroupAnnot d:vitroPropertyGroupCitationInformation ;
+    vitro:prohibitedFromUpdateBelowRoleLevelAnnot vitrorole:public ;
+    rdfs:domain bcite:Contributor .
 
-bcite:issn
-      a       owl:DatatypeProperty ;
-      rdfs:domain bcite:Citation ;
-      rdfs:label "issn"@en-US ;
-      rdfs:range xsd:string ;
-      vitro:displayRankAnnot
-              "40"^^xsd:int ;
-      vitro:hiddenFromDisplayBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:inPropertyGroupAnnot
-              brown:vitroPropertyGroupCitationInformation ;
-      vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
+bcite:number a owl:DatatypeProperty ;
+    rdfs:label "number"@en-US ;
+    vitro:hiddenFromDisplayBelowRoleLevelAnnot vitrorole:public ;
+    vitro:inPropertyGroupAnnot d:vitroPropertyGroupCitationInformation ;
+    vitro:prohibitedFromUpdateBelowRoleLevelAnnot vitrorole:public ;
+    rdfs:domain bcite:Citation ;
+    rdfs:range xsd:string .
 
-bcite:hasVenue
-      a       owl:ObjectProperty ;
-      rdfs:domain bcite:Citation ;
-      rdfs:label "publication venue"@en-US ;
-      rdfs:range bcite:Venue ;
-      vitro:displayLimitAnnot
-              "5"^^xsd:int ;
-      vitro:displayRankAnnot
-              "10"^^xsd:int ;
-      vitro:hiddenFromDisplayBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:inPropertyGroupAnnot
-              brown:vitroPropertyGroupCitationInformation ;
-      vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:selectFromExistingAnnot
-              "true"^^xsd:boolean ;
-      owl:inverseOf bcite:venueFor .
+bcite:oclc a owl:DatatypeProperty ;
+    rdfs:label "OCLC number"@en-US ;
+    vitro:exampleAnnot "OCLC number"^^xsd:string ;
+    vitro:hiddenFromDisplayBelowRoleLevelAnnot vitrorole:public ;
+    vitro:inPropertyGroupAnnot d:vitroPropertyGroupidentifiers ;
+    vitro:prohibitedFromUpdateBelowRoleLevelAnnot vitrorole:public ;
+    vitro:publicDescriptionAnnot "OCLC number"^^xsd:string ;
+    rdfs:domain bcite:Citation ;
+    rdfs:range xsd:string .
 
-bcite:firstName
-      a       owl:FunctionalProperty , owl:DatatypeProperty ;
-      rdfs:domain bcite:Contributor ;
-      rdfs:label "first name"@en-US ;
-      vitro:hiddenFromDisplayBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:inPropertyGroupAnnot
-              brown:vitroPropertyGroupCitationInformation ;
-      vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
+bcite:pageEnd a owl:DatatypeProperty ;
+    rdfs:label "page end"@en-US ;
+    vitro:displayRankAnnot "20"^^xsd:int ;
+    vitro:hiddenFromDisplayBelowRoleLevelAnnot vitrorole:public ;
+    vitro:inPropertyGroupAnnot d:vitroPropertyGroupCitationInformation ;
+    vitro:prohibitedFromUpdateBelowRoleLevelAnnot vitrorole:public ;
+    rdfs:domain bcite:Citation ;
+    rdfs:range xsd:string .
 
-bcite:issue
-      a       owl:DatatypeProperty ;
-      rdfs:domain bcite:Citation ;
-      rdfs:label "issue"@en-US ;
-      rdfs:range xsd:string ;
-      vitro:displayRankAnnot
-              "20"^^xsd:int ;
-      vitro:hiddenFromDisplayBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:inPropertyGroupAnnot
-              brown:vitroPropertyGroupCitationInformation ;
-      vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
+bcite:pageStart a owl:DatatypeProperty ;
+    rdfs:label "page start"@en-US ;
+    vitro:displayRankAnnot "20"^^xsd:int ;
+    vitro:hiddenFromDisplayBelowRoleLevelAnnot vitrorole:public ;
+    vitro:inPropertyGroupAnnot d:vitroPropertyGroupCitationInformation ;
+    vitro:prohibitedFromUpdateBelowRoleLevelAnnot vitrorole:public ;
+    rdfs:domain bcite:Citation ;
+    rdfs:range xsd:string .
 
-bcite:venueFor
-      a       owl:ObjectProperty ;
-      rdfs:domain bcite:Venue ;
-      rdfs:label "publication venue of"@en-US ;
-      rdfs:range bcite:Citation ;
-      vitro:displayLimitAnnot
-              "5"^^xsd:int ;
-      vitro:hiddenFromDisplayBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:inPropertyGroupAnnot
-              brown:vitroPropertyGroupoverview ;
-      vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:selectFromExistingAnnot
-              "true"^^xsd:boolean ;
-      owl:inverseOf bcite:hasVenue .
+bcite:pages a owl:DatatypeProperty ;
+    rdfs:label "pages"@en-US ;
+    vitro:displayRankAnnot "20"^^xsd:int ;
+    vitro:hiddenFromDisplayBelowRoleLevelAnnot vitrorole:public ;
+    vitro:inPropertyGroupAnnot d:vitroPropertyGroupCitationInformation ;
+    vitro:prohibitedFromUpdateBelowRoleLevelAnnot vitrorole:public ;
+    rdfs:domain bcite:Citation ;
+    rdfs:range xsd:string .
 
-bcite:pmid
-      a       owl:DatatypeProperty ;
-      rdfs:domain bcite:Citation ;
-      rdfs:label "pmid"@en-US ;
-      rdfs:range xsd:string ;
-      vitro:displayRankAnnot
-              "40"^^xsd:int ;
-      vitro:hiddenFromDisplayBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:inPropertyGroupAnnot
-              brown:vitroPropertyGroupCitationInformation ;
-      vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
+bcite:pmcid a owl:DatatypeProperty ;
+    rdfs:label "pmcid"@en-US ;
+    vitro:displayRankAnnot "40"^^xsd:int ;
+    vitro:hiddenFromDisplayBelowRoleLevelAnnot vitrorole:public ;
+    vitro:inPropertyGroupAnnot d:vitroPropertyGroupCitationInformation ;
+    vitro:prohibitedFromUpdateBelowRoleLevelAnnot vitrorole:public ;
+    rdfs:domain bcite:Citation ;
+    rdfs:range xsd:string .
 
-bcite:cvId
-      a       owl:DatatypeProperty ;
-      rdfs:label "CV ID"^^xsd:string ;
-      rdfs:range xsd:string .
+bcite:pmid a owl:DatatypeProperty ;
+    rdfs:label "pmid"@en-US ;
+    vitro:displayRankAnnot "40"^^xsd:int ;
+    vitro:hiddenFromDisplayBelowRoleLevelAnnot vitrorole:public ;
+    vitro:inPropertyGroupAnnot d:vitroPropertyGroupCitationInformation ;
+    vitro:prohibitedFromUpdateBelowRoleLevelAnnot vitrorole:public ;
+    rdfs:domain bcite:Citation ;
+    rdfs:range xsd:string .
 
-bcite:number
-      a       owl:DatatypeProperty ;
-      rdfs:domain bcite:Citation ;
-      rdfs:label "number"@en-US ;
-      rdfs:range xsd:string ;
-      vitro:hiddenFromDisplayBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:inPropertyGroupAnnot
-              brown:vitroPropertyGroupCitationInformation ;
-      vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
+bcite:title a owl:DatatypeProperty ;
+    rdfs:label "title"@en-US ;
+    vitro:displayRankAnnot "1"^^xsd:int ;
+    vitro:hiddenFromDisplayBelowRoleLevelAnnot vitrorole:public ;
+    vitro:inPropertyGroupAnnot d:vitroPropertyGroupCitationInformation ;
+    vitro:prohibitedFromUpdateBelowRoleLevelAnnot vitrorole:public ;
+    rdfs:domain bcite:Citation ;
+    rdfs:range xsd:string .
 
-bcite:oclc
-      a       owl:DatatypeProperty ;
-      rdfs:domain bcite:Citation ;
-      rdfs:label "OCLC number"@en-US ;
-      rdfs:range xsd:string ;
-      vitro:exampleAnnot "OCLC number"^^xsd:string ;
-      vitro:hiddenFromDisplayBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:inPropertyGroupAnnot
-              brown:vitroPropertyGroupidentifiers ;
-      vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "OCLC number"^^xsd:string .
+bcite:url a owl:DatatypeProperty ;
+    rdfs:label "url"@en-US ;
+    vitro:displayRankAnnot "20"^^xsd:int ;
+    vitro:hiddenFromDisplayBelowRoleLevelAnnot vitrorole:public ;
+    vitro:inPropertyGroupAnnot d:vitroPropertyGroupCitationInformation ;
+    vitro:prohibitedFromUpdateBelowRoleLevelAnnot vitrorole:public ;
+    rdfs:domain bcite:Citation ;
+    rdfs:range xsd:string .
 
-bcite:pageStart
-      a       owl:DatatypeProperty ;
-      rdfs:domain bcite:Citation ;
-      rdfs:label "page start"@en-US ;
-      rdfs:range xsd:string ;
-      vitro:displayRankAnnot
-              "20"^^xsd:int ;
-      vitro:hiddenFromDisplayBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:inPropertyGroupAnnot
-              brown:vitroPropertyGroupCitationInformation ;
-      vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
+bcite:version a owl:DatatypeProperty ;
+    rdfs:label "version"@en-US ;
+    vitro:hiddenFromDisplayBelowRoleLevelAnnot vitrorole:public ;
+    vitro:inPropertyGroupAnnot d:vitroPropertyGroupCitationInformation ;
+    vitro:prohibitedFromUpdateBelowRoleLevelAnnot vitrorole:public ;
+    rdfs:domain bcite:Citation ;
+    rdfs:range xsd:string .
 
-bcite:hasLocation
-      a       owl:ObjectProperty ;
-      rdfs:domain bcite:Citation ;
-      rdfs:label "location"@en-US ;
-      rdfs:range bcite:Location ;
-      vitro:displayLimitAnnot
-              "5"^^xsd:int ;
-      vitro:displayRankAnnot
-              "22"^^xsd:int ;
-      vitro:hiddenFromDisplayBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:inPropertyGroupAnnot
-              brown:vitroPropertyGroupCitationInformation ;
-      vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:selectFromExistingAnnot
-              "true"^^xsd:boolean ;
-      owl:inverseOf bcite:locationFor .
+bcite:volume a owl:DatatypeProperty ;
+    rdfs:label "volume"@en-US ;
+    vitro:displayRankAnnot "20"^^xsd:int ;
+    vitro:hiddenFromDisplayBelowRoleLevelAnnot vitrorole:public ;
+    vitro:inPropertyGroupAnnot d:vitroPropertyGroupCitationInformation ;
+    vitro:prohibitedFromUpdateBelowRoleLevelAnnot vitrorole:public ;
+    rdfs:domain bcite:Citation ;
+    rdfs:range xsd:string .
 
-bcite:hasPublisher
-      a       owl:ObjectProperty ;
-      rdfs:domain bcite:Citation ;
-      rdfs:label "publisher"@en-US , "publisher"^^xsd:string ;
-      rdfs:range bcite:Publisher ;
-      vitro:displayLimitAnnot
-              "5"^^xsd:int ;
-      vitro:displayRankAnnot
-              "21"^^xsd:int ;
-      vitro:hiddenFromDisplayBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:inPropertyGroupAnnot
-              brown:vitroPropertyGroupCitationInformation ;
-      vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:selectFromExistingAnnot
-              "true"^^xsd:boolean ;
-      owl:inverseOf bcite:publisherFor .
+bcite:wokId a owl:DatatypeProperty ;
+    rdfs:label "WOK ID"^^xsd:string ;
+    rdfs:domain bcite:Citation ;
+    rdfs:range xsd:string .
 
-bcite:version
-      a       owl:DatatypeProperty ;
-      rdfs:domain bcite:Citation ;
-      rdfs:label "version"@en-US ;
-      rdfs:range xsd:string ;
-      vitro:hiddenFromDisplayBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:inPropertyGroupAnnot
-              brown:vitroPropertyGroupCitationInformation ;
-      vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
+bcite:contributorTo a owl:ObjectProperty ;
+    rdfs:label "selected"@en-US ;
+    vitro:displayLimitAnnot "5"^^xsd:int ;
+    vitro:hiddenFromDisplayBelowRoleLevelAnnot vitrorole:public ;
+    vitro:inPropertyGroupAnnot d:vitroPropertyGroupbibliographic ;
+    vitro:prohibitedFromUpdateBelowRoleLevelAnnot vitrorole:public ;
+    vitro:selectFromExistingAnnot true ;
+    rdfs:domain bcite:Contributor ;
+    rdfs:range bcite:Citation ;
+    owl:inverseOf bcite:hasContributor .
 
-bcite:publisherFor
-      a       owl:ObjectProperty ;
-      rdfs:domain bcite:Publisher ;
-      rdfs:label "publishes"^^xsd:string , "publishes"@en-US ;
-      rdfs:range bcite:Citation ;
-      vitro:displayLimitAnnot
-              "-1"^^xsd:int ;
-      owl:inverseOf bcite:hasPublisher .
+bcite:hasContributor a owl:ObjectProperty ;
+    rdfs:label "author"@en-US ;
+    vitro:displayLimitAnnot "5"^^xsd:int ;
+    vitro:hiddenFromDisplayBelowRoleLevelAnnot vitrorole:public ;
+    vitro:inPropertyGroupAnnot d:vitroPropertyGroupoverview ;
+    vitro:prohibitedFromUpdateBelowRoleLevelAnnot vitrorole:public ;
+    vitro:selectFromExistingAnnot true ;
+    rdfs:domain bcite:Citation ;
+    rdfs:range bcite:Contributor ;
+    owl:inverseOf bcite:contributorTo .
 
-bcite:middleName
-      a       owl:FunctionalProperty , owl:DatatypeProperty ;
-      rdfs:domain bcite:Contributor ;
-      rdfs:label "middle name"@en-US ;
-      vitro:hiddenFromDisplayBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:inPropertyGroupAnnot
-              brown:vitroPropertyGroupCitationInformation ;
-      vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
+bcite:hasLocation a owl:ObjectProperty ;
+    rdfs:label "location"@en-US ;
+    vitro:displayLimitAnnot "5"^^xsd:int ;
+    vitro:displayRankAnnot "22"^^xsd:int ;
+    vitro:hiddenFromDisplayBelowRoleLevelAnnot vitrorole:public ;
+    vitro:inPropertyGroupAnnot d:vitroPropertyGroupCitationInformation ;
+    vitro:prohibitedFromUpdateBelowRoleLevelAnnot vitrorole:public ;
+    vitro:selectFromExistingAnnot true ;
+    rdfs:domain bcite:Citation ;
+    rdfs:range bcite:Location ;
+    owl:inverseOf bcite:locationFor .
 
-bcite:isbn
-      a       owl:DatatypeProperty ;
-      rdfs:domain bcite:Citation ;
-      rdfs:label "isbn"@en-US ;
-      rdfs:range xsd:string ;
-      vitro:displayRankAnnot
-              "40"^^xsd:int ;
-      vitro:hiddenFromDisplayBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:inPropertyGroupAnnot
-              brown:vitroPropertyGroupCitationInformation ;
-      vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
+bcite:hasPublisher a owl:ObjectProperty ;
+    rdfs:label "publisher"^^xsd:string,
+        "publisher"@en-US ;
+    vitro:displayLimitAnnot "5"^^xsd:int ;
+    vitro:displayRankAnnot "21"^^xsd:int ;
+    vitro:hiddenFromDisplayBelowRoleLevelAnnot vitrorole:public ;
+    vitro:inPropertyGroupAnnot d:vitroPropertyGroupCitationInformation ;
+    vitro:prohibitedFromUpdateBelowRoleLevelAnnot vitrorole:public ;
+    vitro:selectFromExistingAnnot true ;
+    rdfs:domain bcite:Citation ;
+    rdfs:range bcite:Publisher ;
+    owl:inverseOf bcite:publisherFor .
 
-bcite:wokId
-      a       owl:DatatypeProperty ;
-      rdfs:domain bcite:Citation ;
-      rdfs:label "WOK ID"^^xsd:string ;
-      rdfs:range xsd:string .
+bcite:hasVenue a owl:ObjectProperty ;
+    rdfs:label "publication venue"@en-US ;
+    vitro:displayLimitAnnot "5"^^xsd:int ;
+    vitro:displayRankAnnot "10"^^xsd:int ;
+    vitro:hiddenFromDisplayBelowRoleLevelAnnot vitrorole:public ;
+    vitro:inPropertyGroupAnnot d:vitroPropertyGroupCitationInformation ;
+    vitro:prohibitedFromUpdateBelowRoleLevelAnnot vitrorole:public ;
+    vitro:selectFromExistingAnnot true ;
+    rdfs:domain bcite:Citation ;
+    rdfs:range bcite:Venue ;
+    owl:inverseOf bcite:venueFor .
 
-bcite:url
-      a       owl:DatatypeProperty ;
-      rdfs:domain bcite:Citation ;
-      rdfs:label "url"@en-US ;
-      rdfs:range xsd:string ;
-      vitro:displayRankAnnot
-              "20"^^xsd:int ;
-      vitro:hiddenFromDisplayBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:inPropertyGroupAnnot
-              brown:vitroPropertyGroupCitationInformation ;
-      vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
+bcite:locationFor a owl:ObjectProperty ;
+    rdfs:label "location for"@en-US ;
+    vitro:displayLimitAnnot "5"^^xsd:int ;
+    vitro:hiddenFromDisplayBelowRoleLevelAnnot vitrorole:public ;
+    vitro:inPropertyGroupAnnot d:vitroPropertyGroupCitationInformation ;
+    vitro:prohibitedFromUpdateBelowRoleLevelAnnot vitrorole:public ;
+    vitro:selectFromExistingAnnot true ;
+    rdfs:domain bcite:Location ;
+    rdfs:range bcite:Citation ;
+    owl:inverseOf bcite:hasLocation .
 
-bcite:locationFor
-      a       owl:ObjectProperty ;
-      rdfs:domain bcite:Location ;
-      rdfs:label "location for"@en-US ;
-      rdfs:range bcite:Citation ;
-      vitro:displayLimitAnnot
-              "5"^^xsd:int ;
-      vitro:hiddenFromDisplayBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:inPropertyGroupAnnot
-              brown:vitroPropertyGroupCitationInformation ;
-      vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:selectFromExistingAnnot
-              "true"^^xsd:boolean ;
-      owl:inverseOf bcite:hasLocation .
+bcite:publisherFor a owl:ObjectProperty ;
+    rdfs:label "publishes"^^xsd:string,
+        "publishes"@en-US ;
+    vitro:displayLimitAnnot "-1"^^xsd:int ;
+    rdfs:domain bcite:Publisher ;
+    rdfs:range bcite:Citation ;
+    owl:inverseOf bcite:hasPublisher .
 
-bcite:pageEnd
-      a       owl:DatatypeProperty ;
-      rdfs:domain bcite:Citation ;
-      rdfs:label "page end"@en-US ;
-      rdfs:range xsd:string ;
-      vitro:displayRankAnnot
-              "20"^^xsd:int ;
-      vitro:hiddenFromDisplayBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:inPropertyGroupAnnot
-              brown:vitroPropertyGroupCitationInformation ;
-      vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
+bcite:venueFor a owl:ObjectProperty ;
+    rdfs:label "publication venue of"@en-US ;
+    vitro:displayLimitAnnot "5"^^xsd:int ;
+    vitro:hiddenFromDisplayBelowRoleLevelAnnot vitrorole:public ;
+    vitro:inPropertyGroupAnnot d:vitroPropertyGroupoverview ;
+    vitro:prohibitedFromUpdateBelowRoleLevelAnnot vitrorole:public ;
+    vitro:selectFromExistingAnnot true ;
+    rdfs:domain bcite:Venue ;
+    rdfs:range bcite:Citation ;
+    owl:inverseOf bcite:hasVenue .
 
-bcite:authorList
-      a       owl:DatatypeProperty ;
-      rdfs:domain bcite:Citation ;
-      rdfs:label "author list"@en-US ;
-      rdfs:range xsd:string ;
-      vitro:displayRankAnnot
-              "0"^^xsd:int ;
-      vitro:hiddenFromDisplayBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:inPropertyGroupAnnot
-              brown:vitroPropertyGroupCitationInformation ;
-      vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
+bcite:Location a owl:Class ;
+    rdfs:label "Location"@en-US .
 
-bcite:pmcid
-      a       owl:DatatypeProperty ;
-      rdfs:domain bcite:Citation ;
-      rdfs:label "pmcid"@en-US ;
-      rdfs:range xsd:string ;
-      vitro:displayRankAnnot
-              "40"^^xsd:int ;
-      vitro:hiddenFromDisplayBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:inPropertyGroupAnnot
-              brown:vitroPropertyGroupCitationInformation ;
-      vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
+bcite:Publisher a owl:Class ;
+    rdfs:label "Publisher"^^xsd:string .
 
-bcite:date
-      a       owl:DatatypeProperty ;
-      rdfs:domain bcite:Citation ;
-      rdfs:label "date"@en-US ;
-      rdfs:range xsd:dateTime ;
-      vitro:displayRankAnnot
-              "2"^^xsd:int ;
-      vitro:hiddenFromDisplayBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:inPropertyGroupAnnot
-              brown:vitroPropertyGroupCitationInformation ;
-      vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
+bcite:Venue a owl:Class ;
+    rdfs:label "Venue"^^xsd:string .
 
-bcite:doi
-      a       owl:DatatypeProperty ;
-      rdfs:domain bcite:Citation ;
-      rdfs:label "doi"@en-US ;
-      rdfs:range xsd:string ;
-      vitro:displayRankAnnot
-              "40"^^xsd:int ;
-      vitro:hiddenFromDisplayBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:inPropertyGroupAnnot
-              brown:vitroPropertyGroupCitationInformation ;
-      vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
+bcite:Contributor a owl:Class ;
+    rdfs:label "Contributor"^^xsd:string ;
+    vitro:descriptionAnnot "Any others listed on a paper"^^xsd:string .
 
-bcite:hasContributor
-      a       owl:ObjectProperty ;
-      rdfs:domain bcite:Citation ;
-      rdfs:label "author"@en-US ;
-      rdfs:range bcite:Contributor ;
-      vitro:displayLimitAnnot
-              "5"^^xsd:int ;
-      vitro:hiddenFromDisplayBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:inPropertyGroupAnnot
-              brown:vitroPropertyGroupoverview ;
-      vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:selectFromExistingAnnot
-              "true"^^xsd:boolean ;
-      owl:inverseOf bcite:contributorTo .
+bcite:Citation a owl:Class ;
+    rdfs:label "Citation"@en-US ;
+    vitro:hiddenFromDisplayBelowRoleLevelAnnot vitrorole:public ;
+    vitro:inClassGroup d:vitroClassGrouppublications ;
+    vitro:prohibitedFromUpdateBelowRoleLevelAnnot vitrorole:public .
 
-bcite:contributorTo
-      a       owl:ObjectProperty ;
-      rdfs:domain bcite:Contributor ;
-      rdfs:label "selected"@en-US ;
-      rdfs:range bcite:Citation ;
-      vitro:displayLimitAnnot
-              "5"^^xsd:int ;
-      vitro:hiddenFromDisplayBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:inPropertyGroupAnnot
-              brown:vitroPropertyGroupbibliographic ;
-      vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:selectFromExistingAnnot
-              "true"^^xsd:boolean ;
-      owl:inverseOf bcite:hasContributor .
-
-bcite:pages
-      a       owl:DatatypeProperty ;
-      rdfs:domain bcite:Citation ;
-      rdfs:label "pages"@en-US ;
-      rdfs:range xsd:string ;
-      vitro:displayRankAnnot
-              "20"^^xsd:int ;
-      vitro:hiddenFromDisplayBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:inPropertyGroupAnnot
-              brown:vitroPropertyGroupCitationInformation ;
-      vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
-
-bcite:lastName
-      a       owl:FunctionalProperty , owl:DatatypeProperty ;
-      rdfs:domain bcite:Contributor ;
-      rdfs:label "last name"@en-US ;
-      vitro:hiddenFromDisplayBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:inPropertyGroupAnnot
-              brown:vitroPropertyGroupCitationInformation ;
-      vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
