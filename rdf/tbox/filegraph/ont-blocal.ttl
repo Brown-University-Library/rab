@@ -1,458 +1,288 @@
-@prefix afn:     <http://jena.hpl.hp.com/ARQ/function#> .
-@prefix scires:  <http://vivoweb.org/ontology/scientific-research#> .
-@prefix scirr:   <http://vivoweb.org/ontology/scientific-research-resource#> .
-@prefix bcite:   <http://vivo.brown.edu/ontology/citation#> .
-@prefix vann:    <http://purl.org/vocab/vann/> .
-@prefix owl2:    <http://www.w3.org/2006/12/owl2-xml#> .
-@prefix dcterms:  <http://purl.org/dc/terms/> .
-@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix vitro:   <http://vitro.mannlib.cornell.edu/ns/vitro/0.7#> .
-@prefix event:   <http://purl.org/NET/c4dm/event.owl#> .
-@prefix swvs:    <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
-@prefix c4o:     <http://purl.org/spar/c4o/> .
-@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix vivo:    <http://vivoweb.org/ontology/core#> .
-@prefix dcelem:  <http://purl.org/dc/elements/1.1/> .
-@prefix dc:      <http://purl.org/dc/elements/1.1/> .
-@prefix pvs:     <http://vivoweb.org/ontology/provenance-support#> .
-@prefix geo:     <http://aims.fao.org/aos/geopolitical.owl#> .
-@prefix foaf:    <http://xmlns.com/foaf/0.1/> .
-@prefix fabio:   <http://purl.org/spar/fabio/> .
-@prefix skco:    <http://www.w3.org/2004/02/skos/core#> .
-@prefix bibo:    <http://purl.org/ontology/bibo/> .
-@prefix bdisplay:  <http://vivo.brown.edu/ontology/display#> .
-@prefix owl:     <http://www.w3.org/2002/07/owl#> .
-@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
-@prefix vitro-public:  <http://vitro.mannlib.cornell.edu/ns/vitro/public#> .
-@prefix blocal:  <http://vivo.brown.edu/ontology/vivo-brown/> .
-@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
-@prefix ero:     <http://purl.obolibrary.org/obo/> .
-@prefix brown:   <http://vivo.brown.edu/individual/> .
+@prefix blocal: <http://vivo.brown.edu/ontology/vivo-brown/> .
+@prefix d: <http://vivo.brown.edu/individual/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix vitro: <http://vitro.mannlib.cornell.edu/ns/vitro/0.7#> .
+@prefix vitrorole: <http://vitro.mannlib.cornell.edu/ns/vitro/role#> .
+@prefix vivo: <http://vivoweb.org/ontology/core#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-###############################################
-###############################################
-##########        BLOCAL!            ##########
-###############################################
-###############################################
+blocal: a owl:Ontology ;
+    rdfs:label "Brown Local"@en-US ;
+    vitro:ontologyPrefixAnnot "blocal"^^xsd:string .
 
-blocal:
-      a       owl:Ontology ;
-      rdfs:label "Brown Local"@en-US ;
-      vitro:ontologyPrefixAnnot
-              "blocal"^^xsd:string .
+blocal:BrownThing a owl:Class ;
+    rdfs:label "Organization or Person at Brown"@en-US ;
+    vitro:descriptionAnnot "Used for restricting people, organizations, etc to Brown.  "^^xsd:string ;
+    vitro:exampleAnnot "Any Thing related to Brown"^^xsd:string ;
+    vitro:hiddenFromDisplayBelowRoleLevelAnnot vitrorole:curator ;
+    vitro:isMenuPageIntersectionClass "true" ;
+    vitro:prohibitedFromUpdateBelowRoleLevelAnnot vitrorole:curator ;
+    vitro:shortDef "Generic Brown Thing"^^xsd:string .
 
-###############################################
-##########        CLASSES!           ##########
-###############################################
+blocal:CV a owl:Class ;
+    rdfs:label "CV"@en-US ;
+    vitro:displayLimitAnnot "-1"^^xsd:int ;
+    vitro:displayRankAnnot "-1"^^xsd:int ;
+    vitro:hiddenFromDisplayBelowRoleLevelAnnot vitrorole:public ;
+    vitro:prohibitedFromUpdateBelowRoleLevelAnnot vitrorole:public ;
+    vitro:shortDef "PDF of CV"^^xsd:string ;
+    rdfs:subClassOf vivo:URLLink .
 
-blocal:Delegate
-      a       owl:Class ;
-      rdfs:label "Delegate"@en-US ;
-      rdfs:subClassOf foaf:Person ;
-      vitro:displayLimitAnnot
-              "-1"^^xsd:int ;
-      vitro:displayRankAnnot
-              "-1"^^xsd:int ;
-      vitro:hiddenFromDisplayBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:inClassGroup brown:vitroClassGrouppeople ;
-      vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
+blocal:ClinicalDepartment a owl:Class ;
+    rdfs:label "Clinical Department"@en-US ;
+    vitro:descriptionAnnot "A type of Brown organizational unit"^^xsd:string ;
+    vitro:displayLimitAnnot "-1"^^xsd:int ;
+    vitro:displayRankAnnot "-1"^^xsd:int ;
+    vitro:hiddenFromDisplayBelowRoleLevelAnnot vitrorole:public ;
+    vitro:inClassGroup d:vitroClassGrouporganizations ;
+    vitro:prohibitedFromUpdateBelowRoleLevelAnnot vitrorole:public ;
+    rdfs:subClassOf foaf:Organization .
 
-blocal:ClinicalDepartment
-      a       owl:Class ;
-      rdfs:label "Clinical Department"@en-US ;
-      rdfs:subClassOf foaf:Organization ;
-      vitro:descriptionAnnot
-              "A type of Brown organizational unit"^^xsd:string ;
-      vitro:displayLimitAnnot
-              "-1"^^xsd:int ;
-      vitro:displayRankAnnot
-              "-1"^^xsd:int ;
-      vitro:hiddenFromDisplayBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:inClassGroup brown:vitroClassGrouporganizations ;
-      vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
+blocal:InstituteCenterProgram a owl:Class ;
+    rdfs:label "Centers, Programs, and Institutes"@en-US ;
+    vitro:descriptionAnnot "Requested grouping for Brown local org units. "^^xsd:string ;
+    vitro:hiddenFromDisplayBelowRoleLevelAnnot vitrorole:public ;
+    vitro:inClassGroup d:vitroClassGrouporganizations ;
+    vitro:prohibitedFromUpdateBelowRoleLevelAnnot vitrorole:public ;
+    rdfs:subClassOf foaf:Organization .
 
-blocal:InstituteCenterProgram
-      a       owl:Class ;
-      rdfs:label "Centers, Programs, and Institutes"@en-US ;
-      rdfs:subClassOf foaf:Organization ;
-      vitro:descriptionAnnot
-              "Requested grouping for Brown local org units. "^^xsd:string ;
-      vitro:hiddenFromDisplayBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:inClassGroup brown:vitroClassGrouporganizations ;
-      vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
+blocal:Place a owl:Class ;
+    rdfs:label "Place"@en-US ;
+    vitro:inClassGroup d:vitroClassGrouplocations ;
+    rdfs:subClassOf skos:Concept .
 
-blocal:ResearchArea
-      a       owl:Class ;
-      rdfs:label "Research Area"@en-US ;
-      rdfs:subClassOf skos:Concept ;
-      vitro:descriptionAnnot
-              "Subclass of skos:Concept.  At this point the distinction is for display purposes only.  "^^xsd:string ;
-      vitro:displayLimitAnnot
-              "-1"^^xsd:int ;
-      vitro:displayRankAnnot
-              "-1"^^xsd:int ;
-      vitro:hiddenFromDisplayBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:inClassGroup brown:vitroClassGrouppublications ;
-      vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:shortDef "Research topics"^^xsd:string .
+blocal:ResearchArea a owl:Class ;
+    rdfs:label "Research Area"@en-US ;
+    vitro:descriptionAnnot "Subclass of skos:Concept.  At this point the distinction is for display purposes only.  "^^xsd:string ;
+    vitro:displayLimitAnnot "-1"^^xsd:int ;
+    vitro:displayRankAnnot "-1"^^xsd:int ;
+    vitro:hiddenFromDisplayBelowRoleLevelAnnot vitrorole:public ;
+    vitro:inClassGroup d:vitroClassGrouppublications ;
+    vitro:prohibitedFromUpdateBelowRoleLevelAnnot vitrorole:public ;
+    vitro:shortDef "Research topics"^^xsd:string ;
+    rdfs:subClassOf skos:Concept .
 
-blocal:CV
-      a       owl:Class ;
-      rdfs:label "CV"@en-US ;
-      rdfs:subClassOf vivo:URLLink ;
-      vitro:displayLimitAnnot
-              "-1"^^xsd:int ;
-      vitro:displayRankAnnot
-              "-1"^^xsd:int ;
-      vitro:hiddenFromDisplayBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:shortDef "PDF of CV"^^xsd:string .
+blocal:affiliations a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "affiliations"@en-US ;
+    vitro:displayRankAnnot "40"^^xsd:int ;
+    vitro:hiddenFromDisplayBelowRoleLevelAnnot vitrorole:public ;
+    vitro:inPropertyGroupAnnot d:vitroPropertyGroupaffiliation ;
+    vitro:prohibitedFromUpdateBelowRoleLevelAnnot vitrorole:public ;
+    rdfs:range xsd:string .
 
-blocal:Place
-      a       owl:Class ;
-      rdfs:label "Place"@en-US ;
-      rdfs:subClassOf skos:Concept ;
-      vitro:inClassGroup brown:vitroClassGrouplocations .
+blocal:awardsAndHonors a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "awards and honors"@en-US ;
+    vitro:displayRankAnnot "20"^^xsd:int ;
+    vitro:hiddenFromDisplayBelowRoleLevelAnnot vitrorole:public ;
+    vitro:inPropertyGroupAnnot d:vitroPropertyGroupbiography ;
+    vitro:prohibitedFromUpdateBelowRoleLevelAnnot vitrorole:public ;
+    rdfs:range xsd:string .
 
-blocal:BrownThing
-      a       owl:Class ;
-      rdfs:label "Organization or Person at Brown"@en-US ;
-      vitro:descriptionAnnot
-              "Used for restricting people, organizations, etc to Brown.  "^^xsd:string ;
-      vitro:exampleAnnot "Any Thing related to Brown"^^xsd:string ;
-      vitro:hiddenFromDisplayBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#curator> ;
-      vitro:isMenuPageIntersectionClass
-              "true" ;
-      vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#curator> ;
-      vitro:shortDef "Generic Brown Thing"^^xsd:string .
+blocal:degreeDate a owl:DatatypeProperty ;
+    rdfs:label "year"@en-US ;
+    vitro:hiddenFromDisplayBelowRoleLevelAnnot vitrorole:public ;
+    vitro:inPropertyGroupAnnot d:vitroPropertyGrouptime ;
+    vitro:prohibitedFromUpdateBelowRoleLevelAnnot vitrorole:public ;
+    rdfs:domain vivo:EducationalTraining ;
+    rdfs:range xsd:gYear .
 
-###############################################
-##########        PROPERTIES!        ##########
-###############################################
+blocal:fisCreated a owl:DatatypeProperty ;
+    rdfs:label "FIS created date"@en-US ;
+    vitro:hiddenFromDisplayBelowRoleLevelAnnot vitrorole:curator ;
+    vitro:inPropertyGroupAnnot d:vitroPropertyGroupidentifiers ;
+    vitro:prohibitedFromUpdateBelowRoleLevelAnnot vitrorole:curator ;
+    rdfs:range xsd:date .
 
-blocal:orgUnit
-      a       owl:DatatypeProperty ;
-      rdfs:domain foaf:Person ;
-      rdfs:label "organizational unit"@en-US ;
-      rdfs:range xsd:string ;
-      vitro:descriptionAnnot
-              "Brown organizational unit as reported by LDAP.  "^^xsd:string ;
-      vitro:hiddenFromDisplayBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#curator> ;
-      vitro:inPropertyGroupAnnot
-              brown:vitroPropertyGroupaffiliation ;
-      vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#curator> .
+blocal:fisUpdated a owl:DatatypeProperty ;
+    rdfs:label "FIS updated date"@en-US ;
+    vitro:hiddenFromDisplayBelowRoleLevelAnnot vitrorole:curator ;
+    vitro:inPropertyGroupAnnot d:vitroPropertyGroupidentifiers ;
+    vitro:prohibitedFromUpdateBelowRoleLevelAnnot vitrorole:curator ;
+    rdfs:range xsd:date .
 
-blocal:profileUpdated
-      a       owl:FunctionalProperty , owl:DatatypeProperty ;
-      rdfs:label "profile updated"@en-US ;
-      vitro:hiddenFromDisplayBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#editor> ;
-      vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#editor> .
+blocal:fundedResearch a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "funded research"@en-US ;
+    vitro:displayRankAnnot "30"^^xsd:int ;
+    vitro:hiddenFromDisplayBelowRoleLevelAnnot vitrorole:public ;
+    vitro:inPropertyGroupAnnot d:vitroPropertyGroupresearch ;
+    vitro:prohibitedFromUpdateBelowRoleLevelAnnot vitrorole:public ;
+    rdfs:domain vivo:FacultyMember ;
+    rdfs:range xsd:string .
 
-blocal:fisCreated
-      a       owl:DatatypeProperty ;
-      rdfs:label "FIS created date"@en-US ;
-      rdfs:range xsd:date ;
-      vitro:hiddenFromDisplayBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#curator> ;
-      vitro:inPropertyGroupAnnot
-              brown:vitroPropertyGroupidentifiers ;
-      vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#curator> .
+blocal:hasAffiliation a owl:ObjectProperty ;
+    rdfs:label "affiliations"@en-US ;
+    vitro:displayLimitAnnot "5"^^xsd:int ;
+    vitro:hiddenFromDisplayBelowRoleLevelAnnot vitrorole:public ;
+    vitro:prohibitedFromUpdateBelowRoleLevelAnnot vitrorole:public ;
+    vitro:publicDescriptionAnnot "Affiliations with organizational units.  "^^xsd:string ;
+    vitro:selectFromExistingAnnot true ;
+    rdfs:domain foaf:Person ;
+    rdfs:range foaf:Organization .
 
-blocal:fisUpdated
-      a       owl:DatatypeProperty ;
-      rdfs:label "FIS updated date"@en-US ;
-      rdfs:range xsd:date ;
-      vitro:hiddenFromDisplayBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#curator> ;
-      vitro:inPropertyGroupAnnot
-              brown:vitroPropertyGroupidentifiers ;
-      vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#curator> .
+blocal:netId a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "Net ID"@en-US ;
+    vitro:exampleAnnot "Brown University Net ID.  "^^xsd:string ;
+    vitro:hiddenFromDisplayBelowRoleLevelAnnot vitrorole:curator ;
+    vitro:inPropertyGroupAnnot d:vitroPropertyGroupidentifiers ;
+    vitro:prohibitedFromUpdateBelowRoleLevelAnnot vitrorole:curator ;
+    rdfs:domain foaf:Person ;
+    rdfs:range xsd:string .
 
-blocal:shortId
-      a       owl:FunctionalProperty , owl:DatatypeProperty ;
-      rdfs:domain foaf:Person ;
-      rdfs:label "shortId"@en-US ;
-      rdfs:range xsd:string ;
-      vitro:descriptionAnnot
-              "Brown University shortId."^^xsd:string ;
-      vitro:exampleAnnot "Brown University shortId."^^xsd:string ;
-      vitro:hiddenFromDisplayBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#editor> ;
-      vitro:inPropertyGroupAnnot
-              brown:vitroPropertyGroupidentifiers ;
-      vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#dbAdmin> ;
-      vitro:publicDescriptionAnnot
-              "Brown University shortId."^^xsd:string .
+blocal:orgUnit a owl:DatatypeProperty ;
+    rdfs:label "organizational unit"@en-US ;
+    vitro:descriptionAnnot "Brown organizational unit as reported by LDAP.  "^^xsd:string ;
+    vitro:hiddenFromDisplayBelowRoleLevelAnnot vitrorole:curator ;
+    vitro:inPropertyGroupAnnot d:vitroPropertyGroupaffiliation ;
+    vitro:prohibitedFromUpdateBelowRoleLevelAnnot vitrorole:curator ;
+    rdfs:domain foaf:Person ;
+    rdfs:range xsd:string .
 
-blocal:netId
-      a       owl:FunctionalProperty , owl:DatatypeProperty ;
-      rdfs:domain foaf:Person ;
-      rdfs:label "Net ID"@en-US ;
-      rdfs:range xsd:string ;
-      vitro:exampleAnnot "Brown University Net ID.  "^^xsd:string ;
-      vitro:hiddenFromDisplayBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#curator> ;
-      vitro:inPropertyGroupAnnot
-              brown:vitroPropertyGroupidentifiers ;
-      vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#curator> .
+blocal:previousImage a owl:ObjectProperty ;
+    rdfs:label "previous image"@en-US ;
+    vitro:displayLimitAnnot "5"^^xsd:int ;
+    vitro:hiddenFromDisplayBelowRoleLevelAnnot vitrorole:dbAdmin ;
+    vitro:prohibitedFromUpdateBelowRoleLevelAnnot vitrorole:dbAdmin ;
+    vitro:selectFromExistingAnnot true .
 
-blocal:affiliations
-      a       owl:FunctionalProperty , owl:DatatypeProperty ;
-      rdfs:label "affiliations"@en-US ;
-      rdfs:range xsd:string ;
-      vitro:displayRankAnnot
-              "40"^^xsd:int ;
-      vitro:hiddenFromDisplayBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:inPropertyGroupAnnot
-              brown:vitroPropertyGroupaffiliation ;
-      vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
+blocal:profileUpdated a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "profile updated"@en-US ;
+    vitro:hiddenFromDisplayBelowRoleLevelAnnot vitrorole:editor ;
+    vitro:prohibitedFromUpdateBelowRoleLevelAnnot vitrorole:editor .
 
-blocal:awardsAndHonors
-      a       owl:FunctionalProperty , owl:DatatypeProperty ;
-      rdfs:label "awards and honors"@en-US ;
-      rdfs:range xsd:string ;
-      vitro:displayRankAnnot
-              "20"^^xsd:int ;
-      vitro:hiddenFromDisplayBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:inPropertyGroupAnnot
-              brown:vitroPropertyGroupbiography ;
-      vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
+blocal:researchStatement a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "research statement"@en-US ;
+    vitro:descriptionAnnot "Long form research statement imported from the DRRB."^^xsd:string ;
+    vitro:displayLimitAnnot "1"^^xsd:int ;
+    vitro:displayRankAnnot "20"^^xsd:int ;
+    vitro:hiddenFromDisplayBelowRoleLevelAnnot vitrorole:public ;
+    vitro:inPropertyGroupAnnot d:vitroPropertyGroupresearch ;
+    vitro:prohibitedFromUpdateBelowRoleLevelAnnot vitrorole:public ;
+    vitro:publicDescriptionAnnot "Faculty research statement."^^xsd:string ;
+    rdfs:domain foaf:Person .
 
-blocal:fundedResearch
-      a       owl:FunctionalProperty , owl:DatatypeProperty ;
-      rdfs:domain vivo:FacultyMember ;
-      rdfs:label "funded research"@en-US ;
-      rdfs:range xsd:string ;
-      vitro:displayRankAnnot
-              "30"^^xsd:int ;
-      vitro:hiddenFromDisplayBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:inPropertyGroupAnnot
-              brown:vitroPropertyGroupresearch ;
-      vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
+blocal:scholarlyWork a owl:DatatypeProperty ;
+    rdfs:label "scholarly work"@en-US ;
+    vitro:displayRankAnnot "5"^^xsd:int ;
+    vitro:hiddenFromDisplayBelowRoleLevelAnnot vitrorole:public ;
+    vitro:inPropertyGroupAnnot d:vitroPropertyGroupresearch ;
+    vitro:prohibitedFromUpdateBelowRoleLevelAnnot vitrorole:public .
 
-blocal:researchStatement
-      a       owl:FunctionalProperty , owl:DatatypeProperty ;
-      rdfs:domain foaf:Person ;
-      rdfs:label "research statement"@en-US ;
-      vitro:descriptionAnnot
-              "Long form research statement imported from the DRRB."^^xsd:string ;
-      vitro:displayLimitAnnot
-              "1"^^xsd:int ;
-      vitro:displayRankAnnot
-              "20"^^xsd:int ;
-      vitro:hiddenFromDisplayBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:inPropertyGroupAnnot
-              brown:vitroPropertyGroupresearch ;
-      vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "Faculty research statement."^^xsd:string .
+blocal:shortId a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "shortId"@en-US ;
+    vitro:descriptionAnnot "Brown University shortId."^^xsd:string ;
+    vitro:exampleAnnot "Brown University shortId."^^xsd:string ;
+    vitro:hiddenFromDisplayBelowRoleLevelAnnot vitrorole:editor ;
+    vitro:inPropertyGroupAnnot d:vitroPropertyGroupidentifiers ;
+    vitro:prohibitedFromUpdateBelowRoleLevelAnnot vitrorole:dbAdmin ;
+    vitro:publicDescriptionAnnot "Brown University shortId."^^xsd:string ;
+    rdfs:domain foaf:Person ;
+    rdfs:range xsd:string .
 
-blocal:scholarlyWork
-      a       owl:DatatypeProperty ;
-      rdfs:label "scholarly work"@en-US ;
-      vitro:displayRankAnnot
-              "5"^^xsd:int ;
-      vitro:hiddenFromDisplayBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:inPropertyGroupAnnot
-              brown:vitroPropertyGroupresearch ;
-      vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
+blocal:cv a owl:ObjectProperty ;
+    rdfs:label "CV"@en-US ;
+    vitro:displayLimitAnnot "5"^^xsd:int ;
+    rdfs:subPropertyOf vivo:webpage ;
+    owl:inverseOf blocal:cvOf .
 
-blocal:hasDelegate
-      a       owl:ObjectProperty ;
-      rdfs:domain vivo:FacultyMember ;
-      rdfs:label "has delegate"@en-US ;
-      rdfs:range blocal:Delegate ;
-      vitro:displayLimitAnnot
-              "5"^^xsd:int ;
-      vitro:hiddenFromDisplayBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#editor> ;
-      vitro:inPropertyGroupAnnot
-              brown:vitroPropertyGroupidentifiers ;
-      vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#editor> ;
-      vitro:selectFromExistingAnnot
-              "true"^^xsd:boolean ;
-      owl:inverseOf blocal:delegateFor .
+blocal:cvOf a owl:ObjectProperty ;
+    rdfs:label "CV"@en-US ;
+    vitro:displayLimitAnnot "5"^^xsd:int ;
+    vitro:hiddenFromDisplayBelowRoleLevelAnnot vitrorole:public ;
+    vitro:prohibitedFromUpdateBelowRoleLevelAnnot vitrorole:public ;
+    vitro:selectFromExistingAnnot true ;
+    rdfs:subPropertyOf vivo:webpageOf ;
+    owl:inverseOf blocal:cv .
 
-blocal:delegateFor
-      a       owl:ObjectProperty ;
-      rdfs:domain blocal:Delegate ;
-      rdfs:label "delegate for"@en-US ;
-      rdfs:range vivo:FacultyMember ;
-      vitro:displayLimitAnnot
-              "5"^^xsd:int ;
-      vitro:hiddenFromDisplayBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:selectFromExistingAnnot
-              "true"^^xsd:boolean ;
-      owl:inverseOf blocal:hasDelegate .
+blocal:delegateFor a owl:ObjectProperty ;
+    rdfs:label "delegate for"@en-US ;
+    vitro:displayLimitAnnot "5"^^xsd:int ;
+    vitro:hiddenFromDisplayBelowRoleLevelAnnot vitrorole:public ;
+    vitro:prohibitedFromUpdateBelowRoleLevelAnnot vitrorole:public ;
+    vitro:selectFromExistingAnnot true ;
+    rdfs:domain blocal:Delegate ;
+    rdfs:range vivo:FacultyMember ;
+    owl:inverseOf blocal:hasDelegate .
 
-blocal:hasGeographicResearchArea
-      a       owl:ObjectProperty ;
-      rdfs:label "geographic research area"@en-US ;
-      rdfs:range skos:Concept ;
-      vitro:displayRankAnnot
-              "60"^^xsd:int ;
-      vitro:inPropertyGroupAnnot
-              brown:vitroPropertyGroupresearch ;
-      owl:inverseOf blocal:geographicResearchAreaOf .
+blocal:drrbWebPage a owl:ObjectProperty ;
+    rdfs:label "on the Web"@en-US ;
+    vitro:displayLimitAnnot "5"^^xsd:int ;
+    vitro:displayRankAnnot "11"^^xsd:int ;
+    vitro:hiddenFromDisplayBelowRoleLevelAnnot vitrorole:public ;
+    vitro:inPropertyGroupAnnot d:vitroPropertyGroupbiography ;
+    vitro:prohibitedFromUpdateBelowRoleLevelAnnot vitrorole:public ;
+    vitro:selectFromExistingAnnot true ;
+    rdfs:range vivo:URLLink ;
+    owl:inverseOf blocal:drrbWebPageOf .
 
-blocal:geographicResearchAreaOf
-      a       owl:ObjectProperty ;
-      rdfs:domain skos:Concept ;
-      rdfs:label "research area of"@en-US ;
-      vitro:displayRankAnnot
-              "60"^^xsd:int ;
-      vitro:inPropertyGroupAnnot
-              brown:vitroPropertyGroupoverview ;
-      owl:inverseOf blocal:hasGeographicResearchArea .
+blocal:drrbWebPageOf a owl:ObjectProperty ;
+    rdfs:label "features"@en-US ;
+    vitro:displayLimitAnnot "5"^^xsd:int ;
+    vitro:displayRankAnnot "11"^^xsd:int ;
+    rdfs:domain vivo:URLLink ;
+    owl:inverseOf blocal:drrbWebPage .
 
-blocal:hasAffiliation
-      a       owl:ObjectProperty ;
-      rdfs:domain foaf:Person ;
-      rdfs:label "affiliations"@en-US ;
-      rdfs:range foaf:Organization ;
-      vitro:displayLimitAnnot
-              "5"^^xsd:int ;
-      vitro:hiddenFromDisplayBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "Affiliations with organizational units.  "^^xsd:string ;
-      vitro:selectFromExistingAnnot
-              "true"^^xsd:boolean .
+blocal:geographicResearchAreaOf a owl:ObjectProperty ;
+    rdfs:label "research area of"@en-US ;
+    vitro:displayRankAnnot "60"^^xsd:int ;
+    vitro:inPropertyGroupAnnot d:vitroPropertyGroupoverview ;
+    rdfs:domain skos:Concept ;
+    owl:inverseOf blocal:hasGeographicResearchArea .
 
-blocal:degreeDate
-      a       owl:DatatypeProperty ;
-      rdfs:domain vivo:EducationalTraining ;
-      rdfs:label "year"@en-US ;
-      rdfs:range xsd:gYear ;
-      vitro:hiddenFromDisplayBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:inPropertyGroupAnnot
-              brown:vitroPropertyGrouptime ;
-      vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
+blocal:hasDelegate a owl:ObjectProperty ;
+    rdfs:label "has delegate"@en-US ;
+    vitro:displayLimitAnnot "5"^^xsd:int ;
+    vitro:hiddenFromDisplayBelowRoleLevelAnnot vitrorole:editor ;
+    vitro:inPropertyGroupAnnot d:vitroPropertyGroupidentifiers ;
+    vitro:prohibitedFromUpdateBelowRoleLevelAnnot vitrorole:editor ;
+    vitro:selectFromExistingAnnot true ;
+    rdfs:domain vivo:FacultyMember ;
+    rdfs:range blocal:Delegate ;
+    owl:inverseOf blocal:delegateFor .
 
-blocal:cv
-      a       owl:ObjectProperty ;
-      rdfs:label "CV"@en-US ;
-      rdfs:subPropertyOf vivo:webpage ;
-      vitro:displayLimitAnnot
-              "5"^^xsd:int ;
-      owl:inverseOf blocal:cvOf .
+blocal:hasGeographicResearchArea a owl:ObjectProperty ;
+    rdfs:label "geographic research area"@en-US ;
+    vitro:displayRankAnnot "60"^^xsd:int ;
+    vitro:inPropertyGroupAnnot d:vitroPropertyGroupresearch ;
+    rdfs:range skos:Concept ;
+    owl:inverseOf blocal:geographicResearchAreaOf .
 
-blocal:cvOf
-      a       owl:ObjectProperty ;
-      rdfs:label "CV"@en-US ;
-      rdfs:subPropertyOf vivo:webpageOf ;
-      vitro:displayLimitAnnot
-              "5"^^xsd:int ;
-      vitro:hiddenFromDisplayBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:selectFromExistingAnnot
-              "true"^^xsd:boolean ;
-      owl:inverseOf blocal:cv .
+blocal:hasTeacher a owl:ObjectProperty ;
+    rdfs:label "taught by"@en-US ;
+    vitro:displayLimitAnnot "5"^^xsd:int ;
+    rdfs:domain vivo:Course ;
+    rdfs:range foaf:Agent ;
+    owl:inverseOf blocal:teacherFor .
 
-blocal:teacherFor
-      a       owl:ObjectProperty ;
-      rdfs:domain foaf:Agent ;
-      rdfs:label "courses"@en-US ;
-      rdfs:range vivo:Course ;
-      vitro:displayLimitAnnot
-              "5"^^xsd:int ;
-      vitro:displayRankAnnot
-              "3"^^xsd:int ;
-      vitro:hiddenFromDisplayBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:inPropertyGroupAnnot
-              brown:vitroPropertyGroupteaching ;
-      vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:selectFromExistingAnnot
-              "true"^^xsd:boolean ;
-      owl:inverseOf blocal:hasTeacher .
+blocal:teacherFor a owl:ObjectProperty ;
+    rdfs:label "courses"@en-US ;
+    vitro:displayLimitAnnot "5"^^xsd:int ;
+    vitro:displayRankAnnot "3"^^xsd:int ;
+    vitro:hiddenFromDisplayBelowRoleLevelAnnot vitrorole:public ;
+    vitro:inPropertyGroupAnnot d:vitroPropertyGroupteaching ;
+    vitro:prohibitedFromUpdateBelowRoleLevelAnnot vitrorole:public ;
+    vitro:selectFromExistingAnnot true ;
+    rdfs:domain foaf:Agent ;
+    rdfs:range vivo:Course ;
+    owl:inverseOf blocal:hasTeacher .
 
-blocal:hasTeacher
-      a       owl:ObjectProperty ;
-      rdfs:domain vivo:Course ;
-      rdfs:label "taught by"@en-US ;
-      rdfs:range foaf:Agent ;
-      vitro:displayLimitAnnot
-              "5"^^xsd:int ;
-      owl:inverseOf blocal:teacherFor .
+blocal:Delegate a owl:Class ;
+    rdfs:label "Delegate"@en-US ;
+    vitro:displayLimitAnnot "-1"^^xsd:int ;
+    vitro:displayRankAnnot "-1"^^xsd:int ;
+    vitro:hiddenFromDisplayBelowRoleLevelAnnot vitrorole:public ;
+    vitro:inClassGroup d:vitroClassGrouppeople ;
+    vitro:prohibitedFromUpdateBelowRoleLevelAnnot vitrorole:public ;
+    rdfs:subClassOf foaf:Person .
 
-blocal:drrbWebPage
-      a       owl:ObjectProperty ;
-      rdfs:label "on the Web"@en-US ;
-      rdfs:range vivo:URLLink ;
-      vitro:displayLimitAnnot
-              "5"^^xsd:int ;
-      vitro:displayRankAnnot
-              "11"^^xsd:int ;
-      vitro:hiddenFromDisplayBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:inPropertyGroupAnnot
-              brown:vitroPropertyGroupbiography ;
-      vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:selectFromExistingAnnot
-              "true"^^xsd:boolean ;
-      owl:inverseOf blocal:drrbWebPageOf .
-
-blocal:drrbWebPageOf
-      a       owl:ObjectProperty ;
-      rdfs:domain vivo:URLLink ;
-      rdfs:label "features"@en-US ;
-      vitro:displayLimitAnnot
-              "5"^^xsd:int ;
-      vitro:displayRankAnnot
-              "11"^^xsd:int ;
-      owl:inverseOf blocal:drrbWebPage .
-
-blocal:previousImage
-      a       owl:ObjectProperty ;
-      rdfs:label "previous image"@en-US ;
-      vitro:displayLimitAnnot
-              "5"^^xsd:int ;
-      vitro:hiddenFromDisplayBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#dbAdmin> ;
-      vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#dbAdmin> ;
-      vitro:selectFromExistingAnnot
-              "true"^^xsd:boolean .
