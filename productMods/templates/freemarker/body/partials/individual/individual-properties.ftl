@@ -14,27 +14,24 @@
                 <#-- Property display name -->
                 <h3 id="${property.localName}">${property.name} <@p.addLink property editable /> <@p.verboseDisplay property /> </h3>
                 <#-- List the statements for each property -->
-		<#-- For rich text properties don't wrap in HTML list.  There's probably a better way to do this. -->
-                <#assign rprops = ['affiliations', 'awardsAndHonors', 'scholarlyWork', 'researchOverview', 'researchStatement', 'fundedResearch', 'teachingOverview']>
-		<#if rprops?seq_contains(property.localName)>
-		   <section class="formatted-text" id="${property.localName}">
-			<#list property.statements as statement>
-				<div class="rich-text-property">
-			            ${statement.value}
-				    <@p.editingLinks "${property.name}" statement editable />
-				</div>
-                        </#list>
+                <#-- For rich text properties don't wrap in HTML list.  There's probably a better way to do this. -->
+                        <#assign rprops = ['affiliations', 'awardsAndHonors', 'scholarlyWork', 'researchOverview', 'researchStatement', 'fundedResearch', 'teachingOverview']>
+                <#if rprops?seq_contains(property.localName)>
+                   <section class="formatted-text" id="${property.localName}">
+                        <div class="rich-text-property">
+                            <@p.richTextItem property editable />
+                        </div>
                    </section>
-                <#else>
-                <ul class="property-list" role="list" id="${property.localName}-${rangeClass}-List">
-                    <#-- data property -->
-                    <#if property.type == "data">
-                        <@p.dataPropertyList property editable />
-                    <#-- object property -->
-                    <#else>
-                        <@p.objectProperty property editable /> 
-                    </#if>
-                </ul>
+                   <#else>
+                    <ul class="property-list" role="list" id="${property.localName}-${rangeClass}-List">
+                        <#-- data property -->
+                        <#if property.type == "data">
+                            <@p.dataPropertyList property editable />
+                        <#-- object property -->
+                        <#else>
+                            <@p.objectProperty property editable /> 
+                        </#if>
+                    </ul>
                 </#if>
             </article> <!-- end property -->
         </#list>

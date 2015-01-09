@@ -155,6 +155,19 @@ name will be used as the label. -->
     <h2 id="${property.localName}">${label} <@verboseDisplay property /></h2>     
 </#macro>
 
+<#-- Handle wyswig/rich text properties -->
+<#macro richTextItem property editable >
+    <#list property.statements as statement>
+        <#if property.rangeUri?? >
+            <#local rangeUri = property.rangeUri />
+        <#else>
+            <#local rangeUri = "" />
+        </#if>
+        ${statement.value}
+        <@editingLinks "${property.localName}" "${property.name}" statement editable rangeUri/>
+    </#list>
+</#macro>
+
 
 <#macro propertyListItem property statement editable >
     <#if property.rangeUri?? >
