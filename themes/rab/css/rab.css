@@ -1348,11 +1348,14 @@ ul#individual-tools li a {
 }
 #share-contact a.email {
     color: #5f6464;
-    font-size: .85em;
+    font-size: .9em;
+    word-wrap: break-word;
 }
-#share-contact a.tel {
-    color: #5f6464;
+
+#share-contact ul#cvLink li a {
+    font-size: .9em;
 }
+
 ul.individual-urls {
     list-style: url(../images/bullet.gif);
     margin-left: 1em;
@@ -1361,9 +1364,7 @@ ul#individual-email,
 ul#individual-phone {
     list-style-type: none;
 }
-ul.individual-emails li {
-    font-size: .875em;
-}
+
 ul.individual-urls li {
     font-size: .875em;
     line-height: 1.6em;
