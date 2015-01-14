@@ -3,6 +3,9 @@
 $(document).ready(function(){
     
     // "more"/"less" HTML truncator for showing more or less content in data property core:overview
+    // "more"/"less" HTML truncator for showing more or less content in data property core:overview
+    $('.overview-value').truncate({max_length: 500});
+    //all of the rich text fields too
     shortProps = [
             '.overview-value', 
             '#scholarlyWork',
