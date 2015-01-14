@@ -8,3 +8,6 @@
 /runtime.properties
 /Vitro/
 /data-home/
+#Ontologies imported from other repo
+rdf/tbox/filegraph/*ttl
+rdf/applicationMetadata/everytime/
