@@ -116,7 +116,7 @@
             </p>
            <p>
             Please provide feedback or request help by contacting <a href="mailto:researchers@brown.edu">researchers@brown.edu</a>.
-            Visit our <a href="./about">Help</a> pages for further information.</p>
+            Visit our <a href="./help">Help</a> pages for further information.</p>
          </section>
          <section id="login" class="news-item-box">
                      <p></p>
