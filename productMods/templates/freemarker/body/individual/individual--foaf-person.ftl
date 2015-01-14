@@ -29,9 +29,6 @@
         </#if>
 
         <div id="photo-wrapper" >${individualImage}</div>
-
-        <#include "individual-contactInfo.ftl">  
-                
         <#-- Links -->
         <@vp.webpages propertyGroups editable "individual-urls-people" />
 
@@ -40,7 +37,9 @@
             <ul id="cvLink">
                 <@p.objectPropertyList cvLink editable />
             </ul>
-        </#if>        
+        </#if>
+        
+        <#include "individual-contactInfo.ftl">          
     </section>
 
     <section id="individual-info" ${infoClass!} role="region">
