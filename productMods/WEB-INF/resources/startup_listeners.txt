@@ -49,7 +49,8 @@ edu.cornell.mannlib.vitro.webapp.servlet.setup.ThemeInfoSetup
 
 edu.cornell.mannlib.vitro.webapp.auth.permissions.PermissionRegistry$Setup
 
-edu.cornell.mannlib.vitro.webapp.auth.permissions.PermissionSetsSmokeTest
+# Not running because of false warnings triggered on first boot after migration.
+#edu.cornell.mannlib.vitro.webapp.auth.permissions.PermissionSetsSmokeTest
 
 edu.cornell.mannlib.vitro.webapp.auth.policy.bean.PropertyRestrictionPolicyHelper$Setup
 
