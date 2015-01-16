@@ -1,0 +1,16 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix vitroDisplay: <http://vitro.mannlib.cornell.edu/ontologies/display/1.1#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix core: <http://vivoweb.org/ontology/core#> .
+@prefix blocal: <http://vivo.brown.edu/ontology/vivo-brown/> .
+
+ vitroDisplay:SearchIndex 
+    rdf:type owl:Thing ; 
+    vitroDisplay:excludeClass core:EducationalTraining ;    
+    vitroDisplay:excludeClass core:DateTimeValue ;
+    vitroDisplay:excludeClass core:DateTimeInterval ;
+    vitroDisplay:excludeClass core:AcademicDegree ;
+    vitroDisplay:excludeClass core:URLLink ;
+    vitroDisplay:excludeClass blocal:Delegate ; 
+    vitroDisplay:excludeClass <http://vitro.mannlib.cornell.edu/ns/vitro/public#File> ;
+    vitroDisplay:excludeClass <http://vitro.mannlib.cornell.edu/ns/vitro/public#FileByteStream> .
