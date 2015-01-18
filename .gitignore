@@ -9,5 +9,4 @@
 /Vitro/
 /data-home/
 #Ontologies imported from other repo
-rdf/tbox/filegraph/*ttl
-rdf/applicationMetadata/everytime/
+#rdf/tbox/filegraph/*ttl
