@@ -163,7 +163,11 @@ name will be used as the label. -->
         <#else>
             <#local rangeUri = "" />
         </#if>
-        ${statement.value}
+        <#attempt>
+          ${statement.value}
+        <#recover>
+          Error displaying ${property.name}.
+        </#attempt>
         <@editingLinks "${property.localName}" "${property.name}" statement editable rangeUri/>
     </#list>
 </#macro>
