@@ -52,7 +52,7 @@ import edu.cornell.mannlib.vitro.webapp.search.IndexConstants;
 import edu.cornell.mannlib.vitro.webapp.search.VitroSearchTermNames;
 import edu.cornell.mannlib.vitro.webapp.web.templatemodels.LinkTemplateModel;
 import edu.cornell.mannlib.vitro.webapp.web.templatemodels.searchresult.IndividualSearchResult;
-import edu.ucsf.vitro.opensocial.OpenSocialManager;
+
 
 /**
  * Paged search controller that uses the search engine
@@ -73,6 +73,8 @@ public class PagedSearchController extends FreemarkerHttpServlet {
     private static final String PARAM_CLASSGROUP = "classgroup";
     private static final String PARAM_RDFTYPE = "type";
     private static final String PARAM_QUERY_TEXT = "querytext";
+    //Only search for these classes
+    //private static final String SEARCH_CLASSESS = " type:http://vivo.brown.edu/ontology/citation#Citation, http://vivoweb.org/ontology/core#FacultyMember,http://vivo.brown.edu/ontology/citation#Venue,http://vivo.brown.edu/ontology/vivo-brown/ResearchArea";
 
     protected static final Map<Format,Map<Result,String>> templateTable;
 
@@ -497,6 +499,11 @@ public class PagedSearchController extends FreemarkerHttpServlet {
             query.addFacetFields(VitroSearchTermNames.CLASSGROUP_URI).setFacetLimit(-1);
         }
 
+        //brown include classes
+        query.addFilterQuery(getIncludeClassFilterQuery());
+        //brown exclude classes
+        query.addFilterQuery(getExcludeClassFilterQuery());
+
         log.debug("Query = " + query.toString());
         return query;
     }
@@ -738,4 +745,26 @@ public class PagedSearchController extends FreemarkerHttpServlet {
 
         return Collections.unmodifiableMap(templateTable);
     }
+
+    protected static String getIncludeClassFilterQuery() {
+        // these are the classes we will search for.
+        ArrayList include = new ArrayList();
+        include.add("\"http://vivoweb.org/ontology/core#FacultyMember\"");
+        include.add("\"http://vivo.brown.edu/ontology/display#OU\"");
+        include.add("\"http://vivo.brown.edu/ontology/citation#Citation\"");
+        //places and topics
+        include.add("\"http://www.w3.org/2004/02/skos/core#Concept\"");
+        String qClasses =StringUtils.join(include, " OR ");
+        return "type:(" + qClasses + ")";
+    }
+
+    protected static String getExcludeClassFilterQuery() {
+        // these are the classes we will search for.
+        ArrayList exclude = new ArrayList();
+        exclude.add("\"http://vivo.brown.edu/ontology/display#Hidden\"");
+        String qClasses =StringUtils.join(exclude, " OR ");
+        return "-type:(" + qClasses + ")";
+    }
+
+
 }
