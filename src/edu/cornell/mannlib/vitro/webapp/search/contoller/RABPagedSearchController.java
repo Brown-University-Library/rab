@@ -52,13 +52,14 @@ import edu.cornell.mannlib.vitro.webapp.search.IndexConstants;
 import edu.cornell.mannlib.vitro.webapp.search.VitroSearchTermNames;
 import edu.cornell.mannlib.vitro.webapp.web.templatemodels.LinkTemplateModel;
 import edu.cornell.mannlib.vitro.webapp.web.templatemodels.searchresult.IndividualSearchResult;
+import edu.ucsf.vitro.opensocial.OpenSocialManager;
 
 
 /**
  * Paged search controller that uses the search engine
  */
 
-public class PagedSearchController extends FreemarkerHttpServlet {
+public class RABPagedSearchController extends FreemarkerHttpServlet {
 
     private static final long serialVersionUID = 1L;
     private static final Log log = LogFactory.getLog(PagedSearchController.class);
@@ -762,6 +763,7 @@ public class PagedSearchController extends FreemarkerHttpServlet {
         // these are the classes we will search for.
         ArrayList exclude = new ArrayList();
         exclude.add("\"http://vivo.brown.edu/ontology/display#Hidden\"");
+        exclude.add("\"http://vivo.brown.edu/ontology/vivo-brown/Delegate\"");
         String qClasses =StringUtils.join(exclude, " OR ");
         return "-type:(" + qClasses + ")";
     }
