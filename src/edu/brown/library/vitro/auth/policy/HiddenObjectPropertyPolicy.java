@@ -4,6 +4,7 @@ import com.hp.hpl.jena.query.*;
 import com.hp.hpl.jena.shared.Lock;
 import edu.cornell.mannlib.vitro.webapp.auth.identifier.IdentifierBundle;
 import edu.cornell.mannlib.vitro.webapp.auth.identifier.common.HasPermissionSet;
+import edu.cornell.mannlib.vitro.webapp.auth.permissions.PermissionSets;
 import edu.cornell.mannlib.vitro.webapp.auth.identifier.common.IsRootUser;
 import edu.cornell.mannlib.vitro.webapp.auth.permissions.PermissionSets;
 import edu.cornell.mannlib.vitro.webapp.auth.policy.BasicPolicyDecision;
