@@ -3,6 +3,9 @@ package edu.brown.library.vitro.auth.policy;
 import com.hp.hpl.jena.query.*;
 import com.hp.hpl.jena.shared.Lock;
 import edu.cornell.mannlib.vitro.webapp.auth.identifier.IdentifierBundle;
+import edu.cornell.mannlib.vitro.webapp.auth.identifier.common.HasPermissionSet;
+import edu.cornell.mannlib.vitro.webapp.auth.identifier.common.IsRootUser;
+import edu.cornell.mannlib.vitro.webapp.auth.permissions.PermissionSets;
 import edu.cornell.mannlib.vitro.webapp.auth.policy.BasicPolicyDecision;
 import edu.cornell.mannlib.vitro.webapp.auth.policy.ServletPolicyList;
 import edu.cornell.mannlib.vitro.webapp.auth.policy.ifaces.Authorization;
@@ -40,6 +43,14 @@ public class HiddenObjectPropertyPolicy implements PolicyIface{
     public PolicyDecision isAuthorized(IdentifierBundle whoToAuth,
                                        RequestedAction whatToAuth) {
         String objURI = null;
+
+        //pass for root users or dba
+        if (IsRootUser.isRootUser(whoToAuth)
+                || HasPermissionSet.getPermissionSetUris(whoToAuth).contains(
+                PermissionSets.URI_DBA)) {
+            return inconclusiveDecision("Root and site admin can view hidden classes");
+        }
+
         if (whatToAuth instanceof DisplayObjectPropertyStatement) {
             objURI = ((DisplayObjectPropertyStatement) whatToAuth).getObjectUri();
         } else if (whatToAuth instanceof PublishObjectPropertyStatement) {
