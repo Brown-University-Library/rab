@@ -963,7 +963,7 @@
 
   <servlet>
     <servlet-name>individual</servlet-name>
-    <servlet-class>edu.cornell.mannlib.vitro.webapp.controller.individual.IndividualController</servlet-class>
+    <servlet-class>edu.brown.library.vitro.controller.individual.IndividualController</servlet-class>
   </servlet>
     
   <servlet>
