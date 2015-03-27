@@ -4,7 +4,6 @@ import com.hp.hpl.jena.query.*;
 import com.hp.hpl.jena.shared.Lock;
 import edu.cornell.mannlib.vitro.webapp.auth.identifier.IdentifierBundle;
 import edu.cornell.mannlib.vitro.webapp.auth.identifier.common.HasPermissionSet;
-import edu.cornell.mannlib.vitro.webapp.auth.permissions.PermissionSets;
 import edu.cornell.mannlib.vitro.webapp.auth.identifier.common.IsRootUser;
 import edu.cornell.mannlib.vitro.webapp.auth.permissions.PermissionSets;
 import edu.cornell.mannlib.vitro.webapp.auth.policy.BasicPolicyDecision;
@@ -13,7 +12,6 @@ import edu.cornell.mannlib.vitro.webapp.auth.policy.ifaces.Authorization;
 import edu.cornell.mannlib.vitro.webapp.auth.policy.ifaces.PolicyDecision;
 import edu.cornell.mannlib.vitro.webapp.auth.policy.ifaces.PolicyIface;
 import edu.cornell.mannlib.vitro.webapp.auth.requestedAction.RequestedAction;
-import edu.cornell.mannlib.vitro.webapp.auth.requestedAction.display.DisplayObjectPropertyStatement;
 import edu.cornell.mannlib.vitro.webapp.auth.requestedAction.publish.PublishObjectPropertyStatement;
 import edu.cornell.mannlib.vitro.webapp.dao.jena.QueryUtils;
 import edu.cornell.mannlib.vitro.webapp.servlet.setup.JenaDataSourceSetupBase;
@@ -35,6 +33,7 @@ public class HiddenObjectPropertyPolicy implements PolicyIface{
 
     private final Dataset dataset;
     private static final Syntax SYNTAX = Syntax.syntaxARQ;
+    private static final String HIDDEN_CLASS = "http://vivo.brown.edu/ontology/display#Hidden";
 
     public HiddenObjectPropertyPolicy(ServletContext ctx) {
         this.dataset = JenaDataSourceSetupBase.getStartupDataset(ctx);
@@ -52,36 +51,32 @@ public class HiddenObjectPropertyPolicy implements PolicyIface{
             return inconclusiveDecision("Root and site admin can view hidden classes");
         }
 
-        if (whatToAuth instanceof DisplayObjectPropertyStatement) {
-            objURI = ((DisplayObjectPropertyStatement) whatToAuth).getObjectUri();
-        } else if (whatToAuth instanceof PublishObjectPropertyStatement) {
-            objURI = ((PublishObjectPropertyStatement) whatToAuth).getObjectUri();
-        }
-        else {
-            return inconclusiveDecision("Not applicable");
-        }
-        if ((objURI == null)) {
-            return inconclusiveDecision("Not applicable");
-        }
-        if (relatedToHiddenClass(objURI)) {
-            log.debug("Not authorizing object prop view.");
-            return unauthorizedDecision("Related to hidden property");
-        } else {
-            log.debug("OK to view object property.");
+        //This creates a huge amount of extra queries so we are only going to filter
+        //linked data requests a.k. PublishObjectPropertyStatement.  HTML requests
+        //will be filtered at the listViewConfig query level.
+        if (whatToAuth instanceof PublishObjectPropertyStatement) {
+            PublishObjectPropertyStatement stmt = ((PublishObjectPropertyStatement) whatToAuth);
+            //see if this subject is of type hidden or if this obj is of type hidden..
+            if (relatedToHiddenClass(stmt.getSubjectUri())) {
+                return unauthorizedDecision("Type is hidden");
+            } else if (relatedToHiddenClass(stmt.getObjectUri())) {
+
+                log.debug("Not authorizing object prop view.");
+                return unauthorizedDecision("Related to hidden property");
+            }
         }
 
-        return inconclusiveDecision("whatToAuth was null");
+        return inconclusiveDecision("don't know what to do");
     }
 
     private static final String QUERY_TEMPLATE = "" + //
             "ASK {" + //
-            "     ?uri a <http://vivo.brown.edu/ontology/display#Hidden> ." + //
+            "     ?uri a <" + HIDDEN_CLASS + "> ." + //
             "} ";
 
     private Boolean relatedToHiddenClass(String uri) {
         String rq = assembleQueryString(uri);
-        Boolean askResult = executeQuery(rq);
-        return askResult;
+        return executeQuery(rq);
     }
 
     private String assembleQueryString(String uri) {
