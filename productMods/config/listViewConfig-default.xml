@@ -67,7 +67,9 @@
             } UNION {      
                 ?subject ?property ?object .
                 ?object rdfs:label ?label .
-            }        
+            }
+            #hide objects of type hidden classes
+            FILTER NOT EXISTS {?object a &lt;http://vivo.brown.edu/ontology/display#Hidden&gt; }
         }
     </query-construct>
     
@@ -93,7 +95,9 @@
             } UNION {            
                 ?subject ?property ?object .
                 ?object core:preferredTitle ?title .
-            }          
+            }
+            #hide objects related to hidden classes
+            FILTER NOT EXISTS {?object a &lt;http://vivo.brown.edu/ontology/display#Hidden&gt; }
         }
     </query-construct>
 
