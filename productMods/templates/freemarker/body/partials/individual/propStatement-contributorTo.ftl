@@ -26,7 +26,9 @@
 <#else>
 
     <#local resourceTitle>
-        <#if statement.citation??>
+        <#if statement.work??>
+            <a href="${profileUrl(statement.uri("work"))}" title="resource name">${statement.label}</a>
+        <#elseif statement.citation??>
             <a href="${profileUrl(statement.uri("citation"))}" title="resource name">${statement.label}</a>
         <#else>
             <a href="${profileUrl(statement.uri("citation"))}" title="missing resource">missing information resource</a>

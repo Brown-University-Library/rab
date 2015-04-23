@@ -32,7 +32,7 @@ example:
                         ?issue
                         ?firstName
                         ?lastName
-                        
+                        ?work                        
             WHERE {
                         
                 ?subject ?property ?citation .
@@ -63,6 +63,9 @@ example:
                 OPTIONAL {
                     ?citation bcite:issue ?issue .
                 }
+                OPTIONAL {
+                    ?citation bcite:cites ?work .
+                }
                 <critical-data-required>
                 FILTER ( bound(?citation) )
                 </critical-data-required>
@@ -90,6 +93,7 @@ example:
             ?citation bcite:issue ?issue .
             ?subject foaf:firstName ?firstName.
             ?subject foaf:lastName ?lastName .
+            ?citation bcite:cites ?work .
         } WHERE {
             {
                 ?subject ?property ?citation .
@@ -130,6 +134,10 @@ example:
             UNION {
                 ?subject ?property ?citation .
                 ?citation bcite:issue ?issue .
+            }
+            UNION {
+                ?subject ?property ?citation .
+                ?citation bcite:cites ?work .
             }
         }
     </query-construct>
