@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- $This file is distributed under the terms of the license in /doc/license.txt$ -->
+
+<!-- See guidelines in vitro/doc/list_view_configuration_guidelines.txt -->
+
+<!-- 
+subject is Person, property is hasTeacherRole
+example:
+    'subject': '<http://vivo.brown.edu/individual/twinkler>',
+    'property': '<http://vivoweb.org/ontology/core#hasTeacherRole>'
+-->
+
+<list-view-config>
+    <query-select>
+        PREFIX vivo: &lt;http://vivoweb.org/ontology/core#&gt;
+        PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+        PREFIX bcite: &lt;http://vivo.brown.edu/ontology/citation#&gt;
+        PREFIX foaf: &lt;http://xmlns.com/foaf/0.1/&gt;
+        
+        SELECT DISTINCT ?citation
+                        ?contributor
+                        ?name
+                        ?title
+                        
+            WHERE {
+                        
+                ?subject ?property ?citation .
+                ?citation bcite:hasContributor ?contributor .
+                ?contributor rdfs:label ?name .
+
+                OPTIONAL {?contributor vivo:preferredTitle ?title .}
+                
+                <critical-data-required>
+                FILTER ( bound(?contributor) )
+                </critical-data-required>
+        
+            } ORDER BY ?name
+    </query-select>
+
+    <query-construct>
+        PREFIX vivo: &lt;http://vivoweb.org/ontology/core#&gt;
+        PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+        PREFIX bcite: &lt;http://vivo.brown.edu/ontology/citation#&gt;
+        PREFIX foaf: &lt;http://xmlns.com/foaf/0.1/&gt;
+
+        CONSTRUCT {
+            ?subject ?property ?citation .
+            ?citation bcite:hasContributor ?contributor .
+            ?contributor rdfs:label ?name .
+            ?contributor vivo:preferredTitle ?title .
+        } WHERE {
+            { 
+                ?subject ?property ?citation .
+                ?citation bcite:hasContributor ?contributor .
+                ?contributor rdfs:label ?name .
+            } UNION {            
+                ?subject ?property ?citation .
+                ?citation bcite:hasContributor ?contributor .
+                ?contributor vivo:preferredTitle ?title .
+            }          
+        }
+    </query-construct>
+    
+    <template>propStatement-citedAs.ftl</template>
+</list-view-config>

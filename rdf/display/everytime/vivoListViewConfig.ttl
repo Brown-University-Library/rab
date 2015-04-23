@@ -46,6 +46,9 @@
 <http://vivo.brown.edu/ontology/vivo-brown/hasAffiliation>
 	display:listViewConfigFile "listViewConfig-hasAffiliation.xml" .
 
+<http://vivo.brown.edu/ontology/citation#citedAs>
+    display:listViewConfigFile "listViewConfig-citedAs.xml" .
+
 ##### Medical Data Listviews #####
 #
 #<http://vivo.brown.edu/ontology/profile#hasCredential>
