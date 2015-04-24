@@ -752,7 +752,7 @@ public class RABPagedSearchController extends FreemarkerHttpServlet {
         ArrayList include = new ArrayList();
         include.add("\"http://vivoweb.org/ontology/core#FacultyMember\"");
         include.add("\"http://vivo.brown.edu/ontology/display#OU\"");
-        include.add("\"http://vivo.brown.edu/ontology/citation#Citation\"");
+        include.add("\"http://vivo.brown.edu/ontology/vivo-brown/Work\"");
         //places and topics
         include.add("\"http://www.w3.org/2004/02/skos/core#Concept\"");
         String qClasses =StringUtils.join(include, " OR ");
