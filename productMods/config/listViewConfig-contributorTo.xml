@@ -18,6 +18,7 @@ example:
         PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
         PREFIX bcite: &lt;http://vivo.brown.edu/ontology/citation#&gt;
         PREFIX foaf: &lt;http://xmlns.com/foaf/0.1/&gt;
+        PREFIX bdisplay: &lt;http://vivo.brown.edu/ontology/display#&gt;
         
         SELECT DISTINCT ?citation
                         ?label
@@ -66,6 +67,7 @@ example:
                 <critical-data-required>
                 FILTER ( bound(?citation) )
                 </critical-data-required>
+               FILTER NOT EXISTS {?citation a bdisplay:Hidden . }
         
             } ORDER BY DESC(?dateTime) ?label
     </query-select>
@@ -75,12 +77,14 @@ example:
         PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
         PREFIX bcite: &lt;http://vivo.brown.edu/ontology/citation#&gt;
         PREFIX foaf: &lt;http://xmlns.com/foaf/0.1/&gt;
+        PREFIX bdisplay: &lt;http://vivo.brown.edu/ontology/display#&gt;
         
         CONSTRUCT {
             ?subject ?property ?citation .
             ?citation rdfs:label ?label .
             ?citation bcite:hasVenue ?venue .
             ?venue rdfs:label ?venueLabel .
+            ?citation a ?citationType .
             ?citation bcite:date ?year .
             ?citation bcite:authorList ?authorList .
             ?citation bcite:doi ?doi .
@@ -96,6 +100,9 @@ example:
                 ?citation rdfs:label ?label .
                 ?subject foaf:firstName ?firstName.
                 ?subject foaf:lastName ?lastName .
+            }
+            UNION {
+                ?citation a ?citationType .
             }
             UNION {
                 ?subject ?property ?citation .
@@ -131,8 +138,6 @@ example:
                 ?subject ?property ?citation .
                 ?citation bcite:issue ?issue .
             }
-            #hide citations related to hidden classes
-            FILTER NOT EXISTS {?citation a &lt;http://vivo.brown.edu/ontology/display#Hidden&gt; }
         }
     </query-construct>
 
