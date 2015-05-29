@@ -33,6 +33,7 @@ example:
                         ?issue
                         ?firstName
                         ?lastName
+                        ?hide
                         
             WHERE {
                         
@@ -64,10 +65,12 @@ example:
                 OPTIONAL {
                     ?citation bcite:issue ?issue .
                 }
+                OPTIONAL {
+                    ?citation bdisplay:hideFromDisplay ?hide .
+                }
                 <critical-data-required>
                 FILTER ( bound(?citation) )
                 </critical-data-required>
-               FILTER NOT EXISTS {?citation a bdisplay:Hidden . }
         
             } ORDER BY DESC(?dateTime) ?label
     </query-select>
@@ -84,7 +87,6 @@ example:
             ?citation rdfs:label ?label .
             ?citation bcite:hasVenue ?venue .
             ?venue rdfs:label ?venueLabel .
-            ?citation a ?citationType .
             ?citation bcite:date ?year .
             ?citation bcite:authorList ?authorList .
             ?citation bcite:doi ?doi .
@@ -92,6 +94,7 @@ example:
             ?citation bcite:pages ?pages .
             ?citation bcite:volume ?volume .
             ?citation bcite:issue ?issue .
+            ?citation bdisplay:hideFromDisplay ?hide .
             ?subject foaf:firstName ?firstName.
             ?subject foaf:lastName ?lastName .
         } WHERE {
@@ -100,9 +103,6 @@ example:
                 ?citation rdfs:label ?label .
                 ?subject foaf:firstName ?firstName.
                 ?subject foaf:lastName ?lastName .
-            }
-            UNION {
-                ?citation a ?citationType .
             }
             UNION {
                 ?subject ?property ?citation .
@@ -138,6 +138,11 @@ example:
                 ?subject ?property ?citation .
                 ?citation bcite:issue ?issue .
             }
+            UNION {
+                ?subject ?property ?citation .
+                ?citation bdisplay:hideFromDisplay ?hide .
+            }
+
         }
     </query-construct>
 

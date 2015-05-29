@@ -14,15 +14,8 @@
 <#-- Use a macro to keep variable assignments local; otherwise the values carry over to the
      next statement -->
 <#macro showContributor statement>
-<#if statement.hideThis?has_content>
-    <span class="hideThis">&nbsp;</span>
-    <script type="text/javascript" >
-        $('span.hideThis').parent().parent().addClass("hideThis");
-        if ( $('h3#contibutorTo').attr('class').length == 0 ) {
-            $('h3#contibutorTo').addClass('hiddenPubs');
-        }
-        $('span.hideThis').parent().remove();
-    </script>
+<#if statement.hide?has_content>
+    <#-- these are hidden publications -->
 <#else>
 
     <#local resourceTitle>
