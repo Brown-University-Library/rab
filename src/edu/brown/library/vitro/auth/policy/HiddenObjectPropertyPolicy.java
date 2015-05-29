@@ -46,8 +46,7 @@ public class HiddenObjectPropertyPolicy implements PolicyIface{
 
         //pass for root users or dba
         if (IsRootUser.isRootUser(whoToAuth)
-                || HasPermissionSet.getPermissionSetUris(whoToAuth).contains(
-                PermissionSets.URI_DBA)) {
+                || whoToAuth.contains(PermissionSets.URI_DBA)) {
             return inconclusiveDecision("Root and site admin can view hidden classes");
         }
 
