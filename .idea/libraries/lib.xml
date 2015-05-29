@@ -1,0 +1,19 @@
+<component name="libraryTable">
+  <library name="lib">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/Vitro/utilities/rdbmigration/lib/arq-2.8.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Vitro/utilities/rdbmigration/lib/commons-lang-2.6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Vitro/utilities/rdbmigration/lib/slf4j-log4j12-1.5.6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Vitro/utilities/rdbmigration/lib/iri-0.8.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Vitro/utilities/rdbmigration/lib/jena-2.6.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Vitro/utilities/rdbmigration/lib/xercesImpl.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Vitro/utilities/rdbmigration/lib/slf4j-api-1.5.6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Vitro/utilities/rdbmigration/lib/mysql-connector-java-5.1.16-bin.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Vitro/utilities/rdbmigration/lib/log4j-1.2.14.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Vitro/utilities/rdbmigration/lib/icu4j-3.4.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Vitro/utilities/rdbmigration/lib/tdb-0.8.7.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

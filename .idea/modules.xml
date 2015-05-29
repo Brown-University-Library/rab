@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Vitro/utilities/buildutils/buildutils.iml" filepath="$PROJECT_DIR$/Vitro/utilities/buildutils/buildutils.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rab-vitro.iml" filepath="$PROJECT_DIR$/rab-vitro.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Vitro/utilities/rdbmigration/rdbmigration.iml" filepath="$PROJECT_DIR$/Vitro/utilities/rdbmigration/rdbmigration.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Vitro/utilities/solrtester/solrtester.iml" filepath="$PROJECT_DIR$/Vitro/utilities/solrtester/solrtester.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Vitro/utilities/testrunner/testrunner.iml" filepath="$PROJECT_DIR$/Vitro/utilities/testrunner/testrunner.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Vitro/webapp/webapp.iml" filepath="$PROJECT_DIR$/Vitro/webapp/webapp.iml" />
+    </modules>
+  </component>
+</project>
