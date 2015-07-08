@@ -1,14 +1,13 @@
-rab-vitro
+rab
 ===========
 
-###10/20/04
-This is a repo for upgrading Researchers@Brown to the VIVO/Vitro 1.7 platform.  We are investigating using Vitro for the code core and then adding our ontology, custom listViews, and custom templates.  
+Repository containing code for [Researchers@Brown](https://vivo.brown.edu/), built with the [VIVO/Vitro platform](https://github.com/vivo-project).
 
-###Building
+###Setup
 
- * setup a database for use with Vitro: `create database vitro charset "utf8"`
+ * setup a database for use with Vitro: `create database vitro charset DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci`
  * git clone this repository
- * `git clone --depth 5 --branch maint-rel-1.7 https://github.com/vivo-project/Vitro.git`
+ * `git clone --branch maint-rel-1.7 https://github.com/vivo-project/Vitro.git`
  * make a vitro data directory
  * adjust build.properties and runtime.properties to match your machine
  * adjust rebuild.sh to match your matchine
