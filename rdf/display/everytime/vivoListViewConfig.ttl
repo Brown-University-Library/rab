@@ -47,41 +47,41 @@
 	display:listViewConfigFile "listViewConfig-hasAffiliation.xml" .
 
 ##### Medical Data Listviews #####
-#
-#<http://vivo.brown.edu/ontology/profile#hasCredential>
-#    display:listViewConfigFile "listViewConfig-hasCredential.xml" .
-#<http://vivo.brown.edu/ontology/profile#hasHospitalAppointment>
-#    display:listViewConfigFile "listViewConfig-hasHospitalAppointment.xml" .
-#<http://vivo.brown.edu/ontology/profile#hasPostdocAppointment>
-#    display:listViewConfigFile "listViewConfig-hasPostdocAppointment.xml" .
-#
+
+<http://vivo.brown.edu/ontology/profile#hasCredential>
+    display:listViewConfigFile "listViewConfig-hasCredential.xml" .
+<http://vivo.brown.edu/ontology/profile#hasHospitalAppointment>
+    display:listViewConfigFile "listViewConfig-hasHospitalAppointment.xml" .
+<http://vivo.brown.edu/ontology/profile#hasPostdocAppointment>
+    display:listViewConfigFile "listViewConfig-hasPostdocAppointment.xml" .
+
 ##### end Medical Data Listviews #####
 
 
 ##### properties rendered by unlinkedObject listview
-#
-#<http://vivo.brown.edu/ontology/citation#hasLocation>
-#    display:listViewConfigFile "listViewConfig-unlinkedObject.xml" .
-#
-#<http://vivo.brown.edu/ontology/citation#hasPublisher>
-#    display:listViewConfigFile "listViewConfig-unlinkedObject.xml" .
-#
+
+<http://vivo.brown.edu/ontology/citation#hasLocation>
+    display:listViewConfigFile "listViewConfig-unlinkedObject.xml" .
+
+<http://vivo.brown.edu/ontology/citation#hasPublisher>
+    display:listViewConfigFile "listViewConfig-unlinkedObject.xml" .
+
 ##### end properties rendered by unlinkedObject listview
 
 
 ##### properties rendered by showFaculty listview
-#
-#<http://vivo.brown.edu/ontology/profile#employerForHospitalAppointment>
-#    display:listViewConfigFile "listViewConfig-showFaculty.xml" .
-#<http://vivo.brown.edu/ontology/profile#grantsCredential>
-#    display:listViewConfigFile "listViewConfig-showFaculty.xml" .
-#<http://vivo.brown.edu/ontology/profile#credentialSpecialtyFor>
-#    display:listViewConfigFile "listViewConfig-showFaculty.xml" .
-#<http://vivo.brown.edu/ontology/profile#supervisorForPostdocAppointment>
-#    display:listViewConfigFile "listViewConfig-showFaculty.xml" .
-#<http://vivo.brown.edu/ontology/profile#hostForPostdocAppointment>
-#    display:listViewConfigFile "listViewConfig-showFaculty.xml" .
-#<http://vivo.brown.edu/ontology/profile#postdocSpecialtyOrDepartmentForAppointment>
-#    display:listViewConfigFile "listViewConfig-showFaculty.xml" .
-#
+
+<http://vivo.brown.edu/ontology/profile#employerForHospitalAppointment>
+    display:listViewConfigFile "listViewConfig-showFaculty.xml" .
+<http://vivo.brown.edu/ontology/profile#grantsCredential>
+    display:listViewConfigFile "listViewConfig-showFaculty.xml" .
+<http://vivo.brown.edu/ontology/profile#credentialSpecialtyFor>
+    display:listViewConfigFile "listViewConfig-showFaculty.xml" .
+<http://vivo.brown.edu/ontology/profile#supervisorForPostdocAppointment>
+    display:listViewConfigFile "listViewConfig-showFaculty.xml" .
+<http://vivo.brown.edu/ontology/profile#hostForPostdocAppointment>
+    display:listViewConfigFile "listViewConfig-showFaculty.xml" .
+<http://vivo.brown.edu/ontology/profile#postdocSpecialtyOrDepartmentForAppointment>
+    display:listViewConfigFile "listViewConfig-showFaculty.xml" .
+
 ##### end properties rendered by showFaculty listview
