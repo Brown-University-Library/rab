@@ -71,15 +71,15 @@
 
 ##### properties rendered by showFaculty listview
 
-<http://vivo.brown.edu/ontology/profile#employerForHospitalAppointment>
+<http://vivo.brown.edu/ontology/profile#organizationForHospitalAppointment>
     display:listViewConfigFile "listViewConfig-showFaculty.xml" .
 <http://vivo.brown.edu/ontology/profile#grantsCredential>
     display:listViewConfigFile "listViewConfig-showFaculty.xml" .
 <http://vivo.brown.edu/ontology/profile#credentialSpecialtyFor>
     display:listViewConfigFile "listViewConfig-showFaculty.xml" .
-<http://vivo.brown.edu/ontology/profile#supervisorForPostdocAppointment>
+<http://vivo.brown.edu/ontology/profile#organizationForPostdocAppointment>
     display:listViewConfigFile "listViewConfig-showFaculty.xml" .
-<http://vivo.brown.edu/ontology/profile#hostForPostdocAppointment>
+<http://vivo.brown.edu/ontology/profile#hospitalForPostdocAppointment>
     display:listViewConfigFile "listViewConfig-showFaculty.xml" .
 <http://vivo.brown.edu/ontology/profile#postdocSpecialtyOrDepartmentForAppointment>
     display:listViewConfigFile "listViewConfig-showFaculty.xml" .
