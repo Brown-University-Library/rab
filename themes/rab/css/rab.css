@@ -1670,3 +1670,7 @@ form.customForm #requiredLegend {
 .nonSelectedGroupTab {
     background-color: #EDEDED!important;
 }
+
+#help table, th, td {
+   border: 1px solid black;
+}
