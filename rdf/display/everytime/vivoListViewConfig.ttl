@@ -50,10 +50,10 @@
 
 <http://vivo.brown.edu/ontology/profile#hasCredential>
     display:listViewConfigFile "listViewConfig-hasCredential.xml" .
-<http://vivo.brown.edu/ontology/profile#hasHospitalAppointment>
-    display:listViewConfigFile "listViewConfig-hasHospitalAppointment.xml" .
-<http://vivo.brown.edu/ontology/profile#hasPostdocAppointment>
-    display:listViewConfigFile "listViewConfig-hasPostdocAppointment.xml" .
+<http://vivo.brown.edu/ontology/profile#hasAppointment>
+    display:listViewConfigFile "listViewConfig-hasAppointment.xml" .
+<http://vivo.brown.edu/ontology/profile#hasTraining>
+    display:listViewConfigFile "listViewConfig-hasTraining.xml" .
 
 ##### end Medical Data Listviews #####
 
@@ -71,17 +71,13 @@
 
 ##### properties rendered by showFaculty listview
 
-<http://vivo.brown.edu/ontology/profile#organizationForHospitalAppointment>
+<http://vivo.brown.edu/ontology/profile#organizationFor>
     display:listViewConfigFile "listViewConfig-showFacultyWithDates.xml" .
 <http://vivo.brown.edu/ontology/profile#grantsCredential>
     display:listViewConfigFile "listViewConfig-showFacultyWithDates.xml" .
-<http://vivo.brown.edu/ontology/profile#credentialSpecialtyFor>
+<http://vivo.brown.edu/ontology/profile#specialtyFor>
     display:listViewConfigFile "listViewConfig-showFacultyWithDates.xml" .
-<http://vivo.brown.edu/ontology/profile#organizationForPostdocAppointment>
-    display:listViewConfigFile "listViewConfig-showFacultyWithDates.xml" .
-<http://vivo.brown.edu/ontology/profile#hospitalForPostdocAppointment>
-    display:listViewConfigFile "listViewConfig-showFacultyWithDates.xml" .
-<http://vivo.brown.edu/ontology/profile#postdocSpecialtyOrDepartmentForAppointment>
+<http://vivo.brown.edu/ontology/profile#hospitalFor>
     display:listViewConfigFile "listViewConfig-showFacultyWithDates.xml" .
 
 ##### end properties rendered by showFaculty listview
