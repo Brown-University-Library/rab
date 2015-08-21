@@ -25,12 +25,14 @@
             <a href="${profileUrl(statement.uri("emp"))}" title="granted by">${statement.empText!}</a>,&nbsp;${statement.hdept!}
         <#elseif (statement.emp?? && !(statement.hdept??))>
             <a href="${profileUrl(statement.uri("emp"))}" title="granted by">${statement.empText!}</a>
+        <#elseif (statment.org?? && !(statement.emp??) && !(statment.hdept??))>
+            <a href="${profileUrl(statement.uri("org"))}" title="granted by">${statement.orgText!}</a>
         </#if>
     </#local>
 
     <#local label>
-        <#if statement.happtText??>
-            ${statement.happtText!}.
+        <#if statement.apptText??>
+            ${statement.apptText!}.
         </#if>
     </#local>
 

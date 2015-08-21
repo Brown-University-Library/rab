@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- $This file is distributed under the terms of the license in /doc/license.txt$ -->
+
+<!-- See guidelines in vitro/doc/list_view_configuration_guidelines.txt -->
+
+<list-view-config>
+    <query-select>
+        PREFIX afn:   &lt;http://jena.hpl.hp.com/ARQ/function#&gt;
+        PREFIX core:  &lt;http://vivoweb.org/ontology/core#&gt;
+        PREFIX rdfs:  &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+        PREFIX vitro: &lt;http://vitro.mannlib.cornell.edu/ns/vitro/0.7#&gt;
+        PREFIX bprofile: &lt;http://vivo.brown.edu/ontology/profile#&gt;
+
+        SELECT DISTINCT <collated>?subclass</collated>
+                        ?training
+                        ?trainingText
+                        ?org ?orgText
+                        ?hosp ?hospText
+                        ?spec ?specText
+                        ?start ?end
+                        ?trainingCity ?trainingState ?trainingCountry
+        WHERE {
+            ?subject ?property ?training .
+            ?training rdfs:label ?trainingText .
+            OPTIONAL {
+                    <collated>
+                        ?training vitro:mostSpecificType ?subclass
+                    </collated>
+                }
+            OPTIONAL { ?training bprofile:hasOrganization ?org .
+                        ?org rdfs:label ?orgText }
+            OPTIONAL { ?training bprofile:hasHospital ?hosp .
+                        ?hosp rdfs:label ?hospText }
+            OPTIONAL { ?training bprofile:hasSpecialty ?spec .
+                        ?spec rdfs:label ?specText }
+            OPTIONAL { ?training bprofile:startDate ?start }
+            OPTIONAL { ?training bprofile:endDate ?end }
+            OPTIONAL { ?training bprofile:city ?trainingCity }
+            OPTIONAL { ?training bprofile:state ?trainingState }
+            OPTIONAL { ?training bprofile:country ?trainingCountry }
+        }
+        ORDER BY <collated>?subclass</collated> DESC(?start)
+    </query-select>
+
+    <query-construct>
+        PREFIX core: &lt;http://vivoweb.org/ontology/core#&gt;
+        PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+        PREFIX vitro: &lt;http://vitro.mannlib.cornell.edu/ns/vitro/0.7#&gt;
+        PREFIX bprofile: &lt;http://vivo.brown.edu/ontology/profile#&gt;
+
+        CONSTRUCT {
+            ?subject ?property ?training .
+            ?training rdfs:label ?trainingText .
+            ?training vitro:mostSpecificType ?subclass .
+            ?training bprofile:hasOrganization ?org .
+            ?org rdfs:label ?orgText .
+            ?training bprofile:hasHospital ?hosp .
+            ?hosp rdfs:label ?hospText .
+            ?training bprofile:hasSpecialty ?spec .
+            ?spec rdfs:label ?specText .
+            ?training bprofile:startDate ?start .
+            ?training bprofile:endDate ?end .
+            ?training bprofile:city ?trainingCity .
+            ?training bprofile:state ?trainingState .
+            ?training bprofile:country ?trainingCountry .
+        } WHERE {
+            {
+                ?subject ?property ?training .
+                ?training rdfs:label ?trainingText .
+            }
+            UNION {
+                ?subject ?property ?training .
+                ?training vitro:mostSpecificType ?subclass .   
+            }
+            UNION {
+                ?subject ?property ?training .
+                ?training bprofile:hasOrganization ?org .
+                ?org rdfs:label ?orgText .         
+            }
+            UNION {
+                ?subject ?property ?training .
+                ?training bprofile:hasHospital ?hosp .
+                ?hosp rdfs:label ?hospText .         
+            }
+            UNION {
+                ?subject ?property ?training .
+                ?training bprofile:hasSpecialty ?spec .
+                ?spec rdfs:label ?specText .         
+            }
+            UNION {
+                ?subject ?property ?training .
+                ?training bprofile:startDate ?startDate .
+                BIND(year(?startDate) as ?start) .            
+            }
+            UNION {
+                ?subject ?property ?training .
+                ?training bprofile:endDate ?endDate .
+                BIND((IF
+                    (year(?endDate) &lt; year(NOW()), year(?endDate), "Present")
+                    )
+                    as ?end) .           
+            }
+            UNION {
+                ?subject ?property ?training .
+                ?training bprofile:city ?trainingCity .           
+            }
+            UNION {
+                ?subject ?property ?training .
+                ?training bprofile:state ?trainingState .           
+            }
+            UNION {
+                ?subject ?property ?training .
+                ?training bprofile:country ?trainingCountry .           
+            }
+        }
+    </query-construct>
+
+    <template>propStatement-hasTraining.ftl</template>
+</list-view-config>

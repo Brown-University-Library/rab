@@ -12,24 +12,27 @@
         PREFIX bprofile: &lt;http://vivo.brown.edu/ontology/profile#&gt;
 
         SELECT DISTINCT <collated>?subclass</collated>
-                        ?happt
-                        ?happtText
+                        ?appt
+                        ?apptText
                         ?emp ?empText
+                        ?org ?orgText
                         ?spec ?specText
                         ?start ?end ?hdept
         WHERE {
-            ?subject ?property ?happt .
-            ?happt rdfs:label ?happtText .
+            ?subject ?property ?appt .
+            ?appt rdfs:label ?apptText .
             OPTIONAL {
                     <collated>
-                        ?happt vitro:mostSpecificType ?subclass
+                        ?appt vitro:mostSpecificType ?subclass
                     </collated>
                 }
-            OPTIONAL { ?happt bprofile:hasHospitalAppointmentOrganization ?emp .
+            OPTIONAL { ?appt bprofile:hasHospital ?emp .
                         ?emp rdfs:label ?empText }
-            OPTIONAL { ?happt bprofile:startDate ?start }
-            OPTIONAL { ?happt bprofile:endDate ?end }
-            OPTIONAL { ?happt bprofile:department ?hdept }
+            OPTIONAL { ?appt bprofile:hasOrganization ?org .
+                        ?org rdfs:label ?orgText }
+            OPTIONAL { ?appt bprofile:startDate ?start }
+            OPTIONAL { ?appt bprofile:endDate ?end }
+            OPTIONAL { ?appt bprofile:department ?hdept }
         }
         ORDER BY <collated>?subclass</collated> DESC(?start)
     </query-select>
@@ -41,47 +44,54 @@
         PREFIX bprofile: &lt;http://vivo.brown.edu/ontology/profile#&gt;
 
         CONSTRUCT {
-            ?subject ?property ?happt .
-            ?happt rdfs:label ?happtText .
-            ?happt vitro:mostSpecificType ?subclass .
-            ?happt bprofile:hasHospitalAppointmentOrganization ?emp .
+            ?subject ?property ?appt .
+            ?appt rdfs:label ?apptText .
+            ?appt vitro:mostSpecificType ?subclass .
+            ?appt bprofile:hasHospital ?emp .
             ?emp rdfs:label ?empText .
-            ?happt bprofile:startDate ?start .
-            ?happt bprofile:endDate ?end .
-            ?happt bprofile:department ?hdept .
+            ?appt bprofile:hasOrganization ?org .
+            ?org rdfs:label ?orgText .   
+            ?appt bprofile:startDate ?start .
+            ?appt bprofile:endDate ?end .
+            ?appt bprofile:department ?hdept .
         } WHERE {
             {
-                ?subject ?property ?happt .
-                ?happt rdfs:label ?happtText .
+                ?subject ?property ?appt .
+                ?appt rdfs:label ?apptText .
             }
             UNION {
-                ?subject ?property ?happt .
-                ?happt vitro:mostSpecificType ?subclass .   
+                ?subject ?property ?appt .
+                ?appt vitro:mostSpecificType ?subclass .   
             }
             UNION {
-                ?subject ?property ?happt .
-                ?happt bprofile:hasHospitalAppointmentOrganization ?emp .
+                ?subject ?property ?appt .
+                ?appt bprofile:hasHospital ?emp .
                 ?emp rdfs:label ?empText .         
             }
             UNION {
-                ?subject ?property ?happt .
-                ?happt bprofile:startDate ?startDate .
+                ?subject ?property ?appt .
+                ?appt bprofile:hasOrganization ?org .
+                ?org rdfs:label ?orgText .         
+            }
+            UNION {
+                ?subject ?property ?appt .
+                ?appt bprofile:startDate ?startDate .
                 BIND(year(?startDate) as ?start) .            
             }
             UNION {
-                ?subject ?property ?happt .
-                ?happt bprofile:endDate ?endDate .
+                ?subject ?property ?appt .
+                ?appt bprofile:endDate ?endDate .
                 BIND((IF
                     (year(?endDate) &lt; year(NOW()), year(?endDate), "Present")
                     )
                     as ?end) .            
             }
             UNION {
-                ?subject ?property ?happt .
-                ?happt bprofile:department ?hdept .           
+                ?subject ?property ?appt .
+                ?appt bprofile:department ?hdept .           
             }
         }
     </query-construct>
 
-    <template>propStatement-hasHospitalAppointment.ftl</template>
+    <template>propStatement-hasAppointment.ftl</template>
 </list-view-config>
