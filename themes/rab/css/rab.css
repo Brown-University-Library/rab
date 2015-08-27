@@ -1671,6 +1671,6 @@ form.customForm #requiredLegend {
     background-color: #EDEDED!important;
 }
 
-#help table, th, td {
+table#help, th, td {
    border: 1px solid black;
 }
