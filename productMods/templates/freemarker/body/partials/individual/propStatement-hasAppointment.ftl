@@ -25,10 +25,14 @@
             <a href="${profileUrl(statement.uri("emp"))}" title="granted by">${statement.empText!}</a>,&nbsp;${statement.hdept!}
         <#elseif (statement.emp?? && !(statement.hdept??) && !(statement.org??))>
             <a href="${profileUrl(statement.uri("emp"))}" title="granted by">${statement.empText!}</a>
-        <#elseif (statment.org?? && !(statement.emp??) && !(statment.hdept??))>
+        <#elseif (statement.org?? && !(statement.emp??) && !(statement.hdept??))>
             <a href="${profileUrl(statement.uri("org"))}" title="granted by">${statement.orgText!}</a>
-        <#elseif (statment.org?? && !(statement.emp??) && (statment.hdept??))>
+        <#elseif (statement.org?? && !(statement.emp??) && (statement.hdept??))>
             <a href="${profileUrl(statement.uri("org"))}" title="granted by">${statement.orgText!}</a>,&nbsp;${statement.hdept!}
+        <#elseif (!(statement.org??) && !(statement.emp??) && (statement.hdept??))>
+            ${statement.hdept!}
+        <#elseif (!(statement.org??) && !(statement.emp??) && !(statement.hdept??))>
+            missing organization
         </#if>
     </#local>
 
