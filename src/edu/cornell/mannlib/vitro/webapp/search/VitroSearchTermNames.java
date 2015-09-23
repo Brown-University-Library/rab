@@ -73,5 +73,7 @@ public class VitroSearchTermNames {
 
 	/** Source institution name */
 	public static final String SITE_NAME = "siteName";
+
+    public static final String OVERVIEW = "OVERVIEW";
 	
 }

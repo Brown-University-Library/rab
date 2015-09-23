@@ -917,7 +917,7 @@
       -->
     </requestHandler>
 
-    <requestHandler name="/blacklight" class="solr.SearchHandler">
+    <requestHandler name="/blacklight_search" class="solr.SearchHandler">
       <lst name="defaults">
        <str name="fq">type:(
         "http://vivo.brown.edu/ontology/vivo-brown/BrownThing" OR
@@ -925,7 +925,8 @@
         )</str>
        <str name="defType">edismax</str>
        <str name="qf">ALLTEXT ALLTEXTUNSTEMMED nameText^2.0 nameUnstemmed^2.0 nameStemmed^2.0 nameLowercase</str>
-       <str name="echoParams">explicit</str>
+       <str name="echoHandler">true</str>
+       <str name="echoParams">all</str>
        <str name="qs">2</str>
        <int name="rows">10</int>
        <str name="q.alt">*:*</str>
@@ -937,6 +938,17 @@
        <str name="hl.simple.post"><![CDATA[</strong>]]></str>
       <str name="mm">100%</str>
      </lst>
+    </requestHandler>
+
+    <requestHandler name="/blacklight_result" class="solr.SearchHandler">
+      <lst name="defaults">
+        <str name="echoParams">all</str>
+        <str name="echoHandler">true</str>
+        <str name="fl">*</str>
+        <str name="rows">1</str>
+        <str name="q">{!raw f=URI v=$id}</str>
+        <!-- use id=blah instead of q=id:blah -->
+      </lst>
     </requestHandler>
 
   <!-- A request handler that returns indented JSON by default -->
