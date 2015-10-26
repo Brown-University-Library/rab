@@ -69,29 +69,81 @@
 	    }
         """ .
 
-:documentModifier_Overview
+:documentModifier_BlacklightId
     a   <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.SelectQueryDocumentModifier> ,
         <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.DocumentModifier> ;
     rdfs:label "All labels are added to name fields." ;
-    :hasTargetField "OVERVIEW" ;
+    :hasTargetField "BLACKLIGHT_ID" ;
     :hasSelectQuery """
-        PREFIX core: <http://vivoweb.org/ontology/core#>
-        SELECT ?overview 
+        PREFIX bindex: <http://vivo.brown.edu/ontology/index#>
+        SELECT ?blightid
         WHERE {
-            ?uri core:overview ?overview .
+            ?uri bindex:blacklightID ?blightid .
         }
         """ .
 
-:documentModifier_PreferredTitle
+:documentModifier_BlacklightType
     a   <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.SelectQueryDocumentModifier> ,
         <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.DocumentModifier> ;
     rdfs:label "All labels are added to name fields." ;
-    :hasTargetField "PREFERRED_TITLE" ;
+    :hasTargetField "BLACKLIGHT_TYPE" ;
     :hasSelectQuery """
-        PREFIX core: <http://vivoweb.org/ontology/core#>
-        SELECT ?title 
+        PREFIX bindex: <http://vivo.brown.edu/ontology/index#>
+        SELECT ?blighttype
         WHERE {
-            ?uri core:preferredTitle ?title .
+            ?uri bindex:blacklightType ?blighttype .
+        }
+        """ .
+
+:documentModifier_BlacklightName
+    a   <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.SelectQueryDocumentModifier> ,
+        <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.DocumentModifier> ;
+    rdfs:label "All labels are added to name fields." ;
+    :hasTargetField "BLACKLIGHT_NAME" ;
+    :hasSelectQuery """
+        PREFIX bindex: <http://vivo.brown.edu/ontology/index#>
+        SELECT ?blightname
+        WHERE {
+            ?uri bindex:blacklightName ?blightname .
+        }
+        """ .
+
+:documentModifier_BlacklightOverview
+    a   <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.SelectQueryDocumentModifier> ,
+        <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.DocumentModifier> ;
+    rdfs:label "All labels are added to name fields." ;
+    :hasTargetField "BLACKLIGHT_OVERVIEW" ;
+    :hasSelectQuery """
+        PREFIX bindex: <http://vivo.brown.edu/ontology/index#>
+        SELECT ?overview 
+        WHERE {
+            ?uri bindex:blacklightOverview ?overview .
+        }
+        """ .
+
+:documentModifier_BlacklightTitle
+    a   <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.SelectQueryDocumentModifier> ,
+        <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.DocumentModifier> ;
+    rdfs:label "All labels are added to name fields." ;
+    :hasTargetField "BLACKLIGHT_TITLE" ;
+    :hasSelectQuery """
+        PREFIX bindex: <http://vivo.brown.edu/ontology/index#>
+        SELECT ?blighttitle 
+        WHERE {
+            ?uri bindex:blacklightTitle ?blighttitle .
+        }
+        """ .
+
+:documentModifier_BlacklightAffiliations
+    a   <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.SelectQueryDocumentModifier> ,
+        <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.DocumentModifier> ;
+    rdfs:label "All labels are added to name fields." ;
+    :hasTargetField "BLACKLIGHT_AFFILIATIONS" ;
+    :hasSelectQuery """
+        PREFIX bindex: <http://vivo.brown.edu/ontology/index#>
+        SELECT ?blightaffs 
+        WHERE {
+            ?uri bindex:blacklightAffiliations ?blightaffs .
         }
         """ .
     
