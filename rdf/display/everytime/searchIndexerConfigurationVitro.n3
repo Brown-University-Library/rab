@@ -146,6 +146,19 @@
             ?uri bindex:blacklightAffiliations ?blightaffs .
         }
         """ .
+
+:documentModifier_BlacklightThumbnail
+    a   <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.SelectQueryDocumentModifier> ,
+        <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.DocumentModifier> ;
+    rdfs:label "All labels are added to name fields." ;
+    :hasTargetField "BLACKLIGHT_THUMBNAIL" ;
+    :hasSelectQuery """
+        PREFIX bindex: <http://vivo.brown.edu/ontology/index#>
+        SELECT ?blightthumb 
+        WHERE {
+            ?uri bindex:blacklightThumbnail ?blightthumb .
+        }
+        """ .
     
 :documentModifier_NameFieldBooster
     a   <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.FieldBooster> ,

@@ -89,9 +89,7 @@
     <requestHandler name="/blacklight_search" class="solr.SearchHandler">
       <lst name="defaults">
        <str name="fq">type:(
-        "http://vivo.brown.edu/ontology/vivo-brown/BrownThing" OR
-        "http://www.w3.org/2004/02/skos/core#Concept" OR
-        "http://xmlns.com/foaf/0.1/Organization"
+        "http://vivo.brown.edu/ontology/vivo-brown/BrownThing"
         )</str>
        <str name="defType">edismax</str>
        <str name="qf">ALLTEXT ALLTEXTUNSTEMMED nameText^2.0 nameUnstemmed^2.0 nameStemmed^2.0 nameLowercase</str>
@@ -115,7 +113,7 @@
         <str name="echoHandler">true</str>
         <str name="fl">*</str>
         <str name="rows">1</str>
-        <str name="q">{!raw f=URI v=$id}</str>
+        <str name="q">{!raw f=BLACKLIGHT_ID v=$id}</str>
       </lst>
     </requestHandler>
   <requestHandler name="/get" class="solr.RealTimeGetHandler">
