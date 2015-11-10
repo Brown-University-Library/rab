@@ -158,6 +158,7 @@
                    <hr style="width:90%;clear:right;" />
                               <p class="news-item-title">Recent Faculty Books </p>
                                 <div id="rotating-item-wrapper">
+				    <a href="./display/tlewis"><img src="./themes/researchers-brown/images/books/tlewis.jpg" alt="Why Philosophy Matters for the Study of Religion--and Vice Versa by Thomas Lewis" title="Why Philosophy Matters for the Study of Religion--and Vice Versa" class="rotating-item" height="225"/>
                                     <a href="./display/kmclaugh">
                                     <img src="./themes/researchers-brown/images/books/kmclaugh.jpg" alt="Poetic Force: Poetry after Kant by Kevin McLaughlin" title="Poetic Force: Poetry after Kant" class="rotating-item" height="225"/>
                                     </a>
