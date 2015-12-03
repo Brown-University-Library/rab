@@ -119,10 +119,10 @@
             Visit our <a href="./help">Help</a> pages for further information.</p>
          </section>
          <section id="login" class="news-item-box">
-                     <p></p>
+                   <!--  <p></p>
                          <p class="news-item-title">Brown Research in the News</p>
                          <hr />
-                       <!-- GOOGLE AJAX FEED API -->
+                       <!-- GOOGLE AJAX FEED API
 
                       <div id="feeddiv" class="rss-box"></div>
                      <script type="text/javascript">
@@ -154,7 +154,7 @@
                      rssfeedsetup()
                      }
 
-                   </script>
+                   </script>-->
                    <hr style="width:90%;clear:right;" />
                               <p class="news-item-title">Recent Faculty Books </p>
                                 <div id="rotating-item-wrapper">
