@@ -32,6 +32,8 @@ example:
                         ?issue
                         ?firstName
                         ?lastName
+                        ?book
+                        ?editorList
                         
             WHERE {
                         
@@ -63,6 +65,12 @@ example:
                 OPTIONAL {
                     ?citation bcite:issue ?issue .
                 }
+                OPTIONAL {
+                    ?citation bcite:book ?book .
+                }
+                OPTIONAL {
+                    ?citation bcite:editorList ?editorList .
+                }
                 <critical-data-required>
                 FILTER ( bound(?citation) )
                 </critical-data-required>
@@ -86,6 +94,8 @@ example:
             ?citation bcite:doi ?doi .
             ?citation bcite:pmid ?pmid .
             ?citation bcite:pages ?pages .
+            ?citation bcite:editorList ?editorList .
+            ?citation bcite:book ?book .
             ?citation bcite:volume ?volume .
             ?citation bcite:issue ?issue .
             ?subject foaf:firstName ?firstName.
@@ -122,6 +132,14 @@ example:
             UNION {
                 ?subject ?property ?citation .
                 ?citation bcite:pages ?pages .
+            }
+            UNION {
+                ?subject ?property ?citation .
+                ?citation bcite:editorList ?editorList .
+            }
+            UNION {
+                ?subject ?property ?citation .
+                ?citation bcite:book ?book .
             }
             UNION {
                 ?subject ?property ?citation .

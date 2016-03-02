@@ -48,12 +48,18 @@
     <#local authorList>
        <#if statement.authorList??>
            <#if statement.authorList?ends_with('.') == true>
-${statement.authorList}
+                ${statement.authorList}
            <#else>
-${statement.authorList}.
+                ${statement.authorList}.
            </#if>
         <#else>
-${statement.lastName}, ${statement.firstName}.
+            ${statement.lastName}, ${statement.firstName}.
+       </#if>
+    </#local>
+
+    <#local book>
+       <#if statement.book??>
+            <em>${statement.book}</em>.
        </#if>
     </#local>
 
@@ -63,6 +69,16 @@ ${statement.lastName}, ${statement.firstName}.
         <#elseif (statement.venue?? && !(statement.dateTime??))>
             ${statement.venueLabel}
         </#if>
+    </#local>
+
+    <#local editorList>
+       <#if statement.editorList??>
+           <#if statement.editorList?ends_with('.') == true>
+                Ed. ${statement.editorList}
+           <#else>
+                Ed. ${statement.editorList}.
+           </#if>
+       </#if>
     </#local>
 
     <#local dateTime>
@@ -93,6 +109,6 @@ ${statement.lastName}, ${statement.firstName}.
         </#if>
     </#local>
 
-    ${authorList}${resourceTitle}${venue}${dateTime}${volume}${issue}${pages}.${doi}${pmid}
+    ${authorList}${resourceTitle}${venue}${book}${editorList}${dateTime}${volume}${issue}${pages}.${doi}${pmid}
 </#if>
 </#macro>
