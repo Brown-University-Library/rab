@@ -25,6 +25,10 @@ example:
                         ?authorList
                         ?venue
                         ?venueLabel
+                        ?publisher
+                        ?publisherLabel
+                        ?location
+                        ?locationLabel
                         ?doi
                         ?pmid
                         ?pages
@@ -71,6 +75,14 @@ example:
                 OPTIONAL {
                     ?citation bcite:editorList ?editorList .
                 }
+                OPTIONAL {
+                    ?citation bcite:hasPublisher ?publisher .
+                    ?publisher rdfs:label ?publisherLabel .
+                }
+                OPTIONAL {
+                    ?citation bcite:hasLocation ?location .
+                    ?location rdfs:label ?locationLabel .
+                }
                 <critical-data-required>
                 FILTER ( bound(?citation) )
                 </critical-data-required>
@@ -95,6 +107,10 @@ example:
             ?citation bcite:pmid ?pmid .
             ?citation bcite:pages ?pages .
             ?citation bcite:editorList ?editorList .
+            ?citation bcite:hasPublisher ?publisher .
+            ?publisher rdfs:label ?publisherLabel .
+            ?citation bcite:hasLocation ?location .
+            ?location rdfs:label ?locationLabel .
             ?citation bcite:book ?book .
             ?citation bcite:volume ?volume .
             ?citation bcite:issue ?issue .
@@ -136,6 +152,16 @@ example:
             UNION {
                 ?subject ?property ?citation .
                 ?citation bcite:editorList ?editorList .
+            }
+            UNION {
+                ?subject ?property ?citation .
+                ?citation bcite:hasPublisher ?publisher .
+                ?publisher rdfs:label ?publisherLabel .
+            }
+            UNION {
+                ?subject ?property ?citation .
+                ?citation bcite:hasLocation ?location .
+                ?location rdfs:label ?locationLabel .
             }
             UNION {
                 ?subject ?property ?citation .

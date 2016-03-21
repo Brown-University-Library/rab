@@ -81,6 +81,22 @@
        </#if>
     </#local>
 
+    <#local location>
+       <#if (statement.location?? && statement.publisher??)>
+            ${statement.locationLabel}:
+        <#elseif (statement.location?? && !(statement.publisher??))>
+            ${statement.locationLabel}.
+        </#if>
+    </#local>
+
+    <#local publisher>
+       <#if (statement.publisher?? && statement.dateTime??)>
+            ${statement.publisherLabel},
+        <#elseif (statement.publisher?? && !(statement.dateTime??))>
+            ${statement.publisherLabel}.
+        </#if>
+    </#local>
+
     <#local dateTime>
         <#if (statement.dateTime?? && statement.volume??)>
             ${statement.dateTime};
@@ -109,6 +125,6 @@
         </#if>
     </#local>
 
-    ${authorList}${resourceTitle}${venue}${book}${editorList}${dateTime}${volume}${issue}${pages}.${doi}${pmid}
+    ${authorList}${resourceTitle}${venue}${book}${editorList}${location}${publisher}${dateTime}${volume}${issue}${pages}.${doi}${pmid}
 </#if>
 </#macro>
