@@ -388,8 +388,6 @@
             "The Third Typology and Other Essays by Anthony Vidler" title=
             "The Third Typology and Other Essays" class="rotating-item" height="225" />
 </a>
-
-<a href="./display/msatlow"><img src="./themes/researchers-brown/images/books/satlow.jpg" alt="How the Bible Became Holy by Michael Satlow" title="How the Bible Became Holy" class="rotating-item" height="225"/> </a>
  
                                     <a href="./display/nbarnett">
                                     <img src="./themes/researchers-brown/images/books/barnett.jpg" alt="College Student Alcohol Abuse by Nancy Barnett by Nancy Barnett" title="College Student Alcohol Abuse" class="rotating-item" height="225"/>
