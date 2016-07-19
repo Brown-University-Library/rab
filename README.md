@@ -8,7 +8,7 @@ Repository containing code for [Researchers@Brown](https://vivo.brown.edu/), bui
 In order to compile and run an instance of VIVO you'll need MySQL,
 Tomcat, and Ant.
 
-You can install Tomcat and MySQL via 'apt-get' on Linux or via Homebrew on a Mac.
+You can install Tomcat and MySQL via `apt-get` on Linux or via Homebrew on a Mac.
 
 You can get Ant from the Apache web site: http://ant.apache.org/bindownload.cgi,
 extract it, copy it to a folder under `/usr/local/bin/`,
@@ -36,7 +36,7 @@ Get the code for this repository and for Vitro.
 ```
 git clone git@github.com:Brown-University-Library/rab.git
 cd rab
-git clone --branch maint-rel-1.7 https://github.com/vivo-project/Vitro.git
+git clone --branch maint-rel-1.8 https://github.com/vivo-project/Vitro.git
 ```
 
 Create config files for Ant to use when you compile and deploy
