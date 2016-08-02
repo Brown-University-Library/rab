@@ -4,10 +4,17 @@
 @prefix core: <http://vivoweb.org/ontology/core#> .
 @prefix blocal: <http://vivo.brown.edu/ontology/vivo-brown/> .
 @prefix bdisplay: <http://vivo.brown.edu/ontology/display#> .
+@prefix bprofile <http://vivo.brown.edu/ontology/profile#> .
 
  vitroDisplay:SearchIndex 
     rdf:type owl:Thing ; 
     vitroDisplay:excludeClass bdisplay:Hidden ;
+    vitroDisplay:excludeClass bprofile:Appointment ;
+    vitroDisplay:excludeClass bprofile:Certification ;
+    vitroDisplay:excludeClass bprofile:Credential ;
+    vitroDisplay:excludeClass bprofile:HospitalAppointment ;
+    vitroDisplay:excludeClass bprofile:License ;
+    vitroDisplay:excludeClass bprofile:PostdocAppointment ;
     vitroDisplay:excludeClass core:FacultyPosition ; 
     vitroDisplay:excludeClass core:EducationalTraining ;    
     vitroDisplay:excludeClass core:DateTimeValue ;
