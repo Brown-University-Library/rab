@@ -4,7 +4,7 @@
 @prefix core: <http://vivoweb.org/ontology/core#> .
 @prefix blocal: <http://vivo.brown.edu/ontology/vivo-brown/> .
 @prefix bdisplay: <http://vivo.brown.edu/ontology/display#> .
-@prefix bprofile <http://vivo.brown.edu/ontology/profile#> .
+@prefix bprofile: <http://vivo.brown.edu/ontology/profile#> .
 
  vitroDisplay:SearchIndex 
     rdf:type owl:Thing ; 
