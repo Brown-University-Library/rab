@@ -3,9 +3,12 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix core: <http://vivoweb.org/ontology/core#> .
 @prefix blocal: <http://vivo.brown.edu/ontology/vivo-brown/> .
+@prefix bdisplay: <http://vivo.brown.edu/ontology/display#> .
 
  vitroDisplay:SearchIndex 
     rdf:type owl:Thing ; 
+    vitroDisplay:excludeClass bdisplay:Hidden ;
+    vitroDisplay:excludeClass core:FacultyPosition ; 
     vitroDisplay:excludeClass core:EducationalTraining ;    
     vitroDisplay:excludeClass core:DateTimeValue ;
     vitroDisplay:excludeClass core:DateTimeInterval ;
