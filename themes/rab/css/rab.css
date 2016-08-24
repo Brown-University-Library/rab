@@ -463,7 +463,20 @@ tr.editformcell td select {
     height: 114px;
     margin: 0 auto;
 }
-
+/* BRANDING ------>  */
+h1.vitro-logo {
+    position: absolute;
+    width: 386px;
+    height: 59px;
+    top: 28px;
+    left: 0;
+    background: url(../images/VIVO-logo.png) 0 0 no-repeat;
+}
+h1.vitro-logo a {
+    display: block;
+    width: 386px;
+    height: 59px;
+}
 /* HEADER NAV------>  */
 ul#header-nav {
     float: right;
