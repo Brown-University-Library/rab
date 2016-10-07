@@ -23,7 +23,7 @@
             <ul id="${listId}" class="individual-emails" role="list">
                 <#list email.statements as statement>
                     <li role="listitem">
-                        <a class="email" href="mailto:${statement.value}" title="email">${statement.value}</a>
+                        <a class="email" href="mailto:${statement.value}" title="email">email</a>
                         <@p.editingLinks "${email.localName}" "${email.name}" statement editable email.rangeUri/>
                         <img class ="icon-email middle" src="${urls.images}/individual/emailIcon.gif" alt="email icon" />
                     </li>
