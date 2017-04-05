@@ -68,6 +68,9 @@
                         <@p.addLinkWithLabel title editable />
                         <#list title.statements as statement>
                             <span class="display-title">${statement.value}</span>
+                            <#if individual.mostSpecificTypes?seq_contains('hidden')>
+                                <span>[ Inactive ]</span>
+                            </#if>
                             <@p.editingLinks "${title.name}" "" statement editable />
                         </#list>
                     </#if>
