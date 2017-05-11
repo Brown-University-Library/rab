@@ -32,7 +32,7 @@
   <field name="BLACKLIGHT_WEBLINK" type="string" indexed="true" stored="true" multiValued="true"/>
   <field name="BLACKLIGHT_OVERVIEW" type="string" indexed="true" stored="true" multiValued="true"/>
   <field name="BLACKLIGHT_AFFILIATIONS" type="string" indexed="true" stored="true" multiValued="true"/>
-  <field name="BLACKLIGHT_THUMBNAIL" type="string" indexed="true" stored="true" multiValued="true"/>
+  <field name="BLACKLIGHT_EMAIL" type="string" indexed="true" stored="true" multiValued="true"/>
 
 
   <copyField source="nameRaw" dest="nameStemmed" />

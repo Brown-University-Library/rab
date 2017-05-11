@@ -101,10 +101,10 @@
     rdfs:label "All labels are added to name fields." ;
     :hasTargetField "BLACKLIGHT_NAME" ;
     :hasSelectQuery """
-        PREFIX bindex: <http://vivo.brown.edu/ontology/index#>
-        SELECT ?blightname
+        PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#> 
+        SELECT ?name
         WHERE {
-            ?uri bindex:blacklightName ?blightname .
+            ?uri rdfs:label ?name .
         }
         """ .
 
@@ -114,10 +114,10 @@
     rdfs:label "All labels are added to name fields." ;
     :hasTargetField "BLACKLIGHT_OVERVIEW" ;
     :hasSelectQuery """
-        PREFIX bindex: <http://vivo.brown.edu/ontology/index#>
-        SELECT ?overview 
+        PREFIX vivo: <http://vivoweb.org/ontology/core#>
+        SELECT ?overview
         WHERE {
-            ?uri bindex:blacklightOverview ?overview .
+            ?uri vivo:overview ?overview .
         }
         """ .
 
@@ -127,11 +127,11 @@
     rdfs:label "All labels are added to name fields." ;
     :hasTargetField "BLACKLIGHT_TITLE" ;
     :hasSelectQuery """
-        PREFIX bindex: <http://vivo.brown.edu/ontology/index#>
-        SELECT ?blighttitle 
+        PREFIX vivo:<http://vivoweb.org/ontology/core#>
+        SELECT ?title
         WHERE {
-            ?uri bindex:blacklightTitle ?blighttitle .
-        }
+            ?uri vivo:preferredTitle ?title .
+	}
         """ .
 
 :documentModifier_BlacklightAffiliations
@@ -140,23 +140,29 @@
     rdfs:label "All labels are added to name fields." ;
     :hasTargetField "BLACKLIGHT_AFFILIATIONS" ;
     :hasSelectQuery """
-        PREFIX bindex: <http://vivo.brown.edu/ontology/index#>
-        SELECT ?blightaffs 
+        PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#> 
+        PREFIX blocal:<http://vivo.brown.edu/ontology/vivo-brown/>
+        SELECT DISTINCT ?json
         WHERE {
-            ?uri bindex:blacklightAffiliations ?blightaffs .
+            ?uri blocal:hasAffiliation ?aff .
+            ?aff rdfs:label ?label .
+            BIND (replace( '\"uri\":\"aff\",', 'aff', str(?aff)) as ?uriStr)
+            BIND (replace( '\"id\":\"aff\",', 'aff', str(?aff)) as ?idStr)
+            BIND (replace( '\"name\":\"aff\"', 'aff', str(?label)) as ?nameStr)
+            BIND (concat( '{',?uriStr,?idStr,?nameStr,'}') as ?json)
         }
         """ .
 
-:documentModifier_BlacklightThumbnail
+:documentModifier_BlacklightEmail
     a   <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.SelectQueryDocumentModifier> ,
         <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.DocumentModifier> ;
     rdfs:label "All labels are added to name fields." ;
-    :hasTargetField "BLACKLIGHT_THUMBNAIL" ;
+    :hasTargetField "BLACKLIGHT_EMAIL" ;
     :hasSelectQuery """
-        PREFIX bindex: <http://vivo.brown.edu/ontology/index#>
-        SELECT ?blightthumb 
+        PREFIX vivo:<http://vivoweb.org/ontology/core#>
+	SELECT ?email
         WHERE {
-            ?uri bindex:blacklightThumbnail ?blightthumb .
+            ?uri vivo:primaryEmail ?email .
         }
         """ .
     
