@@ -42,9 +42,6 @@
                 <h1 class="fn">
                     <#-- Label -->
                     <@p.label individual editable labelCount localesCount languageCount/>
-
-                    <#--  Most-specific types -->
-                    <@p.mostSpecificTypes individual />
                 </h1>
             </#if>
         </header>
