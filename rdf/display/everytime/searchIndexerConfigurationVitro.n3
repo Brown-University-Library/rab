@@ -69,103 +69,6 @@
 	    }
         """ .
 
-:documentModifier_BlacklightId
-    a   <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.SelectQueryDocumentModifier> ,
-        <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.DocumentModifier> ;
-    rdfs:label "All labels are added to name fields." ;
-    :hasTargetField "BLACKLIGHT_ID" ;
-    :hasSelectQuery """
-        PREFIX bindex: <http://vivo.brown.edu/ontology/index#>
-        SELECT ?blightid
-        WHERE {
-            ?uri bindex:blacklightID ?blightid .
-        }
-        """ .
-
-:documentModifier_BlacklightType
-    a   <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.SelectQueryDocumentModifier> ,
-        <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.DocumentModifier> ;
-    rdfs:label "All labels are added to name fields." ;
-    :hasTargetField "BLACKLIGHT_TYPE" ;
-    :hasSelectQuery """
-        PREFIX bindex: <http://vivo.brown.edu/ontology/index#>
-        SELECT ?blighttype
-        WHERE {
-            ?uri bindex:blacklightType ?blighttype .
-        }
-        """ .
-
-:documentModifier_BlacklightName
-    a   <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.SelectQueryDocumentModifier> ,
-        <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.DocumentModifier> ;
-    rdfs:label "All labels are added to name fields." ;
-    :hasTargetField "BLACKLIGHT_NAME" ;
-    :hasSelectQuery """
-        PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#> 
-        SELECT ?name
-        WHERE {
-            ?uri rdfs:label ?name .
-        }
-        """ .
-
-:documentModifier_BlacklightOverview
-    a   <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.SelectQueryDocumentModifier> ,
-        <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.DocumentModifier> ;
-    rdfs:label "All labels are added to name fields." ;
-    :hasTargetField "BLACKLIGHT_OVERVIEW" ;
-    :hasSelectQuery """
-        PREFIX vivo: <http://vivoweb.org/ontology/core#>
-        SELECT ?overview
-        WHERE {
-            ?uri vivo:overview ?overview .
-        }
-        """ .
-
-:documentModifier_BlacklightTitle
-    a   <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.SelectQueryDocumentModifier> ,
-        <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.DocumentModifier> ;
-    rdfs:label "All labels are added to name fields." ;
-    :hasTargetField "BLACKLIGHT_TITLE" ;
-    :hasSelectQuery """
-        PREFIX vivo:<http://vivoweb.org/ontology/core#>
-        SELECT ?title
-        WHERE {
-            ?uri vivo:preferredTitle ?title .
-	}
-        """ .
-
-:documentModifier_BlacklightAffiliations
-    a   <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.SelectQueryDocumentModifier> ,
-        <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.DocumentModifier> ;
-    rdfs:label "All labels are added to name fields." ;
-    :hasTargetField "BLACKLIGHT_AFFILIATIONS" ;
-    :hasSelectQuery """
-        PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#> 
-        PREFIX blocal:<http://vivo.brown.edu/ontology/vivo-brown/>
-        SELECT DISTINCT ?json
-        WHERE {
-            ?uri blocal:hasAffiliation ?aff .
-            ?aff rdfs:label ?label .
-            BIND (replace( '\"uri\":\"aff\",', 'aff', str(?aff)) as ?uriStr)
-            BIND (replace( '\"id\":\"aff\",', 'aff', str(?aff)) as ?idStr)
-            BIND (replace( '\"name\":\"aff\"', 'aff', str(?label)) as ?nameStr)
-            BIND (concat( '{',?uriStr,?idStr,?nameStr,'}') as ?json)
-        }
-        """ .
-
-:documentModifier_BlacklightEmail
-    a   <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.SelectQueryDocumentModifier> ,
-        <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.DocumentModifier> ;
-    rdfs:label "All labels are added to name fields." ;
-    :hasTargetField "BLACKLIGHT_EMAIL" ;
-    :hasSelectQuery """
-        PREFIX vivo:<http://vivoweb.org/ontology/core#>
-	SELECT ?email
-        WHERE {
-            ?uri vivo:primaryEmail ?email .
-        }
-        """ .
-    
 :documentModifier_NameFieldBooster
     a   <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.FieldBooster> ,
         <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.DocumentModifier> ;
@@ -178,3 +81,160 @@
 :documentModifier_thumbnailImageUrl
     a   <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.ThumbnailImageURL> ,
         <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.DocumentModifier> .
+
+# Single-valued attributes, stored as multivals in Solr
+:documentModifier_nameT
+    a   <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.SelectQueryDocumentModifier> ,
+        <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.DocumentModifier> ;
+    rdfs:label "All labels are added to name fields." ;
+    :hasTargetField "name_t" ;
+    :hasSelectQuery """
+        PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#> 
+        SELECT DISTINCT ?fullname
+        WHERE {
+            ?uri rdfs:label ?fullname .
+        }
+        """ .
+
+:documentModifier_titleT
+    a   <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.SelectQueryDocumentModifier> ,
+        <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.DocumentModifier> ;
+    rdfs:label "All labels are added to name fields." ;
+    :hasTargetField "title_t" ;
+    :hasSelectQuery """
+        PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#> 
+        PREFIX vivo:<http://vivoweb.org/ontology/core#>
+        SELECT DISTINCT ?title
+        WHERE {
+            ?uri vivo:preferredTitle ?title .
+        }
+        """ .
+
+:documentModifier_departmentT
+    a   <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.SelectQueryDocumentModifier> ,
+        <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.DocumentModifier> ;
+    rdfs:label "All labels are added to name fields." ;
+    :hasTargetField "department_t" ;
+    :hasSelectQuery """
+        PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#> 
+        PREFIX blocal:<http://vivo.brown.edu/ontology/vivo-brown/>
+        SELECT DISTINCT ?primary
+        WHERE {
+            ?uri blocal:primaryOrgLabel ?primary .
+        }
+        """ .
+
+:documentModifier_overiewT
+    a   <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.SelectQueryDocumentModifier> ,
+        <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.DocumentModifier> ;
+    rdfs:label "All labels are added to name fields." ;
+    :hasTargetField "overview_t" ;
+    :hasSelectQuery """
+        PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#> 
+        PREFIX vivo:<http://vivoweb.org/ontology/core#>
+        SELECT DISTINCT ?overview
+        WHERE {
+            ?uri vivo:overview ?overview .
+        }
+        """ .
+
+# Single-valued attributes
+
+:documentModifier_emailS
+    a   <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.SelectQueryDocumentModifier> ,
+        <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.DocumentModifier> ;
+    rdfs:label "All labels are added to name fields." ;
+    :hasTargetField "email_s" ;
+    :hasSelectQuery """
+        PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#> 
+        PREFIX vivo:<http://vivoweb.org/ontology/core#>
+        SELECT DISTINCT ?email
+        WHERE {
+            ?uri vivo:primaryEmail ?email .
+        }
+        """ .
+
+:documentModifier_shortIdS
+    a   <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.SelectQueryDocumentModifier> ,
+        <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.DocumentModifier> ;
+    rdfs:label "All labels are added to name fields." ;
+    :hasTargetField "short_id_s" ;
+    :hasSelectQuery """
+        PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#> 
+        PREFIX blocal:<http://vivo.brown.edu/ontology/vivo-brown/>
+        SELECT DISTINCT ?short
+        WHERE {
+            ?uri blocal:shortId ?short .
+        }
+        """ .
+
+# Multivalued attributes
+:documentModifier_affiliations
+    a   <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.SelectQueryDocumentModifier> ,
+        <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.DocumentModifier> ;
+    rdfs:label "All labels are added to name fields." ;
+    :hasTargetField "affiliations" ;
+    :hasSelectQuery """
+        PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#> 
+        PREFIX blocal:<http://vivo.brown.edu/ontology/vivo-brown/>
+        SELECT DISTINCT ?clnd
+        WHERE {
+            ?uri blocal:hasAffiliation ?aff .
+            ?aff rdfs:label ?label .
+            BIND(str(?label) as ?clnd) .
+        }
+        """ .
+
+:documentModifier_researchAreas
+    a   <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.SelectQueryDocumentModifier> ,
+        <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.DocumentModifier> ;
+    rdfs:label "All labels are added to name fields." ;
+    :hasTargetField "research_areas" ;
+    :hasSelectQuery """
+        PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#> 
+        PREFIX blocal:<http://vivo.brown.edu/ontology/vivo-brown/>
+        PREFIX vivo:<http://vivoweb.org/ontology/core#>
+        SELECT DISTINCT ?label
+        WHERE {
+            {
+              ?uri vivo:hasResearchArea ?ra .
+              ?ra rdfs:label ?label .
+	    } UNION {
+              ?uri blocal:hasGeographicResearchArea ?gra .
+              ?gra rdfs:label ?label .
+            }
+        }
+        """ .
+
+:documentModifier_publishedIn
+    a   <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.SelectQueryDocumentModifier> ,
+        <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.DocumentModifier> ;
+    rdfs:label "All labels are added to name fields." ;
+    :hasTargetField "published_in" ;
+    :hasSelectQuery """
+        PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#> 
+        PREFIX bcite:<http://vivo.brown.edu/ontology/citation#>
+        SELECT DISTINCT ?label
+        WHERE {
+            ?uri bcite:contributorTo ?cite .
+            ?cite bcite:hasVenue ?venue .
+            ?venue rdfs:label ?label .
+        }
+        """ .
+
+:documentModifier_alumniOf
+    a   <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.SelectQueryDocumentModifier> ,
+        <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.DocumentModifier> ;
+    rdfs:label "All labels are added to name fields." ;
+    :hasTargetField "alumni_of" ;
+    :hasSelectQuery """
+        PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#> 
+        PREFIX vivo:<http://vivoweb.org/ontology/core#>
+        SELECT DISTINCT ?label
+        WHERE {
+            ?uri vivo:educationalTraining ?edu .
+            ?edu vivo:trainingAtOrganization ?org .
+            ?org rdfs:label ?label .
+        }
+        """ .
+

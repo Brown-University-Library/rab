@@ -25,14 +25,24 @@
   <field name="siteURL" type="string" indexed="true" stored="true"/>
   <field name="siteName" type="string" indexed="true" stored="true"/>
 
-  <field name="BLACKLIGHT_TYPE" type="string" indexed="true" stored="true" multiValued="true"/>
-  <field name="BLACKLIGHT_ID" type="string" indexed="true" stored="true" multiValued="false"/>
-  <field name="BLACKLIGHT_TITLE" type="string" indexed="true" stored="true" multiValued="true"/>
-  <field name="BLACKLIGHT_NAME" type="string" indexed="true" stored="true" multiValued="true"/>
-  <field name="BLACKLIGHT_WEBLINK" type="string" indexed="true" stored="true" multiValued="true"/>
-  <field name="BLACKLIGHT_OVERVIEW" type="string" indexed="true" stored="true" multiValued="true"/>
-  <field name="BLACKLIGHT_AFFILIATIONS" type="string" indexed="true" stored="true" multiValued="true"/>
-  <field name="BLACKLIGHT_EMAIL" type="string" indexed="true" stored="true" multiValued="true"/>
+  <field name="id" type="string" indexed="true" stored="true" multiValued="false"/>
+  <copyField source="URI" dest="id" />
+  <field name="name_t" type="string" indexed="true" stored="true" multiValued="true"/>
+  <field name="title_t" type="string" indexed="true" stored="true" multiValued="true"/>
+  <field name="department_t" type="string" indexed="true" stored="true" multiValued="true"/>
+  <field name="overview_t" type="string" indexed="true" stored="true" multiValued="true"/>
+  <field name="email_s" type="string" indexed="true" stored="true" multiValued="false"/>
+  <field name="short_id_s" type="string" indexed="true" stored="true" multiValued="false"/>
+  <field name="affiliations" type="string" indexed="true" stored="true" multiValued="true"/>
+  <field name="research_areas" type="string" indexed="true" stored="true" multiValued="true"/>
+  <field name="published_in" type="string" indexed="true" stored="true" multiValued="true"/>
+  <field name="alumni_of" type="string" indexed="true" stored="true" multiValued="true"/>
+
+  <field name="affiliations_json" type="string" indexed="true" stored="true" multiValued="true"/>
+  <field name="collaborators_json" type="string" indexed="true" stored="true" multiValued="true"/>
+  <field name="contributor_to_json" type="string" indexed="true" stored="true" multiValued="true"/>
+  <field name="education_json" type="string" indexed="true" stored="true" multiValued="true"/>
+  <field name="on_the_web_json" type="string" indexed="true" stored="true" multiValued="true"/>
 
 
   <copyField source="nameRaw" dest="nameStemmed" />
