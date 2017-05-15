@@ -169,6 +169,7 @@
         """ .
 
 # Multivalued attributes
+
 :documentModifier_affiliations
     a   <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.SelectQueryDocumentModifier> ,
         <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.DocumentModifier> ;
@@ -235,6 +236,49 @@
             ?uri vivo:educationalTraining ?edu .
             ?edu vivo:trainingAtOrganization ?org .
             ?org rdfs:label ?label .
+        }
+        """ .
+
+# Build JSON attributes
+
+:documentModifier_affiliationsJSON
+    a   <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.SelectQueryDocumentModifier> ,
+        <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.DocumentModifier> ;
+    rdfs:label "All labels are added to name fields." ;
+    :hasTargetField "affiliations_json" ;
+    :hasSelectQuery """
+        PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#> 
+        PREFIX blocal:<http://vivo.brown.edu/ontology/vivo-brown/>
+        SELECT DISTINCT ?json
+        WHERE {
+            ?uri blocal:hasAffiliation ?aff .
+            ?aff rdfs:label ?label .
+            BIND(replace( '\"uri\":\"aff\",', 'aff', str(?aff) ) as ?uriStr)
+            BIND(replace( '\"id\":\"aff\",', 'aff', str(?aff) ) as ?idStr)
+            BIND(replace( '\"name\":\"aff\"', 'aff', str(?label) ) as ?nameStr)
+            BIND(concat( '{', ?uriStr, ?idStr, ?nameStr, '}') as ?json)
+        }
+        """ .
+
+### Expects a title for each collaborator; OPTIONAL or UNION?
+:documentModifier_collaboratorsJSON
+    a   <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.SelectQueryDocumentModifier> ,
+        <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.DocumentModifier> ;
+    rdfs:label "All labels are added to name fields." ;
+    :hasTargetField "collaborators_json" ;
+    :hasSelectQuery """
+        PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#> 
+        PREFIX vivo:<http://vivoweb.org/ontology/core#>
+        SELECT DISTINCT ?json
+        WHERE {
+            ?uri vivo:hasCollaborator ?clb .
+            ?clb rdfs:label ?label .
+            ?clb vivo:preferredTitle ?title .
+            BIND(replace( '\"uri\":\"clb\",', 'clb', str(?clb) ) as ?uriStr)
+            BIND(replace( '\"id\":\"clb\",', 'clb', str(?clb) ) as ?idStr)
+            BIND(replace( '\"name\":\"clb\",', 'clb', str(?label) ) as ?nameStr)
+            BIND(replace( '\"title\":\"val\"', 'val', str(?title) ) as ?titleStr)
+            BIND(concat( '{', ?uriStr, ?idStr, ?nameStr, ?titleStr, '}' ) as ?json)
         }
         """ .
 
