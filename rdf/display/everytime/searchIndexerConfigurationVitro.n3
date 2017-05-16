@@ -336,3 +336,51 @@
             BIND(concat( '{', ?uriStr, ?titleStr, ?typeStr, ?volStr, ?issStr, ?dateStr, ?pageStr, ?authStr, ?pubStr, ?doiStr, ?pmidStr, ?venueStr, '}') as ?json)
         }
         """ .
+
+:documentModifier_educationJSON
+    a   <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.SelectQueryDocumentModifier> ,
+        <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.DocumentModifier> ;
+    rdfs:label "All labels are added to name fields." ;
+    :hasTargetField "education_json" ;
+    :hasTypeRestriction "http://xmlns.com/foaf/0.1/Person";
+    :hasSelectQuery """
+        PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#> 
+        PREFIX vivo:<http://vivoweb.org/ontology/core#>
+        PREFIX blocal:<http://vivo.brown.edu/ontology/vivo-brown/>
+        SELECT DISTINCT ?json
+        WHERE {
+            ?uri vivo:educationalTraining ?edu .
+            ?edu vivo:trainingAtOrganization ?org .
+            ?edu blocal:degreeDate ?date .
+            ?edu rdfs:label ?degree .
+            ?org rdfs:label ?orgLabel .
+            BIND(replace( '\"school_uri\":\"suri\",', 'suri', str(?org) ) as ?uriStr)
+            BIND(replace( '\"date\":\"data\",', 'data', str(?date) ) as ?dateStr)
+            BIND(replace( '\"school_name\":\"sname\",', 'sname', str(?orgLabel) ) as ?nameStr)
+            BIND(replace( '\"degree\":\"data\"', 'data', str(?degree) ) as ?degreeStr)
+            BIND(concat( '{', ?uriStr, ?dateStr, ?nameStr, ?degreeStr, '}' ) as ?json)
+        }
+        """ .
+
+:documentModifier_weblinkJSON
+    a   <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.SelectQueryDocumentModifier> ,
+        <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.DocumentModifier> ;
+    rdfs:label "All labels are added to name fields." ;
+    :hasTargetField "on_the_web_json" ;
+    :hasTypeRestriction "http://xmlns.com/foaf/0.1/Person";
+    :hasSelectQuery """
+        PREFIX vivo:<http://vivoweb.org/ontology/core#>
+        PREFIX blocal:<http://vivo.brown.edu/ontology/vivo-brown/>
+        SELECT DISTINCT ?json
+        WHERE {
+            ?uri blocal:drrbWebPage ?link .
+            ?link vivo:linkURI ?addr .
+            OPTIONAL { ?link vivo:linkAnchorText ?text .}
+            OPTIONAL { ?link vivo:rank ?rank . }
+            BIND( replace( '\"uri\":\"data\",', 'data', str(?link)) as ?linkStr)
+            BIND( replace( '\"url\":\"data\",', 'data', str(?addr)) as ?addrStr)
+            BIND( (IF (bound(?text), replace( '\"text\":\"data\",', 'data', str(?text)), '')) as ?textStr )
+            BIND( (IF (bound(?rank), replace( '\"rank\":\"data\",', 'data', str(?rank)), '')) as ?rankStr )
+            BIND(concat( '{', ?linkStr, ?addrStr, ?textStr, ?rankStr, '}') as ?json)
+        }
+        """ .
