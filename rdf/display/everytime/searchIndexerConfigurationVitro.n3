@@ -282,3 +282,45 @@
         }
         """ .
 
+:documentModifier_contributorJSON
+    a   <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.SelectQueryDocumentModifier> ,
+        <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.DocumentModifier> ;
+    rdfs:label "All labels are added to name fields." ;
+    :hasTargetField "contributor_to_json" ;
+    :hasTypeRestriction "http://xmlns.com/foaf/0.1/Person";
+    :hasSelectQuery """
+        PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#>
+        PREFIX bcite: <http://vivo.brown.edu/ontology/citation#>
+        PREFIX vitro:    <http://vitro.mannlib.cornell.edu/ns/vitro/0.7#>
+        SELECT DISTINCT ?json
+        WHERE {
+            ?uri bcite:contributorTo ?cite .
+            ?cite rdfs:label ?title .
+            ?cite vitro:mostSpecificType ?type .
+            OPTIONAL { ?cite bcite:volume ?vol .}
+            OPTIONAL { ?cite bcite:issue ?issue . }
+            OPTIONAL { ?cite bcite:date ?date . }
+            OPTIONAL { ?cite bcite:pages ?pages . }
+            OPTIONAL { ?cite bcite:authorList ?authors . }
+            OPTIONAL { ?cite bcite:publishedIn ?published_in . }
+            OPTIONAL { ?cite bcite:doi ?doi . }
+            OPTIONAL { ?cite bcite:pmid ?pub_med_id .}
+            OPTIONAL {
+                ?cite bcite:hasVenue ?venue .
+                ?venue rdfs:label ?venue_name .
+            }
+            BIND (replace( '\"uri\":\"cite\",', 'cite', str(?cite)) as ?uriStr)
+            BIND (replace( '\"title\":\"data\",', 'data', str(?title)) as ?titleStr)
+            BIND (replace( '\"type\":\"data\",', 'data', str(?type)) as ?typeStr)
+            BIND( (IF (bound(?vol), replace( '\"volume\":\"data\",', 'data', str(?vol)), '')) as ?volStr )
+            BIND( (IF (bound(?issue), replace( '\"issue\":\"data\",', 'data', str(?issue)), '')) as ?issStr )
+            BIND( (IF (bound(?date), replace( '\"date\":\"data\",', 'data', str(?date)), '')) as ?dateStr )
+            BIND( (IF (bound(?pages), replace( '\"pages\":\"data\",', 'data', str(?pages)), '')) as ?pageStr )
+            BIND( (IF (bound(?authors), replace( '\"authors\":\"data\",', 'data', str(?authors)), '')) as ?authStr )
+            BIND( (IF (bound(?published_in), replace( '\"published_in\":\"data\",', 'data', str(?published_in)), '')) as ?pubStr )
+            BIND( (IF (bound(?doi), replace( '\"doi\":\"data\",', 'data', str(?doi)), '')) as ?doiStr )
+            BIND( (IF (bound(?pub_med_id), replace( '\"pub_med_id\":\"data\",', 'data', str(?pub_med_id)), '')) as ?pmidStr )
+            BIND( (IF (bound(?venue_name), replace( '\"venue_name\":\"data\"', 'data', str(?venue_name)), '')) as ?venueStr )
+            BIND(concat( '{', ?uriStr, ?titleStr, ?typeStr, ?volStr, ?issStr, ?dateStr, ?pageStr, ?authStr, ?pubStr, ?doiStr, ?pmidStr, ?venueStr, '}') as ?json)
+        }
+        """ .
