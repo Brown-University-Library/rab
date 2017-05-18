@@ -43,7 +43,7 @@
   <field name="contributor_to_json" type="string" indexed="true" stored="true" multiValued="true"/>
   <field name="education_json" type="string" indexed="true" stored="true" multiValued="true"/>
   <field name="on_the_web_json" type="string" indexed="true" stored="true" multiValued="true"/>
-
+  <field name="json_txt" type="string" indexed="true" stored="true" multiValued="true"/>
 
   <copyField source="nameRaw" dest="nameStemmed" />
   <copyField source="nameRaw" dest="nameUnstemmed" />

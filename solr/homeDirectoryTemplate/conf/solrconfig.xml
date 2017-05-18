@@ -198,7 +198,8 @@
   </requestHandler>
   <requestHandler name="/update" class="solr.UpdateRequestHandler">
       <lst name="defaults">
-         <str name="update.chain">etag</str>
+         <!--<str name="update.chain">etag</str>-->
+         <str name="update.chain">json-builder</str>
        </lst>
   </requestHandler>
   <requestHandler name="/update/json" class="solr.UpdateRequestHandler" startup="lazy">
@@ -442,6 +443,13 @@
          <str name="signatureField">etag</str>
          <bool name="overwriteDupes">false</bool>
          <str name="signatureClass">solr.processor.Lookup3Signature</str>
+       </processor>
+       <processor class="solr.LogUpdateProcessorFactory" />
+       <processor class="solr.RunUpdateProcessorFactory" />
+     </updateRequestProcessorChain>
+     <updateRequestProcessorChain name="json-builder">
+       <processor class="solr.StatelessScriptUpdateProcessorFactory">
+         <str name="script">json-concat.js</str>
        </processor>
        <processor class="solr.LogUpdateProcessorFactory" />
        <processor class="solr.RunUpdateProcessorFactory" />
