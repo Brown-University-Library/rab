@@ -151,7 +151,6 @@
     :hasTargetField "email_s" ;
     :hasTypeRestriction "http://xmlns.com/foaf/0.1/Person";
     :hasSelectQuery """
-        PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#> 
         PREFIX vivo:<http://vivoweb.org/ontology/core#>
         SELECT DISTINCT ?email
         WHERE {
@@ -166,11 +165,66 @@
     :hasTargetField "short_id_s" ;
     :hasTypeRestriction "http://xmlns.com/foaf/0.1/Person";
     :hasSelectQuery """
-        PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#> 
         PREFIX blocal:<http://vivo.brown.edu/ontology/vivo-brown/>
         SELECT DISTINCT ?short
         WHERE {
             ?uri blocal:shortId ?short .
+        }
+        """ .
+
+:documentModifier_affiliationsText
+    a   <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.SelectQueryDocumentModifier> ,
+        <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.DocumentModifier> ;
+    rdfs:label "All labels are added to name fields." ;
+    :hasTargetField "affiliations_text" ;
+    :hasTypeRestriction "http://xmlns.com/foaf/0.1/Person";
+    :hasSelectQuery """
+        PREFIX blocal:<http://vivo.brown.edu/ontology/vivo-brown/>
+        SELECT DISTINCT ?aff
+        WHERE {
+            ?uri blocal:affiliations ?aff .
+        }
+        """ .
+
+:documentModifier_awardsAndHonors
+    a   <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.SelectQueryDocumentModifier> ,
+        <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.DocumentModifier> ;
+    rdfs:label "All labels are added to name fields." ;
+    :hasTargetField "awards" ;
+    :hasTypeRestriction "http://xmlns.com/foaf/0.1/Person";
+    :hasSelectQuery """
+        PREFIX blocal:<http://vivo.brown.edu/ontology/vivo-brown/>
+        SELECT DISTINCT ?aws
+        WHERE {
+            ?uri blocal:awardsAndHonors ?aws .
+        }
+        """ .
+
+:documentModifier_fundedResearch
+    a   <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.SelectQueryDocumentModifier> ,
+        <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.DocumentModifier> ;
+    rdfs:label "All labels are added to name fields." ;
+    :hasTargetField "funded_research" ;
+    :hasTypeRestriction "http://xmlns.com/foaf/0.1/Person";
+    :hasSelectQuery """
+        PREFIX blocal:<http://vivo.brown.edu/ontology/vivo-brown/>
+        SELECT DISTINCT ?fr
+        WHERE {
+            ?uri blocal:fundedResearch ?fr .
+        }
+        """ .
+
+:documentModifier_researchStatement
+    a   <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.SelectQueryDocumentModifier> ,
+        <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.DocumentModifier> ;
+    rdfs:label "All labels are added to name fields." ;
+    :hasTargetField "research_statement" ;
+    :hasTypeRestriction "http://xmlns.com/foaf/0.1/Person";
+    :hasSelectQuery """
+        PREFIX blocal:<http://vivo.brown.edu/ontology/vivo-brown/>
+        SELECT DISTINCT ?rs
+        WHERE {
+            ?uri blocal:researchStatement ?rs .
         }
         """ .
 
@@ -380,7 +434,7 @@
             BIND( replace( '\"uri\":\"data\",', 'data', str(?link)) as ?linkStr)
             BIND( replace( '\"url\":\"data\",', 'data', str(?addr)) as ?addrStr)
             BIND( (IF (bound(?text), replace( '\"text\":\"data\",', 'data', str(?text)), '')) as ?textStr )
-            BIND( (IF (bound(?rank), replace( '\"rank\":\"data\",', 'data', str(?rank)), '')) as ?rankStr )
+            BIND( (IF (bound(?rank), replace( '\"rank\":\"data\"', 'data', str(?rank)), '')) as ?rankStr )
             BIND(concat( '{', ?linkStr, ?addrStr, ?textStr, ?rankStr, '}') as ?json)
         }
         """ .
