@@ -360,20 +360,25 @@
         PREFIX vitro:    <http://vitro.mannlib.cornell.edu/ns/vitro/0.7#>
         SELECT DISTINCT ?json
         WHERE {
+            { SELECT ?cite (SAMPLE(?stitle) as ?title) (SAMPLE(?stype) as ?type) (SAMPLE(?svol) as ?vol) (SAMPLE(?sissue) as ?issue) (SAMPLE(?sdate) as ?date) (SAMPLE(?spages) as ?pages) (SAMPLE(?sauthors) as ?authors) (SAMPLE(?spublished_in) as ?published_in) (SAMPLE(?sdoi) as ?doi) (SAMPLE(?spub_med_id) as ?pub_med_id) (SAMPLE(?svenue_name) as ?venue_name)
+            WHERE {
             ?uri bcite:contributorTo ?cite .
-            ?cite rdfs:label ?title .
-            ?cite vitro:mostSpecificType ?type .
-            OPTIONAL { ?cite bcite:volume ?vol .}
-            OPTIONAL { ?cite bcite:issue ?issue . }
-            OPTIONAL { ?cite bcite:date ?date . }
-            OPTIONAL { ?cite bcite:pages ?pages . }
-            OPTIONAL { ?cite bcite:authorList ?authors . }
-            OPTIONAL { ?cite bcite:publishedIn ?published_in . }
-            OPTIONAL { ?cite bcite:doi ?doi . }
-            OPTIONAL { ?cite bcite:pmid ?pub_med_id .}
+            ?cite rdfs:label ?stitle .
+            ?cite vitro:mostSpecificType ?stype .
+            OPTIONAL { ?cite bcite:volume ?svol .}
+            OPTIONAL { ?cite bcite:issue ?sissue . }
+            OPTIONAL { ?cite bcite:date ?sdate . }
+            OPTIONAL { ?cite bcite:pages ?spages . }
+            OPTIONAL { ?cite bcite:authorList ?sauthors . }
+            OPTIONAL { ?cite bcite:publishedIn ?spublished_in . }
+            OPTIONAL { ?cite bcite:doi ?sdoi . }
+            OPTIONAL { ?cite bcite:pmid ?spub_med_id .}
             OPTIONAL {
                 ?cite bcite:hasVenue ?venue .
-                ?venue rdfs:label ?venue_name .
+                ?venue rdfs:label ?svenue_name .
+            }
+            }
+            GROUP BY ?cite
             }
             BIND (replace( '\"uri\":\"cite\",', 'cite', str(?cite)) as ?uriStr)
             BIND (replace( '\"title\":\"data\",', 'data', str(?title)) as ?titleStr)
@@ -386,8 +391,7 @@
             BIND( (IF (bound(?published_in), replace( '\"published_in\":\"data\",', 'data', str(?published_in)), '')) as ?pubStr )
             BIND( (IF (bound(?doi), replace( '\"doi\":\"data\",', 'data', str(?doi)), '')) as ?doiStr )
             BIND( (IF (bound(?pub_med_id), replace( '\"pub_med_id\":\"data\",', 'data', str(?pub_med_id)), '')) as ?pmidStr )
-            BIND( (IF (bound(?venue_name), replace( '\"venue_name\":\"data\"', 'data', str(?venue_name)), '')) as ?venueStr )
-            BIND(concat( '{', ?uriStr, ?titleStr, ?typeStr, ?volStr, ?issStr, ?dateStr, ?pageStr, ?authStr, ?pubStr, ?doiStr, ?pmidStr, ?venueStr, '}') as ?json)
+            BIND(concat( '{', ?uriStr, ?titleStr, ?typeStr, ?volStr, ?issStr, ?dateStr, ?pageStr, ?authStr, ?pubStr, ?doiStr, ?pmidStr, '}') as ?json)
         }
         """ .
 
