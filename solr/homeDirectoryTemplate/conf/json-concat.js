@@ -2,8 +2,9 @@
 // https://lucene.apache.org/solr/4_7_0/solr-core/org/apache/solr/update/processor/StatelessScriptUpdateProcessorFactory.html
 // https://lucene.apache.org/solr/4_2_1/solr-solrj/org/apache/solr/common/SolrInputDocument.html
 
-function fieldLookup(doc, field_name, field_alias, last) {
+function addMultiValuedField(doc, field_name, field_alias, text_data, last) {
   last = (typeof last !== 'undefined') ? last : false;
+  text_data = (typeof text_data !== 'undefined') ? text_data : false;
 
   var vals = doc.getFieldValues(field_name);
 
@@ -13,7 +14,14 @@ function fieldLookup(doc, field_name, field_alias, last) {
     json_txt += '[' ;
     
     for (var i = 0; i < vals.length; i++) {
-      json_txt += vals[i] + ',';
+      var val;
+
+      if ( text_data ) {
+        val = '\"' + vals[i] + '\"';
+      } else {
+        val = vals[i];
+      }
+      json_txt += val + ',';
     }
 
     json_txt = json_txt.slice(0,-1);
@@ -62,10 +70,15 @@ function processAdd(cmd) {
   json_txt += addSingleValuedField(doc, 'funded_research', 'funded_research');
   json_txt += addSingleValuedField(doc, 'research_statement', 'research_statement');
   json_txt += addSingleValuedField(doc, 'email_s', 'email');
-  json_txt += fieldLookup(doc, 'affiliations_json', 'affiliations');
-  json_txt += fieldLookup(doc, 'contributor_to_json', 'contributor_to');
-  json_txt += fieldLookup(doc, 'education_json', 'education');
-  json_txt += fieldLookup(doc, 'on_the_web_json', 'on_the_web', last=true);
+  json_txt += addSingleValuedField(doc, 'overview_t', 'overview');
+  json_txt += addSingleValuedField(doc, 'department_t', 'org_label');
+  json_txt += addSingleValuedField(doc, 'title_t', 'title');
+  json_txt += addMultiValuedField(doc, 'published_in', 'published_in', true);
+  json_txt += addMultiValuedField(doc, 'research_areas', 'research_areas', true);
+  json_txt += addMultiValuedField(doc, 'affiliations_json', 'affiliations');
+  json_txt += addMultiValuedField(doc, 'contributor_to_json', 'contributor_to');
+  json_txt += addMultiValuedField(doc, 'education_json', 'education');
+  json_txt += addMultiValuedField(doc, 'on_the_web_json', 'on_the_web', false, true);
 
   doc.addField( 'json_txt', json_txt );
 }
