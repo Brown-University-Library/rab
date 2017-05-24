@@ -36,18 +36,25 @@
   <field name="affiliations" type="string" indexed="true" stored="true" multiValued="true"/>
   <field name="research_areas" type="string" indexed="true" stored="true" multiValued="true"/>
   <field name="published_in" type="string" indexed="true" stored="true" multiValued="true"/>
+  <field name="teacher_for" type="string" indexed="true" stored="true" multiValued="true"/>
   <field name="alumni_of" type="string" indexed="true" stored="true" multiValued="true"/>
 
   <field name="affiliations_text" type="string" indexed="true" stored="true" multiValued="false"/>
   <field name="research_statement" type="string" indexed="true" stored="true" multiValued="false"/>
   <field name="funded_research" type="string" indexed="true" stored="true" multiValued="false"/>
   <field name="awards" type="string" indexed="true" stored="true" multiValued="false"/>
+  <field name="research_overview" type="string" indexed="true" stored="true" multiValued="false"/>
+  <field name="teaching_overview" type="string" indexed="true" stored="true" multiValued="false"/>
+  <field name="scholarly_work" type="string" indexed="true" stored="true" multiValued="false"/>
 
   <field name="affiliations_json" type="string" indexed="true" stored="true" multiValued="true"/>
   <field name="collaborators_json" type="string" indexed="true" stored="true" multiValued="true"/>
   <field name="contributor_to_json" type="string" indexed="true" stored="true" multiValued="true"/>
   <field name="education_json" type="string" indexed="true" stored="true" multiValued="true"/>
   <field name="on_the_web_json" type="string" indexed="true" stored="true" multiValued="true"/>
+  <field name="appointments_json" type="string" indexed="true" stored="true" multiValued="true"/>
+  <field name="credentials_json" type="string" indexed="true" stored="true" multiValued="true"/>
+  <field name="training_json" type="string" indexed="true" stored="true" multiValued="true"/>
   <field name="json_txt" type="string" indexed="true" stored="true" multiValued="true"/>
 
   <copyField source="nameRaw" dest="nameStemmed" />
