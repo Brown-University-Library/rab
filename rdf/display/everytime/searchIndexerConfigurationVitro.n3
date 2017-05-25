@@ -363,6 +363,26 @@
 
 # Build JSON attributes
 
+:documentModifier_cvJSON
+    a   <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.SelectQueryDocumentModifier> ,
+        <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.DocumentModifier> ;
+    rdfs:label "All labels are added to name fields." ;
+    :hasTargetField "cv_json" ;
+    :hasTypeRestriction "http://xmlns.com/foaf/0.1/Person";
+    :hasSelectQuery """
+        PREFIX vivo:<http://vivoweb.org/ontology/core#>
+        PREFIX blocal:<http://vivo.brown.edu/ontology/vivo-brown/>
+        SELECT DISTINCT ?json
+        WHERE {
+            ?uri blocal:cv ?cv .
+            ?cv vivo:linkURI ?link .
+            ?cv vivo:linkAnchorText ?text .
+            BIND(replace( '\"cv_link\":\"lnk\",', 'lnk', str(?link) ) as ?linkStr)
+            BIND(replace( '\"cv_link_text\":\"txt\"', 'txt', str(?text) ) as ?textStr)
+            BIND(concat( '{', ?linkStr, ?textStr, '}') as ?json)
+        }
+        """ .
+
 :documentModifier_affiliationsJSON
     a   <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.SelectQueryDocumentModifier> ,
         <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.DocumentModifier> ;

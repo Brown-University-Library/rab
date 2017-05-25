@@ -65,11 +65,16 @@ function processAdd(cmd) {
 
   json_txt = '';
 
+  json_txt += addSingleValuedField(doc, 'URI', 'id');
+  json_txt += addSingleValuedField(doc, 'URI', 'uri');
+  json_txt += addSingleValuedField(doc, 'THUMBNAIL_URL', 'thumbnail');
+
   json_txt += addSingleValuedField(doc, 'affiliations_text', 'affiliations_text');
   json_txt += addSingleValuedField(doc, 'awards', 'awards');
   json_txt += addSingleValuedField(doc, 'department_t', 'org_label');
   json_txt += addSingleValuedField(doc, 'email_s', 'email');
   json_txt += addSingleValuedField(doc, 'funded_research', 'funded_research');
+  json_txt += addSingleValuedField(doc, 'name_t', 'name');
   json_txt += addSingleValuedField(doc, 'overview_t', 'overview');
   json_txt += addSingleValuedField(doc, 'research_overview', 'research_overview');
   json_txt += addSingleValuedField(doc, 'research_statement', 'research_statement');
@@ -81,6 +86,7 @@ function processAdd(cmd) {
   json_txt += addMultiValuedField(doc, 'research_areas', 'research_areas', true);
   json_txt += addMultiValuedField(doc, 'teacher_for', 'teacher_for', true);
 
+  json_txt += addMultiValuedField(doc, 'cv_json', 'cv');
   json_txt += addMultiValuedField(doc, 'affiliations_json', 'affiliations');
   json_txt += addMultiValuedField(doc, 'collaborators_json', 'collaborators');
   json_txt += addMultiValuedField(doc, 'contributor_to_json', 'contributor_to');

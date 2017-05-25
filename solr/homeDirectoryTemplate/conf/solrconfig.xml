@@ -416,6 +416,9 @@
     <processor class="solr.StatelessScriptUpdateProcessorFactory">
       <str name="script">json-concat.js</str>
     </processor>
+    <processor class="solr.StatelessScriptUpdateProcessorFactory">
+      <str name="script">record-type.js</str>
+    </processor>
     <processor class="solr.LogUpdateProcessorFactory" />
     <processor class="solr.RunUpdateProcessorFactory" />
   </updateRequestProcessorChain>

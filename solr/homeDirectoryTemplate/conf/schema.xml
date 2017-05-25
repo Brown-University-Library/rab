@@ -27,6 +27,8 @@
 
   <field name="id" type="string" indexed="true" stored="true" multiValued="false"/>
   <copyField source="URI" dest="id" />
+  <field name="record_type" type="string" indexed="true" stored="true" multiValued="true"/>
+
   <field name="name_t" type="string" indexed="true" stored="true" multiValued="true"/>
   <field name="title_t" type="string" indexed="true" stored="true" multiValued="true"/>
   <field name="department_t" type="string" indexed="true" stored="true" multiValued="true"/>
@@ -48,6 +50,7 @@
   <field name="scholarly_work" type="string" indexed="true" stored="true" multiValued="false"/>
 
   <field name="affiliations_json" type="string" indexed="true" stored="true" multiValued="true"/>
+  <field name="cv_json" type="string" indexed="true" stored="true" multiValued="true"/>
   <field name="collaborators_json" type="string" indexed="true" stored="true" multiValued="true"/>
   <field name="contributor_to_json" type="string" indexed="true" stored="true" multiValued="true"/>
   <field name="education_json" type="string" indexed="true" stored="true" multiValued="true"/>
