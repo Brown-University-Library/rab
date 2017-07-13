@@ -31,7 +31,8 @@ auth:ADMIN
     # Before enabling, be sure that the URL api/sparqlUpdate is secured by HTTPS, 
     # so passwords will not be sent in clear text.   	  
     auth:hasPermission simplePermission:UseSparqlUpdateApi ;    
-    
+    auth:hasPermission simplePermission:UseSparqlQueryApi ;    
+        
     # permissions for CURATOR and above.
     auth:hasPermission simplePermission:EditOntology ;
     auth:hasPermission simplePermission:EditSiteInformation ;
