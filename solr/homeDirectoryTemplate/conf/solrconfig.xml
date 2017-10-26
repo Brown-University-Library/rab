@@ -845,8 +845,8 @@
         short_id_s^2500 
         email_s^2500 
         nameText^2000 
-        title_t^600 
-        department_t^500 
+        title_t^1600 
+        department_t^1500 
         affiliations^450
         research_areas^400
         ALLTEXT ALLTEXTUNSTEMMED nameUnstemmed^2.0 nameStemmed^2.0 nameLowercase
@@ -1384,7 +1384,8 @@
       -->
     <lst name="spellchecker">
       <str name="name">default</str>
-      <str name="field">name</str>
+      <!-- CUSTOM -->
+      <str name="field">suggest</str>
       <str name="spellcheckIndexDir">spellchecker</str>
       <!--  Adding this from the example below -->
       <str name="classname">solr.DirectSolrSpellChecker</str>
