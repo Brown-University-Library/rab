@@ -838,10 +838,55 @@
     <!-- default values for query parameters can be specified, these
          will be overridden by parameters in the request
       -->
+    <lst name="defaults">
+      <str name="defType">edismax</str>
+      <!-- CUSTOM: tuned the field weights -->
+      <str name="qf">
+        short_id_s^2500 
+        email_s^2500 
+        nameText^2000 
+        title_t^600 
+        department_t^500 
+        affiliations^450
+        research_areas^400
+        ALLTEXT ALLTEXTUNSTEMMED nameUnstemmed^2.0 nameStemmed^2.0 nameLowercase
+      </str>
+      <str name="echoParams">explicit</str>
+      <str name="qs">2</str>
+      <int name="rows">10</int>
+      <str name="q.alt">*:*</str>
+      <str name="fl">*,score</str>
+      <str name="hl">true</str>
+      <str name="hl.fl">ALLTEXT</str>
+      <str name="hl.fragsize">160</str>
+      <str name="hl.simple.pre"><![CDATA[<strong>]]></str>
+      <str name="hl.simple.post"><![CDATA[</strong>]]></str>
+      <str name="mm">100%</str>
+
+    <!-- CUSTOM: Solr will use suggestions from both the 'default' spellchecker
+      and from the 'wordbreak' spellchecker and combine them.
+      collations (re-written queries) can include a combination of
+      corrections from both spellcheckers -->
+      <str name="spellcheck.dictionary">default</str>
+      <str name="spellcheck">on</str>
+      <str name="spellcheck.extendedResults">true</str>
+      <str name="spellcheck.count">10</str>
+      <str name="spellcheck.alternativeTermCount">5</str>
+      <str name="spellcheck.maxResultsForSuggest">5</str>
+      <str name="spellcheck.collate">true</str>
+      <str name="spellcheck.collateExtendedResults">true</str>
+      <str name="spellcheck.maxCollationTries">10</str>
+      <str name="spellcheck.maxCollations">5</str>
+    </lst>
+
+    <!-- CUSTOM: Solr In Action recommends this as the last component (p. 312) -->
+    <arr name="last-components">
+      <str>spellcheck</str>
+    </arr>
       <!--  Copying defaults from the old Vitro's solrconfig -->
-      <lst name="defaults">
+<!--       <lst name="defaults">
        <str name="defType">edismax</str>
-       <!-- nameText added for NIHVIVO-3701 -->
+       nameText added for NIHVIVO-3701
        <str name="qf">ALLTEXT ALLTEXTUNSTEMMED nameText^2.0 nameUnstemmed^2.0 nameStemmed^2.0 nameLowercase</str>
        <str name="echoParams">explicit</str>
        <str name="qs">2</str>
@@ -853,10 +898,10 @@
        <str name="hl.fragsize">160</str>
        <str name="hl.simple.pre"><![CDATA[<strong>]]></str>
        <str name="hl.simple.post"><![CDATA[</strong>]]></str>
-      <!--  Default value of mm is 100% which should result in AND behavior, still setting it here
-      https://cwiki.apache.org/confluence/display/solr/The+DisMax+Query+Parser -->
+       Default value of mm is 100% which should result in AND behavior, still setting it here
+      https://cwiki.apache.org/confluence/display/solr/The+DisMax+Query+Parser
       <str name="mm">100%</str>
-     </lst>
+     </lst> -->
      <!--  Defaults from 4.7 solrconfig commented out below, df is for overriding the default field in schema.xml, http://wiki.apache.org/solr/SearchHandler#df -->
      <!--  lst name="defaults">
        <str name="echoParams">explicit</str>
@@ -1830,7 +1875,7 @@
        fields.  
        
     -->
-     <updateRequestProcessorChain name="etag">
+<!--      <updateRequestProcessorChain name="etag">
        <processor class="solr.processor.SignatureUpdateProcessorFactory">
          <bool name="enabled">true</bool>
          <str name="signatureField">etag</str>
@@ -1839,7 +1884,33 @@
        </processor>
        <processor class="solr.LogUpdateProcessorFactory" />
        <processor class="solr.RunUpdateProcessorFactory" />
-     </updateRequestProcessorChain>
+     </updateRequestProcessorChain> -->
+
+    <updateRequestProcessorChain name="etag">
+      <processor class="solr.processor.SignatureUpdateProcessorFactory">
+        <bool name="enabled">true</bool>
+        <str name="signatureField">etag</str>
+        <bool name="overwriteDupes">false</bool>
+        <str name="signatureClass">solr.processor.Lookup3Signature</str>
+      </processor>
+      <processor class="solr.StatelessScriptUpdateProcessorFactory">
+        <str name="script">derive_fields.js</str>
+      </processor>
+      <processor class="solr.StatelessScriptUpdateProcessorFactory">
+        <str name="script">prep_data.js</str>
+      </processor>
+      <processor class="solr.StatelessScriptUpdateProcessorFactory">
+        <str name="script">make_json_fields.js</str>
+      </processor>
+      <processor class="solr.StatelessScriptUpdateProcessorFactory">
+        <str name="script">map_fields.js</str>
+      </processor>
+      <processor class="solr.StatelessScriptUpdateProcessorFactory">
+        <str name="script">delete_fields.js</str>
+      </processor>
+      <processor class="solr.LogUpdateProcessorFactory" />
+      <processor class="solr.RunUpdateProcessorFactory" />
+    </updateRequestProcessorChain>
   <!-- Response Writers
 
        http://wiki.apache.org/solr/QueryResponseWriter
