@@ -12,7 +12,7 @@ function recordTypeCheck(rdfTypeArray) {
       out = 'PEOPLE';
       break;
     } 
-    else if ( val === 'http://xmlns.com/foaf/0.1/Organization' ) {
+    else if ( val === 'http://vivo.brown.edu/ontology/display#BrownOrg' ) {
       out = 'ORGANIZATION';
       break;
     }

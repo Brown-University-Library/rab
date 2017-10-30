@@ -40,7 +40,8 @@ function processAdd(cmd) {
       'person_delimited_collaborators',
       'person_delimited_contributor_to','person_delimited_education',
       'person_delimited_appointments','person_delimited_credentials',
-      'person_delimited_training','person_delimited_on_the_web'
+      'person_delimited_training','person_delimited_on_the_web',
+      'person_full_name'
     ],
     'ORGANIZATION' : [
       'doc_id',

@@ -97,9 +97,23 @@
     :hasTypeRestriction "http://xmlns.com/foaf/0.1/Person";
     :hasSelectQuery """
         PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#> 
+        SELECT DISTINCT ?label
+        WHERE {
+            ?uri rdfs:label ?label .
+        }
+        """ .
+
+:documentModifier_person_full_name
+    a   <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.SelectQueryDocumentModifier> ,
+        <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.DocumentModifier> ;
+    rdfs:label "All labels are added to name fields." ;
+    :hasTargetField "person_full_name" ;
+    :hasTypeRestriction "http://xmlns.com/foaf/0.1/Person";
+    :hasSelectQuery """
+        PREFIX blocal:<http://vivo.brown.edu/ontology/vivo-brown/> 
         SELECT DISTINCT ?fullname
         WHERE {
-            ?uri rdfs:label ?fullname .
+            ?uri blocal:fullName ?fullname .
         }
         """ .
 
@@ -670,7 +684,7 @@
         <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.DocumentModifier> ;
     rdfs:label "All labels are added to name fields." ;
     :hasTargetField "organization_label" ;
-    :hasTypeRestriction "http://xmlns.com/foaf/0.1/Organization";
+    :hasTypeRestriction "http://vivo.brown.edu/ontology/display#BrownOrg";
     :hasSelectQuery """
         PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#> 
         SELECT DISTINCT ?fullname
@@ -684,7 +698,7 @@
         <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.DocumentModifier> ;
     rdfs:label "All labels are added to name fields." ;
     :hasTargetField "organization_delimited_on_the_web" ;
-    :hasTypeRestriction "http://xmlns.com/foaf/0.1/Organization";
+    :hasTypeRestriction "http://vivo.brown.edu/ontology/display#BrownOrg";
     :hasSelectQuery """
         PREFIX vivo:<http://vivoweb.org/ontology/core#>
         PREFIX blocal:<http://vivo.brown.edu/ontology/vivo-brown/>
@@ -708,7 +722,7 @@
         <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.DocumentModifier> ;
     rdfs:label "All labels are added to name fields." ;
     :hasTargetField "organization_delimited_positions" ;
-    :hasTypeRestriction "http://xmlns.com/foaf/0.1/Organization";
+    :hasTypeRestriction "http://vivo.brown.edu/ontology/display#BrownOrg";
     :hasSelectQuery """
         PREFIX vivo:<http://vivoweb.org/ontology/core#>
         PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#>
@@ -735,7 +749,7 @@
         <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.DocumentModifier> ;
     rdfs:label "All labels are added to name fields." ;
     :hasTargetField "organization_overview" ;
-    :hasTypeRestriction "http://xmlns.com/foaf/0.1/Organization";
+    :hasTypeRestriction "http://vivo.brown.edu/ontology/display#BrownOrg";
     :hasSelectQuery """
         PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#>
         PREFIX vivo:<http://vivoweb.org/ontology/core#>
@@ -750,7 +764,7 @@
         <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.DocumentModifier> ;
     rdfs:label "All labels are added to name fields." ;
     :hasTargetField "organization_image_path" ;
-    :hasTypeRestriction "http://xmlns.com/foaf/0.1/Organization";
+    :hasTypeRestriction "http://vivo.brown.edu/ontology/display#BrownOrg";
     :hasSelectQuery """
         PREFIX core: <http://vivoweb.org/ontology/core#> 
         PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> 

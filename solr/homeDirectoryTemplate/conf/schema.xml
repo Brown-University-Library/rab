@@ -192,6 +192,7 @@
 
   <!-- query person fields -->
   <field name="person_label" type="string" indexed="true" stored="true" multiValued="true"/>
+  <field name="person_full_name" type="string" indexed="true" stored="true" multiValued="true"/>
   <field name="person_image_path" type="string" indexed="true" stored="true" multiValued="true"/>
   <field name="person_title" type="string" indexed="true" stored="true" multiValued="true"/>
   <field name="person_primary_department" type="string" indexed="true" stored="true" multiValued="true"/>
@@ -236,6 +237,7 @@
   <field name="email_s" type="string" indexed="true" stored="true" multiValued="false"/>
   <field name="short_id_s" type="string" indexed="true" stored="true" multiValued="false"/>
   <field name="thumbnail_file_path_s" type="string" indexed="true" stored="true" multiValued="false"/>
+  <field name="display_name_s" type="string" indexed="true" stored="true" multiValued="false"/>
   <field name="affiliations" type="string" indexed="true" stored="true" multiValued="true"/>
   <field name="research_areas" type="string" indexed="true" stored="true" multiValued="true"/>
   <field name="published_in" type="string" indexed="true" stored="true" multiValued="true"/>
