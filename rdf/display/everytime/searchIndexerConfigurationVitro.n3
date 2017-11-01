@@ -487,6 +487,7 @@
             OPTIONAL { ?cite bcite:authorList ?authors . }
             OPTIONAL { ?cite bcite:publishedIn ?published_in . }
             OPTIONAL { ?cite bcite:doi ?doi . }
+            OPTIONAL { ?cite bcite:url ?url . }
             OPTIONAL { ?cite bcite:pmid ?pub_med_id .}
             OPTIONAL {
                 ?cite bcite:hasVenue ?venue .
@@ -504,8 +505,9 @@
             BIND ( replace( replace( ?template,'ATTR', 'published_in' ), 'VAL', IF ( bound(?published_in), str(?published_in), '--' ) ) as ?published_in_ )
             BIND ( replace( replace( ?template,'ATTR', 'venue' ), 'VAL', IF ( bound(?venue_name), str(?venue_name), '--' ) ) as ?venue_name_ )
             BIND ( replace( replace( ?template,'ATTR', 'doi' ), 'VAL', IF ( bound(?doi), str(?doi), '--' ) ) as ?doi_ )
+            BIND ( replace( replace( ?template,'ATTR', 'url' ), 'VAL', IF ( bound(?url), str(?url), '--' ) ) as ?url_ )
             BIND ( replace( replace( ?template,'ATTR', 'pub_med_id' ), 'VAL', IF ( bound(?pub_med_id), str(?pub_med_id), '--' ) ) as ?pub_med_id_ )
-            BIND( CONCAT( ?cite_,?title_,?type_,?vol_,?issue_,?date_,?pages_,?authors_,?published_in_,?venue_name_,?doi_,?pub_med_id_ ) as ?data )
+            BIND( CONCAT( ?cite_,?title_,?type_,?vol_,?issue_,?date_,?pages_,?authors_,?published_in_,?venue_name_,?doi_,?url_,?pub_med_id_ ) as ?data )
         }
         """ .
 
@@ -735,12 +737,12 @@
             ?pos vivo:positionForPerson ?person .
             ?person rdfs:label ?person_label .
             BIND ("ATTR|&|VAL|%|" as ?template)
-            BIND ( replace( replace( ?template,'ATTR', 'uri' ), 'VAL', str(?person) ) as ?person_ )
-            BIND ( replace( replace( ?template,'ATTR', 'id' ), 'VAL', str(?person) ) as ?person_id_ )
+            BIND ( replace( replace( ?template,'ATTR', 'uri' ), 'VAL', str(?pos) ) as ?pos_ )
+            BIND ( replace( replace( ?template,'ATTR', 'id' ), 'VAL', str(?person) ) as ?person_ )
             BIND ( replace( replace( ?template,'ATTR', 'general_position' ), 'VAL', str(?type) ) as ?type_ )
             BIND ( replace( replace( ?template,'ATTR', 'specific_position' ), 'VAL', str(?pos_label) ) as ?pos_label_ )
             BIND ( replace( replace( ?template,'ATTR', 'label' ), 'VAL', str(?person_label) ) as ?person_label_ )
-            BIND(concat( ?person_, ?person_id_, ?type_, ?pos_label_, ?person_label_ ) as ?data)
+            BIND(concat( ?pos_, ?person_, ?type_, ?pos_label_, ?person_label_ ) as ?data)
         }
         """ .
 
