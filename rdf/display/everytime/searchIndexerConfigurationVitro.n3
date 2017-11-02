@@ -736,13 +736,15 @@
             ?pos vitro:mostSpecificType ?type .
             ?pos vivo:positionForPerson ?person .
             ?person rdfs:label ?person_label .
+            ?person vivo:preferredTitle ?pref .
             BIND ("ATTR|&|VAL|%|" as ?template)
-            BIND ( replace( replace( ?template,'ATTR', 'uri' ), 'VAL', str(?pos) ) as ?pos_ )
-            BIND ( replace( replace( ?template,'ATTR', 'id' ), 'VAL', str(?person) ) as ?person_ )
+            BIND ( replace( replace( ?template,'ATTR', 'id' ), 'VAL', str(?pos) ) as ?pos_ )
+            BIND ( replace( replace( ?template,'ATTR', 'uri' ), 'VAL', str(?person) ) as ?person_ )
             BIND ( replace( replace( ?template,'ATTR', 'general_position' ), 'VAL', str(?type) ) as ?type_ )
             BIND ( replace( replace( ?template,'ATTR', 'specific_position' ), 'VAL', str(?pos_label) ) as ?pos_label_ )
             BIND ( replace( replace( ?template,'ATTR', 'label' ), 'VAL', str(?person_label) ) as ?person_label_ )
-            BIND(concat( ?pos_, ?person_, ?type_, ?pos_label_, ?person_label_ ) as ?data)
+            BIND ( replace( replace( ?template,'ATTR', 'title' ), 'VAL', str(?pref) ) as ?pref_ )
+            BIND(concat( ?pos_,?person_,?type_,?pos_label_,?person_label_,?pref ) as ?data)
         }
         """ .
 
