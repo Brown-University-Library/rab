@@ -210,6 +210,37 @@
         }
         """ .
 
+:documentModifier_person_fis_updated
+    a   <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.SelectQueryDocumentModifier> ,
+        <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.DocumentModifier> ;
+    rdfs:label "All labels are added to name fields." ;
+    :hasTargetField "person_fis_updated" ;
+    :hasTypeRestriction "http://xmlns.com/foaf/0.1/Person";
+    :hasSelectQuery """
+        PREFIX blocal:<http://vivo.brown.edu/ontology/vivo-brown/>
+        SELECT DISTINCT ?fis
+        WHERE {
+            ?uri blocal:fisUpdated ?fis .
+        }
+        """ .
+
+:documentModifier_person_profile_updated
+    a   <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.SelectQueryDocumentModifier> ,
+        <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.DocumentModifier> ;
+    rdfs:label "All labels are added to name fields." ;
+    :hasTargetField "person_profile_updated" ;
+    :hasTypeRestriction "http://xmlns.com/foaf/0.1/Person";
+    :hasSelectQuery """
+        PREFIX blocal:<http://vivo.brown.edu/ontology/vivo-brown/>
+        SELECT DISTINCT ?date
+        WHERE {
+            ?uri blocal:profileUpdated ?profile .
+            BIND(str(year(?profile)) as ?year)
+            BIND(str(month(?profile)) as ?month)
+            BIND(CONCAT(?year,'-',?month) as ?date)
+        }
+        """ .
+
 :documentModifier_person_affiliations
     a   <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.SelectQueryDocumentModifier> ,
         <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.DocumentModifier> ;
