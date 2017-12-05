@@ -182,8 +182,8 @@
   <copyField source="nameLowercaseSingleValued" dest="nameBrowseSort" />
 
   <!-- **************************** VIVO-on-Rails fields ************************ -->
-  <field name="suggest" type="textSpell" indexed="true" stored="false" />
-  <copyField source="ALLTEXTUNSTEMMED" dest="suggest" />
+  <field name="spellsuggest" type="textSpell" indexed="true" stored="false" />
+  <copyField source="ALLTEXTUNSTEMMED" dest="spellsuggest" />
 
   <!-- derived fields -->
   <field name="id" type="string" indexed="true" stored="true" multiValued="false"/>
