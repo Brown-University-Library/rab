@@ -249,7 +249,13 @@
   <field name="alumni_of" type="string" indexed="true" stored="true" multiValued="true"/>
 
   <!-- json fields -->
-  <field name="json_txt" type="json" indexed="false" stored="true" multiValued="true"/>  
+  <field name="json_txt" type="json" indexed="false" stored="true" multiValued="true"/>
+
+  <!-- tokenize research areas for searching --> 
+  <copyField source="research_areas" dest="research_areas_txt"/>
+
+  <!-- store string version of the title so that we can facet by it -->
+  <copyField source="title_t" dest="title_s"/>
      
   <!-- ****************************  End Vitro Fields *************************** -->
   <!-- ****************************  Dynamic Fields *************************** -->
