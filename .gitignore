@@ -10,4 +10,5 @@
 /data-home/
 #Ontologies imported from other repo
 #rdf/tbox/filegraph/*ttl
-rebuild.shdeploy.sh
+rebuild.sh
+deploy.sh
