@@ -33,7 +33,7 @@ function processAdd(cmd) {
       'person_research_areas','person_alumni_of',
       'person_teacher_for', 'person_image_path',
       'person_full_name','person_fis_updated',
-      'person_profile_updated'
+      'person_profile_updated', 'person_consent_viz'
     ],
     'ORGANIZATION' : [
       'organization_image_path'
@@ -56,7 +56,8 @@ function processAdd(cmd) {
       'person_image_path' : 'thumbnail_file_path_s',
       'person_full_name' : 'display_name_s',
       'person_profile_updated' : 'profile_updated_s',
-      'person_fis_updated' : 'fis_updated_s'
+      'person_fis_updated' : 'fis_updated_s',
+      'person_consent_viz' : 'show_visualizations_s'
     },
     'ORGANIZATION' : {
       'organization_image_path' : 'thumbnail_file_path_s'
@@ -66,7 +67,8 @@ function processAdd(cmd) {
   single_valued_fields = [
     'person_email', 'person_shortid', 'person_image_path',
     'organization_image_path', 'person_full_name',
-    'person_fis_updated','person_profile_updated'
+    'person_fis_updated','person_profile_updated',
+    'person_consent_viz'
   ];
 
   relevant_fields = applicable[rtype[0]];

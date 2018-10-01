@@ -131,7 +131,7 @@ function processAdd(cmd) {
 		'person_delimited_appointments','person_delimited_credentials',
 		'person_delimited_training','person_delimited_on_the_web',
 		'person_full_name','person_fis_updated',
-		'person_profile_updated'],
+		'person_profile_updated', 'person_consent_viz'],
 	'ORGANIZATION' : [
 		'organization_delimited_on_the_web',
 		'organization_delimited_positions',
@@ -148,7 +148,7 @@ function processAdd(cmd) {
 		'person_teaching_overview','person_title',
 		'organization_overview','organization_image_path',
 		'person_full_name','person_fis_updated',
-		'person_profile_updated'];
+		'person_profile_updated', 'person_consent_viz'];
 
   delimited_data = [ 'person_delimited_cv', 'person_delimited_affiliations',
   		'person_delimited_collaborators','person_delimited_contributor_to',

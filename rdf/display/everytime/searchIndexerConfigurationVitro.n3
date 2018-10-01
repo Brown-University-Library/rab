@@ -339,6 +339,20 @@
         }
         """ .
 
+:documentModifier_person_consents_visualizations
+    a   <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.SelectQueryDocumentModifier> ,
+        <java:edu.cornell.mannlib.vitro.webapp.searchindex.documentBuilding.DocumentModifier> ;
+    rdfs:label "All labels are added to name fields." ;
+    :hasTargetField "person_consent_viz" ;
+    :hasTypeRestriction "http://xmlns.com/foaf/0.1/Person";
+    :hasSelectQuery """
+        PREFIX bprofile: <http://vivo.brown.edu/ontology/profile#>
+        SELECT DISTINCT ?viz
+        WHERE {
+            ?uri bprofile:consentsVisualizations ?viz .
+        }
+        """ .
+
 # Multivalued attributes
 
 :documentModifier_person_department_affiliations
@@ -606,9 +620,9 @@
         WHERE {
             ?uri bprofile:hasAppointment ?apt .
             ?apt rdfs:label ?name .
-            ?apt bprofile:department ?dept .
-            ?apt bprofile:startDate ?start .
-            ?apt bprofile:endDate ?end .
+            OPTIONAL { ?apt bprofile:department ?dept . }
+            OPTIONAL { ?apt bprofile:startDate ?start . }
+            OPTIONAL { ?apt bprofile:endDate ?end . }
             OPTIONAL {
                 ?apt bprofile:hasOrganization ?org .
                 ?org rdfs:label ?org_name .
@@ -620,9 +634,9 @@
             BIND ("ATTR|&|VAL|%|" as ?template)
             BIND ( replace( replace( ?template,'ATTR', 'uri' ), 'VAL', str(?apt) ) as ?apt_ )
             BIND ( replace( replace( ?template,'ATTR', 'name' ), 'VAL', str(?name) ) as ?name_ )
-            BIND ( replace( replace( ?template,'ATTR', 'department' ), 'VAL', str(?dept) ) as ?dept_ )
-            BIND ( replace( replace( ?template,'ATTR', 'start_date' ), 'VAL', str(?start) ) as ?start_ )
-            BIND ( replace( replace( ?template,'ATTR', 'end_date' ), 'VAL', str(?end) ) as ?end_ )
+            BIND ( replace( replace( ?template,'ATTR', 'dept' ), 'VAL', IF ( bound(?dept), str(?dept), '--' ) ) as ?dept_ )
+            BIND ( replace( replace( ?template,'ATTR', 'start_date' ), 'VAL', IF ( bound(?start), str(?start), '--' ) ) as ?start_ )
+            BIND ( replace( replace( ?template,'ATTR', 'end_date' ), 'VAL', IF ( bound(?end), str(?end), '--' ) ) as ?end_ )
             BIND ( replace( replace( ?template,'ATTR', 'org_name' ), 'VAL', IF ( bound(?org_name), str(?org_name), '--' ) ) as ?org_name_ )
             BIND ( replace( replace( ?template,'ATTR', 'hospital_name' ), 'VAL', IF ( bound(?hospital_name), str(?hospital_name), '--' ) ) as ?hospital_name_ )
             BIND(concat( ?apt_, ?name_, ?dept_, ?start_, ?end_, ?org_name_, ?hospital_name_) as ?data)
@@ -642,7 +656,7 @@
         WHERE {
             ?uri bprofile:hasCredential ?crd .
             ?crd rdfs:label ?name .
-            ?crd bprofile:startDate ?start .
+            OPTIONAL { ?crd bprofile:startDate ?start . }
             OPTIONAL { ?crd bprofile:credentialNumber ?number . }
             OPTIONAL { ?crd bprofile:endDate ?end . }
             OPTIONAL {
@@ -656,7 +670,7 @@
             BIND ("ATTR|&|VAL|%|" as ?template)
             BIND ( replace( replace( ?template,'ATTR', 'uri' ), 'VAL', str(?crd) ) as ?crd_ )
             BIND ( replace( replace( ?template,'ATTR', 'name' ), 'VAL', str(?name) ) as ?name_ )
-            BIND ( replace( replace( ?template,'ATTR', 'start_date' ), 'VAL', str(?start) ) as ?start_ )
+            BIND ( replace( replace( ?template,'ATTR', 'start_date' ), 'VAL', IF ( bound(?start), str(?start), '--' ) ) as ?start_ )
             BIND ( replace( replace( ?template,'ATTR', 'number' ), 'VAL', IF ( bound(?number), str(?number), '--' ) ) as ?number_ )
             BIND ( replace( replace( ?template,'ATTR', 'end_date' ), 'VAL', IF ( bound(?end), str(?end), '--' ) ) as ?end_ )
             BIND ( replace( replace( ?template,'ATTR', 'grantor_name' ), 'VAL', IF ( bound(?grantor_name), str(?grantor_name), '--' ) ) as ?grantor_name_ )
