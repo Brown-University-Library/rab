@@ -773,14 +773,15 @@
     :hasSelectQuery """
         PREFIX vivo:<http://vivoweb.org/ontology/core#>
         PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#>
-        PREFIX vitro:    <http://vitro.mannlib.cornell.edu/ns/vitro/0.7#>
+        PREFIX blocal:<http://vivo.brown.edu/ontology/vivo-brown/>
+        PREFIX vitro:<http://vitro.mannlib.cornell.edu/ns/vitro/0.7#>
         SELECT DISTINCT ?data
         WHERE {
             ?uri vivo:organizationForPosition ?pos .
             ?pos rdfs:label ?pos_label .
             ?pos vitro:mostSpecificType ?type .
             ?pos vivo:positionForPerson ?person .
-            ?person rdfs:label ?person_label .
+            ?person blocal:alphaName ?person_label .
             ?person vivo:preferredTitle ?pref .
             BIND ("ATTR|&|VAL|%|" as ?template)
             BIND ( replace( replace( ?template,'ATTR', 'id' ), 'VAL', str(?pos) ) as ?pos_id_ )
